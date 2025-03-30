@@ -40,45 +40,32 @@ const { banner, features } = homepage.data as Homepage;
 <Base>
   <!-- Banner -->
   <section class="section pt-14">
-    <div class="container">
-      <div class="row justify-center">
-        <div class="lg:col-7 md:col-9 mb-8 text-center">
-          <h1
-            set:html={markdownify(banner.title)}
-            class="mb-4 text-h3 lg:text-h1"
-          />
-          <p set:html={markdownify(banner.content)} class="mb-8" />
-          {
-            banner.button.enable && (
-              <a
-                class="btn btn-primary"
-                href={banner.button.link}
-                target={
-                  banner.button.link.startsWith("http") ? "_blank" : "_self"
-                }
-                rel="noopener"
-              >
-                {banner.button.label}
-              </a>
-            )
-          }
-        </div>
-        {
-          banner.image && (
-            <div class="col-12">
-              <ImageMod
-                src={banner.image}
-                height={380}
-                width={1200}
-                alt="banner"
-                format="webp"
-              />
-            </div>
-          )
-        }
+    <div
+      class="container rounded-xl bg-cover bg-center bg-no-repeat relative overflow-hidden"
+      style={`background-image: url(${banner.image});`}
+    >
+      <div class="bg-black/40 absolute inset-0 z-0" />
+      <div class="relative z-10 text-center text-white px-4 py-20">
+        <h1 class="text-4xl lg:text-5xl font-bold mb-4">
+          {markdownify(banner.title)}
+        </h1>
+        <p class="text-lg mb-6 max-w-2xl mx-auto">
+          {markdownify(banner.content)}
+        </p>
+        {banner.button.enable && (
+          <a
+            href={banner.button.link}
+            class="btn btn-primary"
+            target={banner.button.link.startsWith("http") ? "_blank" : "_self"}
+            rel="noopener"
+          >
+            {banner.button.label}
+          </a>
+        )}
       </div>
     </div>
   </section>
+  
   <!-- /Banner -->
 
   <!-- Features -->

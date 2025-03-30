@@ -3,11 +3,11 @@
 banner:
   title: "CoderDojo Schöneweide"
   content: "Inspirierende IT-Workshops für Kinder und Jugendliche"
-  image: "/images/banner.png"
+  image: "/images/Background.png"
   button:
     enable: true
-    label: "Get Started For Free"
-    link: "https://github.com/zeon-studio/astroplate"
+    label: "Ticket buchen 2"
+    link: "/" 
 
 # Features
 features:
