@@ -1,17 +1,9 @@
 {
   "main": [
-    {
-      "name": "Home",
-      "url": "/"
-    },
-    {
-      "name": "About",
-      "url": "/about"
-    },
-    {
-      "name": "Elements",
-      "url": "/elements"
-    },
+    { "name": "Workshops", "url": "/" },
+    { "name": "Werde Mentor", "url": "/" },
+    { "name": "Verein", "url": "/" },
+    { "name": "Kooperationen", "url": "/" },
     {
       "name": "Pages",
       "url": "",

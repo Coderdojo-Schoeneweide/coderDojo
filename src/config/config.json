@@ -1,15 +1,15 @@
 {
   "site": {
-    "title": "Astroplate",
+    "title": "CoderDojo",
     "base_url": "https://astroplate.netlify.app",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
-    "logo": "/images/logo.png",
-    "logo_darkmode": "/images/logo-darkmode.png",
-    "logo_width": "150",
-    "logo_height": "30",
-    "logo_text": "Astroplate"
+    "logo": "/images/logoP.png",
+    "logo_darkmode": "/images/logoP.png",
+    "logo_width": "48",
+    "logo_height": "48",
+    "logo_text": "CoderDojo"
   },
 
   "settings": {

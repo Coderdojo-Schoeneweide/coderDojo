@@ -1,8 +1,8 @@
 ---
 # Banner
 banner:
-  title: "The Ultimate Starter Template You Need To Start Your Astro Project"
-  content: "Astroplate is a free starter template built with Astro and TailwindCSS, providing everything you need to jumpstart your Astro project and save valuable time."
+  title: "CoderDojo Schöneweide"
+  content: "Inspirierende IT-Workshops für Kinder und Jugendliche"
   image: "/images/banner.png"
   button:
     enable: true
