@@ -68,6 +68,4 @@ If you have any questions about the setup, design implementation, or contributio
 
 Thanks for being part of the CoderDojo Schöneweide team! 💻🎨🚀
 ```
-
----
-
+![alt text](teams.png)
