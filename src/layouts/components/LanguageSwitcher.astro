@@ -1,26 +1,45 @@
 ---
 const { className }: { className?: string } = Astro.props;
 const languages = [
-  { code: "de", label: "Deutsch", flag: "🇩🇪", href: "/de" },
-  { code: "en", label: "English", flag: "🇬🇧", href: "/en" },
-  { code: "ar", label: "Arabic", flag: "🇸🇦", href: "/ar" },
+  { code: "de", label: "Deutsch", flag: "https://flagcdn.com/w40/de.png", href: "/de" },
+  { code: "en", label: "English", flag: "https://flagcdn.com/w40/gb.png", href: "/en" },
+  { code: "ar", label: "Arabic", flag: "https://flagcdn.com/w40/sa.png", href: "/ar" },
 ];
 ---
 
-<div class={`relative group ${className}`}>
-  <button class="flex items-center space-x-2 bg-amber-100 hover:bg-amber-200 px-3 py-1 rounded text-sm">
+<div class={`relative ${className}`}>
+  <button id="langButton" type="button" class="flex items-center space-x-2 text-white px-3 py-1 rounded text-sm bg-transparent focus:outline-none">
     <span class="text-lg">🌐</span>
-    <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+    <svg class="h-4 w-4" viewBox="0 0 0 0" fill="currentColor">
       <path d="M5.25 6.75L10 11.5l4.75-4.75" />
     </svg>
   </button>
-  <ul class="absolute right-0 top-full bg-white rounded shadow-lg mt-2 w-36 hidden group-hover:block transition z-50">
+  <ul id="langMenu" class="absolute right-0 top-full bg-[#F8AA48] rounded shadow-lg mt-2 w-44 hidden transition z-50">
     {languages.map(lang => (
       <li>
-        <a href={lang.href} class="block px-4 py-2 text-sm hover:bg-amber-50">
-          <span>{lang.flag}</span> {lang.label}
+        <a href={lang.href} class="flex items-center px-4 py-2 text-lg text-white hover:bg-amber-500 rounded cursor-pointer" onclick="document.getElementById('langMenu').classList.add('hidden')">
+          <img src={lang.flag} alt={lang.label + ' flag'} class="w-10 h-10 rounded-full object-cover bg-white border-2 border-white" />
+          <span class="ml-3">{lang.label}</span>
         </a>
       </li>
     ))}
   </ul>
 </div>
+
+<script type="module">
+  const button = document.getElementById('langButton');
+  const menu = document.getElementById('langMenu');
+
+  function closeMenu(e) {
+    if (!button.contains(e.target) && !menu.contains(e.target)) {
+      menu.classList.add('hidden');
+    }
+  }
+
+  button?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    menu.classList.toggle('hidden');
+  });
+
+  document.addEventListener('click', closeMenu);
+</script>

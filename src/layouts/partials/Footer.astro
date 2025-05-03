@@ -9,33 +9,42 @@ import { markdownify } from "@/lib/utils/textConverter";
 const { footer }: { footer: { name: string; url: string }[] } = menu;
 ---
 
-<footer class="bg-light dark:bg-darkmode-light">
-  <div class="container">
-    <div class="row items-center py-10">
-      <div class="mb-8 text-center lg:col-3 lg:mb-0 lg:text-left">
-        <Logo />
-      </div>
-      <div class="mb-8 text-center lg:col-6 lg:mb-0">
-        <ul>
-          {
-            footer.map((menu) => (
-              <li class="m-3 inline-block">
-                <a href={menu.url}>{menu.name}</a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <div class="mb-8 text-center lg:col-3 lg:mb-0 lg:mt-0 lg:text-right">
-        <Social source={social.main} className="social-icons" />
-      </div>
+<footer class="bg-[#47405a] text-white pt-10 pb-4">
+  <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between gap-8">
+    <!-- Left: Site Info -->
+    <div>
+      <h2 class="text-2xl font-bold mb-2 text-orange-300">CoderDojo Schöneweide</h2>
+      <ul class="space-y-1 text-sm">
+        <li><a href="#" class="hover:underline">Kontakt</a></li>
+        <li><a href="#" class="hover:underline">Impressum</a></li>
+        <li><a href="#" class="hover:underline">Datenschutzerklärung</a></li>
+      </ul>
+    </div>
+    <!-- Middle: Navigation -->
+    <div>
+      <ul class="space-y-1 text-sm md:mt-0">
+        <h2 class="text-xl font-bold mb-2 text-orange-300">Sitemap</h2>
+        <li><a href="#" class="hover:underline">Home</a></li>
+        <li><a href="#" class="hover:underline">Workshops</a></li>
+        <li><a href="#" class="hover:underline">Mentoring</a></li>
+        <li><a href="#" class="hover:underline">Verein</a></li>
+        <li><a href="#" class="hover:underline">Blog</a></li>
+      </ul>
+    </div>
+    <!-- Right: Social Links -->
+    <div>
+      <h2 class="text-xl font-bold mb-2 text-orange-300">Wir im Netz</h2>
+      <ul class="space-y-1 text-sm">
+        <li><a href="#" class="hover:underline">LinkedIn</a></li>
+        <li><a href="#" class="hover:underline">Pretix (Tickets)</a></li>
+        <li><a href="#" class="hover:underline">Facebook</a></li>
+        <li><a href="#" class="hover:underline">Instagram</a></li>
+        <li><a href="#" class="hover:underline">GitHub</a></li>
+        <li><a href="#" class="hover:underline">YouTube</a></li>
+      </ul>
     </div>
   </div>
-  <div class="border-t border-border py-7 dark:border-darkmode-border">
-    <div
-      class="container text-center text-text-light dark:text-darkmode-text-light"
-    >
-      <p set:html={markdownify(config.params.copyright)} />
-    </div>
+  <div class="mt-8 border-t border-[#6c6480] pt-4 text-center text-white text-sm font-semibold">
+    Made with <span class="text-red-400">❤️</span> by the CoderDojo Schöneweide Team
   </div>
 </footer>
