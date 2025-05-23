@@ -3,19 +3,10 @@ import Logo from "@/components/Logo.astro";
 import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
 import config from "@/config/config.json";
 import menu from "@/config/menu.json";
-import { IoSearch } from "react-icons/io5";
-import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
-
-export interface ChildNavigationLink {
-  name: string;
-  url: string;
-}
 
 export interface NavigationLink {
   name: string;
   url: string;
-  hasChildren?: boolean;
-  children?: ChildNavigationLink[];
 }
 
 const { main }: { main: NavigationLink[] } = menu;
@@ -23,8 +14,8 @@ const { navigation_button, settings } = config;
 const { pathname } = Astro.url;
 ---
 
-<header class={`header z-30 ${settings.sticky_header && "sticky top-0"}`}>
-  <nav class="navbar container">
+<header class={`header z-30 bg-white dark:bg-darkmode-theme-light ${settings.sticky_header && "sticky top-0"}`}>
+  <nav class="navbar container mx-auto px-4 py-4">
     <!-- logo -->
     <div class="order-0">
       <Logo />
@@ -53,95 +44,51 @@ const { pathname } = Astro.url;
     >
       {
         main.map((menu) => (
-          <>
-            {menu.hasChildren ? (
-              <li class="nav-item nav-dropdown group relative">
-                <span
-                  class={`nav-link inline-flex items-center ${
-                    menu.children?.map(({ url }) => url).includes(pathname) ||
-                    menu.children
-                      ?.map(({ url }) => `${url}/`)
-                      .includes(pathname)
-                      ? "active"
-                      : ""
-                  }`}
-                >
-                  {menu.name}
-                  <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
-                </span>
-                <ul class="nav-dropdown-list hidden group-hover:block lg:invisible lg:absolute lg:block lg:opacity-0 lg:group-hover:visible lg:group-hover:opacity-100">
-                  {menu.children?.map((child) => (
-                    <li class="nav-dropdown-item">
-                      <a
-                        href={child.url}
-                        aria-label={child.name}
-                        class={`nav-dropdown-link block ${
-                          (pathname === `${child.url}/` ||
-                            pathname === child.url) &&
-                          "active"
-                        }`}
-                      >
-                        {child.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ) : (
               <li class="nav-item">
                 <a
                   href={menu.url}
-                  class={`nav-link block ${
+              class={`nav-link block text-lg font-medium text-gray-700 hover:text-orange-400 dark:text-white dark:hover:text-orange-400 ${
                     (pathname === `${menu.url}/` || pathname === menu.url) &&
-                    "active"
+                "text-orange-400"
                   }`}
                 >
                   {menu.name}
                 </a>
               </li>
-            )}
-          </>
         ))
-      }
-      {
-        navigation_button.enable && (
-          <li class="mt-4 inline-block lg:hidden">
-            <a
-              class="btn btn-outline-primary btn-sm"
-              href={navigation_button.link}
-            >
-              {navigation_button.label}
-            </a>
-          </li>
-        )
       }
     </ul>
     <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
-      {
-        settings.search && (
-          <button
-            class="border-border text-text-dark hover:text-primary dark:border-darkmode-border mr-5 inline-block border-r pr-5 text-xl dark:text-white dark:hover:text-darkmode-primary"
-            aria-label="search"
-            data-search-trigger
-          >
-            <IoSearch />
-          </button>
-        )
-      }
-      <LanguageSwitcher className="mr-5" />
       <ThemeSwitcher className="mr-5" />
-      {
-        navigation_button.enable && (
-          <a
-            class="btn btn-outline-primary btn-sm hidden lg:inline-block"
-            href={navigation_button.link}
-          >
-            {navigation_button.label}
-          </a>
-        )
-      }
     </div>
   </nav>
 </header>
+
+<style>
+  .navbar {
+    @apply flex items-center justify-between;
+  }
+  .navbar-nav {
+    @apply flex flex-col;
+  }
+  @media (min-width: 1024px) {
+    .navbar-nav {
+      @apply flex-row;
+    }
+  }
+  .nav-item {
+    @apply relative;
+  }
+  .nav-link {
+    @apply px-4 py-2;
+  }
+  #nav-toggle:checked ~ #nav-menu {
+    @apply block;
+  }
+  #nav-toggle:checked ~ label #show-button {
+    @apply hidden;
+  }
+  #nav-toggle:checked ~ label #hide-button {
+    @apply block;
+  }
+</style>

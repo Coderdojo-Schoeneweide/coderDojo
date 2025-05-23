@@ -1,40 +1,24 @@
 {
   "main": [
-    { "name": "Workshops", "url": "/" },
+    {
+      "name": "Home",
+      "url": "/"
+    },
+    {
+      "name": "Workshops",
+      "url": "/workshops"
+    },
+    {
+      "name": "About",
+      "url": "/about"
+    },
+    {
+      "name": "Contact",
+      "url": "/contact"
+    },
     { "name": "Werde Mentor", "url": "/" },
     { "name": "Verein", "url": "/" },
-    { "name": "Kooperationen", "url": "/" },
-    {
-      "name": "Pages",
-      "url": "",
-      "hasChildren": true,
-      "children": [
-        {
-          "name": "Contact",
-          "url": "/contact"
-        },
-        {
-          "name": "Blog",
-          "url": "/blog"
-        },
-        {
-          "name": "Authors",
-          "url": "/authors"
-        },
-        {
-          "name": "Categories",
-          "url": "/categories"
-        },
-        {
-          "name": "Tags",
-          "url": "/tags"
-        },
-        {
-          "name": "404 Page",
-          "url": "/404"
-        }
-      ]
-    }
+    { "name": "Kooperationen", "url": "/" }
   ],
   "footer": [
     {

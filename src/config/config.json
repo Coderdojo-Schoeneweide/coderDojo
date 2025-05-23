@@ -13,13 +13,9 @@
   },
 
   "settings": {
-    "search": true,
     "sticky_header": true,
     "theme_switcher": true,
-    "default_theme": "system",
-    "pagination": 2,
-    "summary_length": 200,
-    "blog_folder": "blog"
+    "default_theme": "system"
   },
 
   "params": {
@@ -31,12 +27,6 @@
     "enable": false,
     "label": "Get Started",
     "link": "https://github.com/zeon-studio/astroplate"
-  },
-
-  "disqus": {
-    "enable": true,
-    "shortname": "themefisher-template",
-    "settings": {}
   },
 
   "metadata": {

@@ -3,8 +3,9 @@ import Base from "@/layouts/Base.astro";
 ---
 
 <Base>
-  <section class="relative min-h-[80vh] flex items-center justify-center bg-cover px-4 " style="background-image: url('/images/logo.webp'); background-size: cover;">
-    <div class="absolute inset-0 bg-black/10"></div>
+  <!-- Hero Section -->
+  <section class="relative min-h-[80vh] flex items-center justify-center bg-cover px-4" style="background-image: url('/images/logo.webp'); background-size: cover;">
+    <div class="absolute inset-0 bg-black/50"></div>
     <div class="relative z-10 w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
       <!-- Orange Banner with Heading and Subtitle -->
       <div class="flex-1 flex flex-col items-center md:items-start">
@@ -24,6 +25,7 @@ import Base from "@/layouts/Base.astro";
     </div>
   </section>
 
+  <!-- Workshops Section -->
   <section class="bg-[#463d5c] py-16 px-4 md:px-8 lg:px-16">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
       <!-- Left Column -->
@@ -57,6 +59,7 @@ import Base from "@/layouts/Base.astro";
     </div>
   </section>
 
+  <!-- Mentoring Section -->
   <section class="bg-[#a5c7c0] py-16 px-4 md:px-8 lg:px-16">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
       <!-- Left: Gray Rectangle -->
@@ -84,6 +87,7 @@ import Base from "@/layouts/Base.astro";
     </div>
   </section>
 
+  <!-- Verein Section -->
   <section class="bg-[#463d5c] py-16 px-4 md:px-8 lg:px-16">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
       <!-- Left: Content -->
@@ -106,6 +110,7 @@ import Base from "@/layouts/Base.astro";
     </div>
   </section>
 
+  <!-- Kooperationen Section -->
   <section class="bg-[#a5c7c0] py-16 px-4 md:px-8 lg:px-16">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-12">
       <!-- Left: Info -->
@@ -132,3 +137,21 @@ import Base from "@/layouts/Base.astro";
     </div>
   </section>
 </Base>
+
+<style>
+  section {
+    @apply w-full;
+  }
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm;
+  }
+  .btn-primary {
+    @apply text-white bg-orange-400 hover:bg-orange-500;
+  }
+  .btn-outline {
+    @apply text-orange-400 border-orange-400 hover:bg-orange-400 hover:text-white;
+  }
+</style>

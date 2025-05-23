@@ -1,0 +1,277 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHeader from "@/layouts/partials/PageHeader.astro";
+
+// Get all workshop directories and their tags, duration, and age
+const workshops = [
+  {
+    title: "Blender",
+    description: "3D Modeling and Animation Workshop",
+    image: "/workshops/blender/blender.jpg",
+    link: "/workshops/blender",
+    category: "3D & Animation",
+    tags: ["#blender", "#3D", "#animation"],
+    duration: "2 Stunden",
+    age: "9 - 17 Jahre"
+  },
+  {
+    title: "Chatbot",
+    description: "Create Your Own AI Chatbot",
+    image: "/workshops/chatbot/chatbot.png",
+    link: "/workshops/chatbot",
+    category: "AI & Machine Learning",
+    tags: ["#scratch", "#python", "#ki"],
+    duration: "1,5 Stunden",
+    age: "10 - 17 Jahre"
+  },
+  {
+    title: "Coding im Dojo",
+    description: "Learn Programming in a Fun Environment",
+    image: "/workshops/coding_im_dojo/cid.jpg",
+    link: "/workshops/coding_im_dojo",
+    category: "Programming",
+    tags: ["#scratch"],
+    duration: "2 Stunden",
+    age: "7 - 17 Jahre"
+  },
+  {
+    title: "Computerspiele und Gesellschaft",
+    description: "Understanding Games and Society",
+    image: "/workshops/computerspiele-und-gesellschaft/computerspiele-und-gesellschaft.png",
+    link: "/workshops/computerspiele-und-gesellschaft",
+    category: "Gaming",
+    tags: ["#spiel", "#design", "#scratch"],
+    duration: "1,5 Stunden",
+    age: "10 - 17 Jahre"
+  },
+  {
+    title: "Dashbot Challenges",
+    description: "Robot Programming Challenges",
+    image: "/workshops/dashbot-challenges/dashbot-challenges.png",
+    link: "/workshops/dashbot-challenges",
+    category: "Robotics",
+    tags: ["#dashbot"],
+    duration: "2 Stunden",
+    age: "7 - 17 Jahre"
+  },
+  {
+    title: "Gemeinsame Geschichte",
+    description: "Interactive History Projects",
+    image: "/workshops/gemeinsame-geschichte/geschichte.png",
+    link: "/workshops/gemeinsame-geschichte",
+    category: "Interactive",
+    tags: ["#scratch", "#animation"],
+    duration: "4 Stunden",
+    age: "Ab 11 Jahren"
+  },
+  {
+    title: "Godot",
+    description: "Game Development with Godot",
+    image: "/workshops/godot/godot.png",
+    link: "/workshops/godot",
+    category: "Game Development",
+    tags: ["#spiel", "#design", "#godot"],
+    duration: "4 Stunden",
+    age: "Ab 14 Jahren"
+  },
+  {
+    title: "Karol und Kara",
+    description: "Programming with Karol and Kara",
+    image: "/workshops/karol-und-kara/kara.png",
+    link: "/workshops/karol-und-kara",
+    category: "Programming",
+    tags: ["#algorithmus", "#automaten", "#kara", "#karol"],
+    duration: "2 Stunden",
+    age: "7 - 17 Jahre"
+  },
+  {
+    title: "Künstliche Intelligenz",
+    description: "Introduction to AI and Machine Learning",
+    image: "/workshops/kuenstliche-intelligenz/ki.png",
+    link: "/workshops/kuenstliche-intelligenz",
+    category: "AI & Machine Learning",
+    tags: ["#ki"],
+    duration: "2 Stunden",
+    age: "7 - 17 Jahre"
+  },
+  {
+    title: "MBot Labyrinth",
+    description: "Robot Navigation Challenges",
+    image: "/workshops/mbot-labyrinth/mbot.png",
+    link: "/workshops/mbot-labyrinth",
+    category: "Robotics",
+    tags: ["#mbot", "#mblock", "#sensoren"],
+    duration: "3 Stunden",
+    age: "10 - 14 Jahre"
+  },
+  {
+    title: "Octostudio Haustierapp",
+    description: "Create Your Pet App",
+    image: "/workshops/octostudio-haustierapp/octostudio.png",
+    link: "/workshops/octostudio-haustierapp",
+    category: "App Development",
+    tags: ["#octostudio", "#app"],
+    duration: "1,5 Stunden",
+    age: "7 - 17 Jahre"
+  },
+  {
+    title: "Pocketcode Gesichtserkennung",
+    description: "Face Recognition Projects",
+    image: "/workshops/pocketcode-gesichtserkennung/filter.png",
+    link: "/workshops/pocketcode-gesichtserkennung",
+    category: "AI & Machine Learning",
+    tags: ["#pocketcode", "#app"],
+    duration: "1,5 Stunden",
+    age: "10 - 17 Jahre"
+  },
+  {
+    title: "Processing",
+    description: "Creative Coding with Processing",
+    image: "/workshops/processing/processing.png",
+    link: "/workshops/processing",
+    category: "Creative Coding",
+    tags: ["#processing", "#java", "#animation"],
+    duration: "2 Stunden",
+    age: "12 - 17 Jahre"
+  },
+  {
+    title: "Python AstroPi",
+    description: "Space Programming with Python",
+    image: "/workshops/python-astropi/astro-pi.png",
+    link: "/workshops/python-astropi",
+    category: "Programming",
+    tags: ["#python", "#sensoren"],
+    duration: "3 Stunden",
+    age: "10 - 14 Jahre"
+  },
+  {
+    title: "Scratch Animationen",
+    description: "Create Animations with Scratch",
+    image: "/workshops/scratch-animationen/storyboard.png",
+    link: "/workshops/scratch-animationen",
+    category: "Animation",
+    tags: ["#scratch", "#animation"],
+    duration: "4 Stunden",
+    age: "8 - 17 Jahre"
+  },
+  {
+    title: "Scratch Grusskarten",
+    description: "Digital Greeting Cards with Scratch",
+    image: "/workshops/scratch-grusskarten/grusskarte.png",
+    link: "/workshops/scratch-grusskarten",
+    category: "Creative",
+    tags: ["#scratch", "#animation", "#design"],
+    duration: "1,5 Stunden",
+    age: "7 - 17 Jahre"
+  },
+  {
+    title: "Scratch Lippensynchronisation",
+    description: "Lip Sync Animation with Scratch",
+    image: "/workshops/scratch-lippensynchronisation/lippensynchronisation.png",
+    link: "/workshops/scratch-lippensynchronisation",
+    category: "Animation",
+    tags: ["#scratch", "#animation"],
+    duration: "2 Stunden",
+    age: "10 - 17 Jahre"
+  },
+  {
+    title: "Scratch Musikvideo",
+    description: "Create Music Videos with Scratch",
+    image: "/workshops/scratch-musikvideo/musikvideo.png",
+    link: "/workshops/scratch-musikvideo",
+    category: "Creative",
+    tags: ["#scratch", "#animation"],
+    duration: "1,5 Stunden",
+    age: "7 - 13 Jahre"
+  },
+  {
+    title: "Scratch Theaterstück",
+    description: "Digital Theater with Scratch",
+    image: "/workshops/scratch-theaterstueck/theaterstueck.png",
+    link: "/workshops/scratch-theaterstueck",
+    category: "Creative",
+    tags: ["#scratch", "#animation"],
+    duration: "1,5 Stunden",
+    age: "7 - 13 Jahre"
+  },
+  {
+    title: "Softwareentwicklung und Gesellschaft",
+    description: "Software Development and Society",
+    image: "/workshops/softwareentwicklung-und-gesellschaft/softwareentwicklung-und-gesellschaft.png",
+    link: "/workshops/softwareentwicklung-und-gesellschaft",
+    category: "Programming",
+    tags: ["#software", "#design", "#scratch"],
+    duration: "1,5 Stunden",
+    age: "10 - 17 Jahre"
+  }
+];
+
+// Get unique categories
+const categories = [...new Set(workshops.map(workshop => workshop.category))];
+---
+
+<Base>
+  <!-- Modern Hero Section -->
+  <section class="relative flex items-center justify-center min-h-[40vh] bg-gradient-to-br from-orange-100 via-white to-orange-200 px-4 py-20">
+    <div class="relative z-10 w-full max-w-2xl mx-auto text-center bg-white/80 dark:bg-[#222222cc] rounded-3xl shadow-xl px-8 py-12 backdrop-blur-md">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Unsere Workshops</h1>
+      <p class="text-lg md:text-xl text-gray-700 dark:text-gray-200 mb-8">Entdecke die Welt der Programmierung und Technik in unseren interaktiven Workshops</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        {categories.map((category) => (
+          <button class="px-5 py-2 border-2 border-orange-400 text-orange-400 bg-white/60 dark:bg-[#222222cc] rounded-full font-medium hover:bg-orange-400 hover:text-white transition-all duration-200 shadow-sm">
+            {category}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Workshops Grid Section -->
+  <section class="py-24 px-4 md:px-8 lg:px-16 bg-[#463d5c]">
+    <div class="max-w-3xl mx-auto flex flex-col gap-10">
+      {workshops.map((workshop) => (
+        <a href={workshop.link} class="group block">
+          <div class="flex flex-row items-center bg-gray-100 dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden transition-all duration-300 group-hover:shadow-orange-400/40 p-6 gap-8">
+            <div class="flex-shrink-0 w-40 h-40 rounded-2xl overflow-hidden bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+              <img
+                src={workshop.image}
+                alt={workshop.title}
+                class="object-cover w-full h-full"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex-1 flex flex-col justify-center min-w-0">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{workshop.title}</h3>
+              <p class="text-gray-700 dark:text-gray-200 mb-4 truncate">{workshop.description}</p>
+              <div class="flex flex-col gap-2 mb-2">
+                <div class="flex items-center text-gray-800 dark:text-gray-100 text-base">
+                  <svg class="w-5 h-5 mr-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  {workshop.duration}
+                </div>
+                <div class="flex items-center text-gray-800 dark:text-gray-100 text-base">
+                  <svg class="w-5 h-5 mr-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m9-5a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                  {workshop.age}
+                </div>
+              </div>
+              {workshop.tags && workshop.tags.length > 0 && (
+                <div class="flex flex-wrap gap-2 mt-2">
+                  {workshop.tags.map((tag) => (
+                    <span class="bg-white dark:bg-gray-700 text-gray-900 dark:text-white px-3 py-1 rounded-full shadow text-xs font-medium border border-gray-200 dark:border-gray-700">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  section {
+    @apply w-full;
+  }
+</style> 
