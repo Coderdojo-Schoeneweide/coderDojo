@@ -208,9 +208,80 @@ const workshops = [
 
 // Get unique categories
 const categories = [...new Set(workshops.map(workshop => workshop.category))];
+
+// Pagination logic
+const workshopsPerPage = 5;
+const totalPages = Math.ceil(workshops.length / workshopsPerPage);
+
+// Get current page from URL query parameter, default to 1
+const pageParam = Astro.url.searchParams.get('page');
+let currentPage = 1;
+
+if (pageParam) {
+  const parsedPage = parseInt(pageParam);
+  if (!isNaN(parsedPage) && parsedPage > 0) {
+    currentPage = Math.min(parsedPage, totalPages);
+  }
+}
+
+// Calculate start and end indices for current page
+const startIndex = (currentPage - 1) * workshopsPerPage;
+const endIndex = Math.min(startIndex + workshopsPerPage, workshops.length);
+
+// Get workshops for current page
+const currentWorkshops = workshops.slice(startIndex, endIndex);
+
+// Generate pagination links
+const paginationLinks = Array.from({ length: totalPages }, (_, i) => {
+  const pageNum = i + 1;
+  return {
+    page: pageNum,
+    isCurrent: pageNum === currentPage,
+    url: pageNum === 1 ? '/workshops' : `/workshops?page=${pageNum}`
+  };
+});
 ---
 
 <Base>
+  <script is:inline>
+    // Simple pagination function
+    function showPage(pageNum) {
+      console.log('Showing page:', pageNum); // Debug log
+      
+      // Hide all workshop items
+      const allItems = document.querySelectorAll('.workshop-item');
+      console.log('Total items:', allItems.length); // Debug log
+      allItems.forEach(item => {
+        item.style.display = 'none';
+      });
+      
+      // Show items for current page
+      const pageItems = document.querySelectorAll(`.workshop-item[data-page="${pageNum}"]`);
+      console.log('Items for page', pageNum, ':', pageItems.length); // Debug log
+      pageItems.forEach(item => {
+        item.style.display = 'block';
+      });
+      
+      // Update pagination buttons
+      document.querySelectorAll('.pagination-btn').forEach(btn => {
+        const btnPage = parseInt(btn.getAttribute('data-page') || '1');
+        if (btnPage === pageNum) {
+          btn.classList.add('bg-orange-400');
+          btn.classList.remove('bg-white/10');
+        } else {
+          btn.classList.remove('bg-orange-400');
+          btn.classList.add('bg-white/10');
+        }
+      });
+    }
+
+    // Show first page on load
+    window.addEventListener('load', () => {
+      console.log('Page loaded, showing first page'); // Debug log
+      showPage(1);
+    });
+  </script>
+
   <!-- Modern Hero Section -->
   <section class="relative flex items-center justify-center min-h-[40vh] bg-gradient-to-br from-orange-100 via-white to-orange-200 px-4 py-20">
     <div class="relative z-10 w-full max-w-2xl mx-auto text-center bg-white/80 dark:bg-[#222222cc] rounded-3xl shadow-xl px-8 py-12 backdrop-blur-md">
@@ -228,44 +299,71 @@ const categories = [...new Set(workshops.map(workshop => workshop.category))];
 
   <!-- Workshops Grid Section -->
   <section class="py-24 px-4 md:px-8 lg:px-16 bg-[#463d5c]">
-    <div class="max-w-3xl mx-auto flex flex-col gap-10">
-      {workshops.map((workshop) => (
-        <a href={workshop.link} class="group block">
-          <div class="flex flex-row items-center bg-gray-100 dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden transition-all duration-300 group-hover:shadow-orange-400/40 p-6 gap-8">
-            <div class="flex-shrink-0 w-40 h-40 rounded-2xl overflow-hidden bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-              <img
-                src={workshop.image}
-                alt={workshop.title}
-                class="object-cover w-full h-full"
-                loading="lazy"
-              />
+    <div class="max-w-3xl mx-auto flex flex-col gap-5">
+      <!-- Workshops Container -->
+      <div id="workshops-container" class="flex flex-col gap-4">
+        {workshops.map((workshop, index) => {
+          const pageNum = Math.floor(index / workshopsPerPage) + 1;
+          console.log(`Workshop ${workshop.title} assigned to page ${pageNum}`); // Debug log
+          return (
+            <div 
+              class="workshop-item" 
+              data-page={pageNum}
+              style="display: none;"
+            >
+              <a href={workshop.link} class="group block">
+                <div class="flex flex-row items-center bg-gray-100 dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden transition-all duration-300 group-hover:shadow-orange-400/40 p-6 gap-8">
+                  <div class="flex-shrink-0 w-40 h-40 rounded-2xl overflow-hidden bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                    <img
+                      src={workshop.image}
+                      alt={workshop.title}
+                      class="object-cover w-full h-full"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="flex-1 flex flex-col justify-center min-w-0">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{workshop.title}</h3>
+                    <p class="text-gray-700 dark:text-gray-200 mb-4 truncate">{workshop.description}</p>
+                    <div class="flex flex-col gap-2 mb-2">
+                      <div class="flex items-center text-gray-800 dark:text-gray-100 text-base">
+                        <svg class="w-5 h-5 mr-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        {workshop.duration}
+                      </div>
+                      <div class="flex items-center text-gray-800 dark:text-gray-100 text-base">
+                        <svg class="w-5 h-5 mr-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m9-5a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        {workshop.age}
+                      </div>
+                    </div>
+                    {workshop.tags && workshop.tags.length > 0 && (
+                      <div class="flex flex-wrap gap-2 mt-2">
+                        {workshop.tags.map((tag) => (
+                          <span class="bg-white dark:bg-gray-700 text-gray-900 dark:text-white px-3 py-1 rounded-full shadow text-xs font-medium border border-gray-200 dark:border-gray-700">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </a>
             </div>
-            <div class="flex-1 flex flex-col justify-center min-w-0">
-              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{workshop.title}</h3>
-              <p class="text-gray-700 dark:text-gray-200 mb-4 truncate">{workshop.description}</p>
-              <div class="flex flex-col gap-2 mb-2">
-                <div class="flex items-center text-gray-800 dark:text-gray-100 text-base">
-                  <svg class="w-5 h-5 mr-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                  {workshop.duration}
-                </div>
-                <div class="flex items-center text-gray-800 dark:text-gray-100 text-base">
-                  <svg class="w-5 h-5 mr-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m9-5a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-                  {workshop.age}
-                </div>
-              </div>
-              {workshop.tags && workshop.tags.length > 0 && (
-                <div class="flex flex-wrap gap-2 mt-2">
-                  {workshop.tags.map((tag) => (
-                    <span class="bg-white dark:bg-gray-700 text-gray-900 dark:text-white px-3 py-1 rounded-full shadow text-xs font-medium border border-gray-200 dark:border-gray-700">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </a>
-      ))}
+          );
+        })}
+      </div>
+
+      <!-- Pagination Controls -->
+      <div class="flex justify-center items-center gap-4 mt-8">
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+          <button
+            type="button"
+            class="pagination-btn px-4 py-2 rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors duration-200"
+            data-page={pageNum}
+            onclick={`showPage(${pageNum})`}
+          >
+            {pageNum}
+          </button>
+        ))}
+      </div>
     </div>
   </section>
 </Base>
@@ -273,5 +371,17 @@ const categories = [...new Set(workshops.map(workshop => workshop.category))];
 <style>
   section {
     @apply w-full;
+  }
+
+  .workshop-item {
+    margin-bottom: 1rem; /* Reduced from 2rem to 1rem */
+  }
+
+  .workshop-item:last-child {
+    margin-bottom: 0;
+  }
+
+  #workshops-container {
+    min-height: 400px;
   }
 </style> 
