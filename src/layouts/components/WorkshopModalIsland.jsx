@@ -29,21 +29,51 @@ export default function WorkshopModalIsland({ workshops }) {
       const htmlResp = await fetch(`/workshops/${workshop.folder}/index.html`);
       const html = await htmlResp.text();
 
-      // Extract only the text from <p>...</p> tags inside <section class="single-workshop">...</section>
+      // Extract content from <section class="single-workshop">...</section>
       let extracted = "";
-      const sectionMatch = html.match(/<section[^>]*class=["']single-workshop["'][^>]*>([\s\S]*?)<\/section>/i);
+      const sectionMatch = html.match(/<section[^>]*>([\s\S]*?)<\/section>/i);
+      
       if (sectionMatch && sectionMatch[1]) {
-        // Find all <p>...</p> blocks
-        const pMatches = [...sectionMatch[1].matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)];
-        if (pMatches.length > 0) {
-          extracted = pMatches.map(m => `<p>${m[1].trim()}</p>`).join('');
+        // Extract the card properties section
+        const cardPropsMatch = sectionMatch[1].match(/<div[^>]*class=["']card-properties["'][^>]*>([\s\S]*?)<\/div>/i);
+        
+        // Process the main content first
+        extracted = sectionMatch[1]
+          // Remove the h1 and img tags as they're handled separately
+          .replace(/<h1[^>]*>.*?<\/h1>/i, '')
+          .replace(/<img[^>]*>/i, '')
+          // Remove card properties as we'll add it back properly formatted
+          .replace(/<div[^>]*class=["']card-properties["'][^>]*>[\s\S]*?<\/div>/i, '')
+          // Add classes to lists for better styling
+          .replace(/<ul>/g, '<ul class="list-disc pl-6 space-y-2 my-4">')
+          // Add classes to paragraphs for better spacing
+          .replace(/<p>/g, '<p class="mb-4">')
+          .trim();
+
+        // Add back the card properties with proper styling if it exists
+        if (cardPropsMatch) {
+          const cardPropsContent = cardPropsMatch[1]
+            // Keep the original icon HTML structure but add flex container
+            .replace(/<p>/g, '<p class="flex items-center gap-2 mb-2">')
+            // Don't modify the icon HTML, just add margin
+            .replace(/<img class=icon src=([^>]+)>/g, '<img class="icon mr-2" src=$1>')
+            // Style the tags
+            .replace(/<span class=tag>/g, '<span class="inline-block bg-[#fbb040] text-white px-3 py-1 rounded-full text-xs font-semibold mr-2">')
+            .replace(/<\/span>/g, '</span>');
+          
+          extracted = `<div class="card-properties mb-6">${cardPropsContent}</div>${extracted}`;
         }
+
+        // Wrap the content in a container with proper styling
+        extracted = `<div class="workshop-content prose dark:prose-invert max-w-none">${extracted}</div>`;
       }
+      
       if (!extracted) {
         extracted = "<div class='text-red-500'>Keine Workshop-Beschreibung gefunden.</div>";
       }
       setHtmlContent(extracted);
     } catch (e) {
+      console.error('Error fetching workshop content:', e);
       setHtmlContent("<div class='text-red-500'>Inhalt konnte nicht geladen werden.</div>");
     }
 

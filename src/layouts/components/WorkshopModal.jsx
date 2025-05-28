@@ -20,30 +20,36 @@ export default function WorkshopModal({ open, onClose, htmlContent, photo, title
       onClick={onClose}
     >
       <div
-        className="relative bg-[#fbb040] rounded-2xl shadow-2xl max-w-2xl w-full mx-4 md:max-w-4xl md:flex md:gap-8 md:p-10 p-4"
+        className="relative w-full max-w-lg md:max-w-xl mx-2 md:mx-0 rounded-3xl shadow-2xl overflow-hidden bg-gradient-to-br from-orange-200 to-orange-400 max-h-[90vh] flex flex-col"
         onClick={e => e.stopPropagation()}
         ref={modalRef}
+        style={{ maxHeight: '90vh' }}
       >
         <button
-          className="absolute top-2 right-2 text-2xl text-white bg-[#463d5c] rounded-full w-10 h-10 flex items-center justify-center hover:bg-orange-600 transition"
+          className="absolute top-3 right-3 text-2xl text-white bg-[#463d5c] rounded-full w-10 h-10 flex items-center justify-center hover:bg-orange-600 transition z-10 shadow-lg"
           onClick={onClose}
           aria-label="Close"
         >
           ×
         </button>
         {photo && (
-          <img
-            src={photo}
-            alt={title}
-            className="mb-4 rounded-xl w-full object-cover md:w-80 md:h-80 md:mb-0 md:mr-8 shadow-lg"
-            style={{ maxHeight: 320 }}
-          />
+          <div className="w-full h-48 md:h-64 relative flex-shrink-0">
+            <img
+              src={photo}
+              alt={title}
+              className="object-cover w-full h-full rounded-t-3xl"
+              style={{ maxHeight: 320 }}
+            />
+          </div>
         )}
-        <div
-          className="flex-1 bg-white rounded-2xl p-6 shadow-lg overflow-y-auto max-h-[70vh] md:max-h-[80vh] text-[#463d5c] prose-workshop"
-          style={{ minWidth: 0 }}
-          dangerouslySetInnerHTML={{ __html: htmlContent }}
-        />
+        <div className="bg-white rounded-b-3xl p-6 md:p-8 shadow-lg relative z-10 overflow-y-auto flex-1"
+             style={{ minHeight: 0 }}>
+          {title && <h2 className="text-2xl md:text-3xl font-bold text-[#463d5c] mb-4 text-center">{title}</h2>}
+          <div
+            className="prose dark:prose-invert max-w-none text-[#463d5c]"
+            dangerouslySetInnerHTML={{ __html: htmlContent }}
+          />
+        </div>
       </div>
     </div>
   );
