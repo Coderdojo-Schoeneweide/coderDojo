@@ -1,7 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
 import PageHeader from "@/layouts/partials/PageHeader.astro";
-import WorkshopModalIsland from "@/layouts/components/WorkshopModalIsland.jsx";
+import WorkshopGridIsland from "@/layouts/components/WorkshopGridIsland.jsx";
 
 // Get all workshop directories and their tags, duration, and age
 const workshops = [
@@ -288,20 +288,14 @@ const paginationLinks = Array.from({ length: totalPages }, (_, i) => {
     <div class="relative z-10 w-full max-w-2xl mx-auto text-center bg-white/80 dark:bg-[#222222cc] rounded-3xl shadow-xl px-8 py-12 backdrop-blur-md">
       <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Unsere Workshops</h1>
       <p class="text-lg md:text-xl text-gray-700 dark:text-gray-200 mb-8">Entdecke die Welt der Programmierung und Technik in unseren interaktiven Workshops</p>
-      <div class="flex flex-wrap justify-center gap-3">
-        {categories.map((category) => (
-          <button class="px-5 py-2 border-2 border-orange-400 text-orange-400 bg-white/60 dark:bg-[#222222cc] rounded-full font-medium hover:bg-orange-400 hover:text-white transition-all duration-200 shadow-sm">
-            {category}
-          </button>
-        ))}
-      </div>
+      <!-- The tag bar is now handled by the React island -->
     </div>
   </section>
 
   <!-- Workshops Grid Section -->
   <section class="py-24 px-4 md:px-8 lg:px-16 bg-[#463d5c]">
     <div class="max-w-6xl mx-auto flex flex-col gap-5">
-      <WorkshopModalIsland client:load workshops={workshops} />
+      <WorkshopGridIsland client:load workshops={workshops} />
     </div>
   </section>
 </Base>
