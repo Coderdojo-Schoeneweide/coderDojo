@@ -1,27 +1,40 @@
 ---
-import config from "@/config/config.json";
-import { plainify } from "@/lib/utils/textConverter";
-import Header from "@/layouts/partials/Header.astro";
-import Footer from "@/layouts/partials/Footer.astro";
-import TwSizeIndicator from "@/layouts/components/TwSizeIndicator.astro";
+import config from '@/config/config.json'
+import { plainify } from '@/lib/utils/textConverter'
+import Header from '@/layouts/partials/Header.astro'
+import Footer from '@/layouts/partials/Footer.astro'
+import TwSizeIndicator from '@/layouts/components/TwSizeIndicator.astro'
 
 interface Props {
-  title?: string;
-  meta_title?: string;
-  description?: string;
-  image?: string;
+  title?: string
+  meta_title?: string
+  description?: string
+  image?: string
 }
 
-const { title, meta_title, description, image } = Astro.props;
+const { title, meta_title, description, image } = Astro.props
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{plainify(meta_title ? meta_title : title ? title : config.site.title)}</title>
-    <meta name="description" content={plainify(description ? description : config.metadata.meta_description)} />
+    <title>
+      {
+        plainify(
+          meta_title ? meta_title
+          : title ? title
+          : config.site.title,
+        )
+      }
+    </title>
+    <meta
+      name="description"
+      content={plainify(
+        description ? description : config.metadata.meta_description,
+      )}
+    />
     <link rel="icon" href={config.site.favicon} />
     <meta name="author" content={config.metadata.meta_author} />
 
@@ -29,7 +42,9 @@ const { title, meta_title, description, image } = Astro.props;
     <meta
       property="og:title"
       content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title
+        meta_title ? meta_title
+        : title ? title
+        : config.site.title,
       )}
     />
 
@@ -37,20 +52,22 @@ const { title, meta_title, description, image } = Astro.props;
     <meta
       property="og:description"
       content={plainify(
-        description ? description : config.metadata.meta_description
+        description ? description : config.metadata.meta_description,
       )}
     />
     <meta property="og:type" content="website" />
     <meta
       property="og:url"
-      content={`${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`}
+      content={`${config.site.base_url}/${Astro.url.pathname.replace('/', '')}`}
     />
 
     <!-- twitter-title -->
     <meta
       name="twitter:title"
       content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title
+        meta_title ? meta_title
+        : title ? title
+        : config.site.title,
       )}
     />
 
@@ -58,7 +75,7 @@ const { title, meta_title, description, image } = Astro.props;
     <meta
       name="twitter:description"
       content={plainify(
-        description ? description : config.metadata.meta_description
+        description ? description : config.metadata.meta_description,
       )}
     />
 
@@ -82,11 +99,14 @@ const { title, meta_title, description, image } = Astro.props;
     <!-- Theme initialization script -->
     <script is:inline>
       // Check for saved theme preference or use system preference
-      const theme = localStorage.getItem('theme') || 
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      
+      const theme =
+        localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ?
+          'dark'
+        : 'light')
+
       // Apply the theme
-      document.documentElement.classList.toggle('dark', theme === 'dark');
+      document.documentElement.classList.toggle('dark', theme === 'dark')
     </script>
   </head>
   <body>

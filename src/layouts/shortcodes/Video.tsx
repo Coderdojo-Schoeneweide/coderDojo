@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react'
 function Video({
   title,
   width = 500,
-  height = "auto",
+  height = 'auto',
   src,
   ...rest
 }: {
-  title: string;
-  width: number;
-  height: number | "auto";
-  src: string;
-  [key: string]: any;
+  title: string
+  width: number
+  height: number | 'auto'
+  src: string
+  [key: string]: any
 }) {
   return (
     <video
@@ -26,7 +26,7 @@ function Video({
       />
       {title}
     </video>
-  );
+  )
 }
 
-export default Video;
+export default Video
