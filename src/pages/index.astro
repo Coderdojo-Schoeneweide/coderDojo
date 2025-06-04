@@ -1,84 +1,239 @@
 ---
-import Base from "@/layouts/Base.astro";
+import Base from '@/layouts/Base.astro'
 ---
 
 <Base>
   <!-- Hero Section -->
-  <section class="relative min-h-[80vh] flex items-center justify-center bg-cover px-4" style="background-image: url('/images/logo.webp'); background-size: cover;">
+  <section
+    class="relative flex min-h-[80vh] items-center justify-center bg-cover px-4"
+    style="background-image: url('/images/logo.webp'); background-size: cover;"
+  >
     <div class="absolute inset-0 bg-black/50"></div>
-    <div class="relative z-10 w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+    <div
+      class="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-8 md:flex-row"
+    >
       <!-- Orange Banner with Heading and Subtitle -->
-      <div class="flex-1 flex flex-col items-center md:items-start">
-        <div class="bg-orange-400 rounded-[2.5rem] px-8 py-6 md:px-12 md:py-8 shadow-lg flex flex-col items-center md:items-start w-full max-w-2xl" style="border-radius: 2.5rem / 2rem;">
-          <h1 class="text-4xl md:text-5xl font-bold text-white mb-2 text-center md:text-left">CoderDojo Schöneweide</h1>
-          <p class="text-xl md:text-2xl font-semibold text-white text-center md:text-left">Inspirierende IT-Workshops für Kinder und Jugendliche</p>
+      <div class="flex flex-1 flex-col items-center md:items-start">
+        <div
+          class="flex w-full max-w-2xl flex-col items-center rounded-[2.5rem] bg-orange-400 px-8 py-6 shadow-lg md:items-start md:px-12 md:py-8"
+          style="border-radius: 2.5rem / 2rem;"
+        >
+          <h1
+            class="mb-2 text-center text-4xl font-bold text-white md:text-left md:text-5xl"
+          >
+            CoderDojo Schöneweide
+          </h1>
+          <p
+            class="text-center text-xl font-semibold text-white md:text-left md:text-2xl"
+          >
+            Inspirierende IT-Workshops für Kinder und Jugendliche
+          </p>
         </div>
       </div>
       <!-- Buttons -->
-      <div class="flex flex-col md:flex-col gap-4 md:gap-6 items-center md:items-end mt-8 md:mt-0">
-        <a href="#" class="bg-orange-300 hover:bg-orange-500 text-white font-bold py-4 px-10 rounded-xl text-xl flex items-center justify-center shadow transition w-full md:w-auto">
-          <svg class="w-7 h-7 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="2" stroke-width="2" stroke="currentColor" fill="none"/><path d="M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2" stroke-width="2" stroke="currentColor" fill="none"/></svg>
+      <div
+        class="mt-8 flex flex-col items-center gap-4 md:mt-0 md:flex-col md:items-end md:gap-6"
+      >
+        <a
+          href="#"
+          class="flex w-full items-center justify-center rounded-xl bg-orange-300 px-10 py-4 text-xl font-bold text-white shadow transition hover:bg-orange-500 md:w-auto"
+        >
+          <svg
+            class="mr-2 h-7 w-7"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><rect
+              x="3"
+              y="7"
+              width="18"
+              height="10"
+              rx="2"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"></rect><path
+              d="M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"></path></svg
+          >
           Ticket buchen
         </a>
-        <a href="#" class="bg-orange-300 hover:bg-orange-500 text-white font-bold py-4 px-10 rounded-xl text-xl flex items-center justify-center shadow transition w-full md:w-auto">Spenden</a>
+        <a
+          href="#"
+          class="flex w-full items-center justify-center rounded-xl bg-orange-300 px-10 py-4 text-xl font-bold text-white shadow transition hover:bg-orange-500 md:w-auto"
+          >Spenden</a
+        >
       </div>
     </div>
   </section>
 
   <!-- Workshops Section -->
-  <section class="bg-[#463d5c] py-16 px-4 md:px-8 lg:px-16">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+  <section class="bg-[#463d5c] px-4 py-16 md:px-8 lg:px-16">
+    <div
+      class="mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row"
+    >
       <!-- Left Column -->
-      <div class="flex-1 flex flex-col items-start">
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">Workshops</h2>
-        <a href="#" class="bg-orange-300 hover:bg-orange-400 text-white font-bold py-4 px-10 rounded-lg text-xl mb-8 flex items-center shadow transition">
-          <svg class="w-7 h-7 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="2" stroke-width="2" stroke="currentColor" fill="none"/><path d="M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2" stroke-width="2" stroke="currentColor" fill="none"/></svg>
+      <div class="flex flex-1 flex-col items-start">
+        <h2 class="mb-8 text-4xl font-bold text-white md:text-5xl">
+          Workshops
+        </h2>
+        <a
+          href="#"
+          class="mb-8 flex items-center rounded-lg bg-orange-300 px-10 py-4 text-xl font-bold text-white shadow transition hover:bg-orange-400"
+        >
+          <svg
+            class="mr-2 h-7 w-7"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><rect
+              x="3"
+              y="7"
+              width="18"
+              height="10"
+              rx="2"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"></rect><path
+              d="M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"></path></svg
+          >
           Ticket buchen
         </a>
-        <div class="flex flex-col sm:flex-row gap-4 mb-8">
-          <a href="#" class="bg-[#463d5c] border-2 border-white text-white font-bold py-3 px-8 rounded-lg text-lg shadow hover:bg-[#5a4e7a] transition">Mehr Infos</a>
-          <a href="#" class="bg-[#463d5c] border-2 border-white text-white font-bold py-3 px-8 rounded-lg text-lg shadow hover:bg-[#5a4e7a] transition">Alle Workshops</a>
+        <div class="mb-8 flex flex-col gap-4 sm:flex-row">
+          <a
+            href="#"
+            class="rounded-lg border-2 border-white bg-[#463d5c] px-8 py-3 text-lg font-bold text-white shadow transition hover:bg-[#5a4e7a]"
+            >Mehr Infos</a
+          >
+          <a
+            href="#"
+            class="rounded-lg border-2 border-white bg-[#463d5c] px-8 py-3 text-lg font-bold text-white shadow transition hover:bg-[#5a4e7a]"
+            >Alle Workshops</a
+          >
         </div>
-        <p class="text-white text-lg mb-2">Kostenlose Workshops im Bereich Informatik/Technik</p>
-        <p class="text-white text-lg mb-2">Wann: Jeden zweiten Samstag von 11-13 Uhr<br>Wo: In der <a href="#" class="underline text-blue-200">Mittelpunktbibliothek "Alte Feuerwache"</a></p>
-        <p class="text-white text-lg mb-2">Für Kinder und Jugendliche zwischen 7-17 Jahren</p>
-        <p class="text-white text-lg mb-2">Kein Vorwissen nötig!</p>
-        <p class="text-white text-lg mb-8">Du möchtest über aktuelle Workshops informiert werden?<br>Melde Dich für den eMail-Newsletter an!</p>
-        <a href="#" class="bg-orange-300 hover:bg-orange-400 text-white font-bold py-4 px-10 rounded-lg text-xl flex items-center shadow transition">
-          <svg class="w-7 h-7 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="2" stroke-width="2" stroke="currentColor" fill="none"/><path d="M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2" stroke-width="2" stroke="currentColor" fill="none"/></svg>
+        <p class="mb-2 text-lg text-white">
+          Kostenlose Workshops im Bereich Informatik/Technik
+        </p>
+        <p class="mb-2 text-lg text-white">
+          Wann: Jeden zweiten Samstag von 11-13 Uhr<br />Wo: In der <a
+            href="#"
+            class="text-blue-200 underline"
+            >Mittelpunktbibliothek "Alte Feuerwache"</a>
+        </p>
+        <p class="mb-2 text-lg text-white">
+          Für Kinder und Jugendliche zwischen 7-17 Jahren
+        </p>
+        <p class="mb-2 text-lg text-white">Kein Vorwissen nötig!</p>
+        <p class="mb-8 text-lg text-white">
+          Du möchtest über aktuelle Workshops informiert werden?<br />Melde Dich
+          für den eMail-Newsletter an!
+        </p>
+        <a
+          href="#"
+          class="flex items-center rounded-lg bg-orange-300 px-10 py-4 text-xl font-bold text-white shadow transition hover:bg-orange-400"
+        >
+          <svg
+            class="mr-2 h-7 w-7"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><rect
+              x="3"
+              y="7"
+              width="18"
+              height="10"
+              rx="2"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"></rect><path
+              d="M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"></path></svg
+          >
           Newsletter abonnieren
         </a>
       </div>
       <!-- Right Column -->
-      <div class="flex-1 flex items-center justify-center mt-8 md:mt-0">
-        <div class="bg-gray-300 rounded-lg w-64 h-64 md:w-80 md:h-80 relative">
-          <div class="absolute bg-gray-300 rounded-lg w-32 h-32 top-0 right-0" style="transform: translate(40px, -40px);"></div>
-          <div class="absolute bg-gray-300 rounded-lg w-32 h-32 bottom-0 left-0" style="transform: translate(-40px, 40px);"></div>
+      <div class="mt-8 flex flex-1 items-center justify-center md:mt-0">
+        <div class="relative h-64 w-64 rounded-lg bg-gray-300 md:h-80 md:w-80">
+          <div
+            class="absolute right-0 top-0 h-32 w-32 rounded-lg bg-gray-300"
+            style="transform: translate(40px, -40px);"
+          >
+          </div>
+          <div
+            class="absolute bottom-0 left-0 h-32 w-32 rounded-lg bg-gray-300"
+            style="transform: translate(-40px, 40px);"
+          >
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Mentoring Section -->
-  <section class="bg-[#a5c7c0] py-16 px-4 md:px-8 lg:px-16">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+  <section class="bg-[#a5c7c0] px-4 py-16 md:px-8 lg:px-16">
+    <div
+      class="mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row"
+    >
       <!-- Left: Gray Rectangle -->
-      <div class="flex-1 flex items-center justify-center mb-8 md:mb-0">
-        <div class="bg-gray-300 rounded-lg w-80 h-48 md:w-[420px] md:h-56"></div>
+      <div class="mb-8 flex flex-1 items-center justify-center md:mb-0">
+        <div class="h-48 w-80 rounded-lg bg-gray-300 md:h-56 md:w-[420px]">
+        </div>
       </div>
       <!-- Right: Content -->
-      <div class="flex-1 flex flex-col items-start">
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">Mentoring</h2>
-        <div class="flex flex-col sm:flex-row gap-4 mb-8">
-          <a href="mailto:hallo@coderdojo-schoeneweide.de" class="bg-orange-300 hover:bg-orange-400 text-white font-bold py-4 px-10 rounded-lg text-xl flex items-center shadow transition">
-            <svg class="w-7 h-7 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 8V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2" stroke-width="2" stroke="currentColor" fill="none"/><rect x="3" y="8" width="18" height="10" rx="2" stroke-width="2" stroke="currentColor" fill="none"/><path d="M3 8l9 6 9-6" stroke-width="2" stroke="currentColor" fill="none"/></svg>
+      <div class="flex flex-1 flex-col items-start">
+        <h2 class="mb-8 text-4xl font-bold text-white md:text-5xl">
+          Mentoring
+        </h2>
+        <div class="mb-8 flex flex-col gap-4 sm:flex-row">
+          <a
+            href="mailto:hallo@coderdojo-schoeneweide.de"
+            class="flex items-center rounded-lg bg-orange-300 px-10 py-4 text-xl font-bold text-white shadow transition hover:bg-orange-400"
+          >
+            <svg
+              class="mr-2 h-7 w-7"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                d="M21 8V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"></path><rect
+                x="3"
+                y="8"
+                width="18"
+                height="10"
+                rx="2"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"></rect><path
+                d="M3 8l9 6 9-6"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"></path></svg
+            >
             Kontakt
           </a>
-          <a href="#" class="bg-[#463d5c] hover:bg-[#5a4e7a] text-white font-bold py-4 px-10 rounded-lg text-xl flex items-center shadow transition">Mehr Infos</a>
+          <a
+            href="#"
+            class="flex items-center rounded-lg bg-[#463d5c] px-10 py-4 text-xl font-bold text-white shadow transition hover:bg-[#5a4e7a]"
+            >Mehr Infos</a
+          >
         </div>
-        <p class="text-white text-lg mb-4">Du möchtest ehrenamtlich bei uns mitmachen?<br>Sehr cool! Schreib uns eine Mail an<br><span class="break-all">hallo@coderdojo-schoeneweide.de</span></p>
-        <p class="text-white text-lg mb-2">Was dich erwartet:</p>
-        <ul class="text-white list-disc list-inside space-y-1 text-lg mb-2">
+        <p class="mb-4 text-lg text-white">
+          Du möchtest ehrenamtlich bei uns mitmachen?<br />Sehr cool! Schreib
+          uns eine Mail an<br /><span class="break-all"
+            >hallo@coderdojo-schoeneweide.de</span>
+        </p>
+        <p class="mb-2 text-lg text-white">Was dich erwartet:</p>
+        <ul class="mb-2 list-inside list-disc space-y-1 text-lg text-white">
           <li>Wissen weitergeben / Gemeinschaft gestalten</li>
           <li>Team mit Freude und Engagement</li>
           <li>Eigene Ideen zum Thema Bildung einbringen</li>
@@ -88,50 +243,98 @@ import Base from "@/layouts/Base.astro";
   </section>
 
   <!-- Verein Section -->
-  <section class="bg-[#463d5c] py-16 px-4 md:px-8 lg:px-16">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+  <section class="bg-[#463d5c] px-4 py-16 md:px-8 lg:px-16">
+    <div
+      class="mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row"
+    >
       <!-- Left: Content -->
-      <div class="flex-1 flex flex-col items-start">
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">Verein</h2>
-        <p class="text-white text-lg mb-4">Das CoderDojo Schöneweide ist ein eingetragener,<br>gemeinnütziger Verein.</p>
-        <p class="text-white text-lg mb-2">Du möchtest Mitglied werden?<br>Infos dazu findest Du im → <a href="#" class="underline text-blue-200">Abschnitt "Mentoring"</a></p>
-        <p class="text-white text-lg mb-8">Du möchtest uns mit einer Spende unterstützen oder Fördermitglied werden?<br>Infos zu Spenden...</p>
-        <a href="#" class="bg-orange-300 hover:bg-orange-400 text-white font-bold py-4 px-10 rounded-lg text-xl mb-8 flex items-center shadow transition">Unterstütze uns durch eine Spende</a>
-        <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">Vereinsdokumente</h3>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a href="#" class="bg-[#463d5c] border-2 border-white text-white font-bold py-3 px-8 rounded-lg text-lg shadow hover:bg-[#5a4e7a] transition">Satzung</a>
-          <a href="#" class="bg-[#463d5c] border-2 border-white text-white font-bold py-3 px-8 rounded-lg text-lg shadow hover:bg-[#5a4e7a] transition">Jahresberichte</a>
+      <div class="flex flex-1 flex-col items-start">
+        <h2 class="mb-8 text-4xl font-bold text-white md:text-5xl">Verein</h2>
+        <p class="mb-4 text-lg text-white">
+          Das CoderDojo Schöneweide ist ein eingetragener,<br />gemeinnütziger
+          Verein.
+        </p>
+        <p class="mb-2 text-lg text-white">
+          Du möchtest Mitglied werden?<br />Infos dazu findest Du im → <a
+            href="#"
+            class="text-blue-200 underline">Abschnitt "Mentoring"</a>
+        </p>
+        <p class="mb-8 text-lg text-white">
+          Du möchtest uns mit einer Spende unterstützen oder Fördermitglied
+          werden?<br />Infos zu Spenden...
+        </p>
+        <a
+          href="#"
+          class="mb-8 flex items-center rounded-lg bg-orange-300 px-10 py-4 text-xl font-bold text-white shadow transition hover:bg-orange-400"
+          >Unterstütze uns durch eine Spende</a
+        >
+        <h3 class="mb-4 text-2xl font-bold text-white md:text-3xl">
+          Vereinsdokumente
+        </h3>
+        <div class="flex flex-col gap-4 sm:flex-row">
+          <a
+            href="#"
+            class="rounded-lg border-2 border-white bg-[#463d5c] px-8 py-3 text-lg font-bold text-white shadow transition hover:bg-[#5a4e7a]"
+            >Satzung</a
+          >
+          <a
+            href="#"
+            class="rounded-lg border-2 border-white bg-[#463d5c] px-8 py-3 text-lg font-bold text-white shadow transition hover:bg-[#5a4e7a]"
+            >Jahresberichte</a
+          >
         </div>
       </div>
       <!-- Right: Gray Rectangle -->
-      <div class="flex-1 flex items-center justify-center mt-8 md:mt-0">
-        <div class="bg-gray-300 rounded-lg w-80 h-64 md:w-[420px] md:h-72"></div>
+      <div class="mt-8 flex flex-1 items-center justify-center md:mt-0">
+        <div class="h-64 w-80 rounded-lg bg-gray-300 md:h-72 md:w-[420px]">
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Kooperationen Section -->
-  <section class="bg-[#a5c7c0] py-16 px-4 md:px-8 lg:px-16">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-12">
+  <section class="bg-[#a5c7c0] px-4 py-16 md:px-8 lg:px-16">
+    <div class="mx-auto flex max-w-6xl flex-col gap-12 md:flex-row">
       <!-- Left: Info -->
-      <div class="flex-1 flex flex-col items-start justify-start mb-8 md:mb-0">
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">Kooperationen</h2>
-        <p class="text-white text-lg mb-4">Sie sind bei einer Schule oder einer anderen<br>Bildungseinrichtung und wollen mit uns kooperieren?</p>
-        <p class="text-white text-lg mb-4">Schreiben Sie uns eine Mail an <a href="mailto:hallo@coderdojo-schoeneweide.de" class="underline text-blue-200">hallo@coderdojo-schoeneweide.de</a><br>oder füllen Sie unser <a href="#" class="underline text-blue-200">Kontaktformular</a> aus.</p>
-        <p class="text-white text-lg mb-4">Sie möchten wissen, was genau wir anbieten?<br>Sehen Sie unsere <a href="#" class="underline text-blue-200">Workshop Konzepte</a></p>
+      <div class="mb-8 flex flex-1 flex-col items-start justify-start md:mb-0">
+        <h2 class="mb-8 text-4xl font-bold text-white md:text-5xl">
+          Kooperationen
+        </h2>
+        <p class="mb-4 text-lg text-white">
+          Sie sind bei einer Schule oder einer anderen<br />Bildungseinrichtung
+          und wollen mit uns kooperieren?
+        </p>
+        <p class="mb-4 text-lg text-white">
+          Schreiben Sie uns eine Mail an <a
+            href="mailto:hallo@coderdojo-schoeneweide.de"
+            class="text-blue-200 underline">hallo@coderdojo-schoeneweide.de</a
+          ><br />oder füllen Sie unser <a
+            href="#"
+            class="text-blue-200 underline">Kontaktformular</a
+          > aus.
+        </p>
+        <p class="mb-4 text-lg text-white">
+          Sie möchten wissen, was genau wir anbieten?<br />Sehen Sie unsere <a
+            href="#"
+            class="text-blue-200 underline">Workshop Konzepte</a>
+        </p>
       </div>
       <!-- Right: Partner Logos Placeholder -->
-      <div class="flex-1 flex flex-col items-center">
-        <h3 class="text-2xl md:text-3xl font-semibold text-white mb-8">Unsere Partner</h3>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 w-full">
-          <div class="bg-gray-300 rounded w-full h-16"></div>
-          <div class="bg-gray-300 rounded w-full h-16"></div>
-          <div class="bg-gray-300 rounded w-full h-16"></div>
-          <div class="bg-gray-300 rounded w-full h-16"></div>
-          <div class="bg-gray-300 rounded w-full h-16"></div>
-          <div class="bg-gray-300 rounded w-full h-16"></div>
-          <div class="bg-gray-300 rounded w-full h-16 col-span-2 md:col-span-3"></div>
-          <div class="bg-gray-300 rounded w-full h-16 col-span-2 md:col-span-3"></div>
+      <div class="flex flex-1 flex-col items-center">
+        <h3 class="mb-8 text-2xl font-semibold text-white md:text-3xl">
+          Unsere Partner
+        </h3>
+        <div class="grid w-full grid-cols-2 gap-6 md:grid-cols-3">
+          <div class="h-16 w-full rounded bg-gray-300"></div>
+          <div class="h-16 w-full rounded bg-gray-300"></div>
+          <div class="h-16 w-full rounded bg-gray-300"></div>
+          <div class="h-16 w-full rounded bg-gray-300"></div>
+          <div class="h-16 w-full rounded bg-gray-300"></div>
+          <div class="h-16 w-full rounded bg-gray-300"></div>
+          <div class="col-span-2 h-16 w-full rounded bg-gray-300 md:col-span-3">
+          </div>
+          <div class="col-span-2 h-16 w-full rounded bg-gray-300 md:col-span-3">
+          </div>
         </div>
       </div>
     </div>
@@ -143,15 +346,15 @@ import Base from "@/layouts/Base.astro";
     @apply w-full;
   }
   .container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
   }
   .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm;
+    @apply inline-flex items-center justify-center rounded-md border border-transparent px-6 py-3 text-base font-medium shadow-sm;
   }
   .btn-primary {
-    @apply text-white bg-orange-400 hover:bg-orange-500;
+    @apply bg-orange-400 text-white hover:bg-orange-500;
   }
   .btn-outline {
-    @apply text-orange-400 border-orange-400 hover:bg-orange-400 hover:text-white;
+    @apply border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white;
   }
 </style>
