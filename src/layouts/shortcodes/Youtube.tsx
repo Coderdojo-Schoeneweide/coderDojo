@@ -1,15 +1,15 @@
-import React from "react";
-import LiteYouTubeEmbed from "react-lite-youtube-embed";
-import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
+import React from 'react'
+import LiteYouTubeEmbed from 'react-lite-youtube-embed'
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 
 const Youtube = ({
   id,
   title,
   ...rest
 }: {
-  id: string;
-  title: string;
-  [key: string]: any;
+  id: string
+  title: string
+  [key: string]: any
 }) => {
   return (
     <LiteYouTubeEmbed
@@ -18,7 +18,7 @@ const Youtube = ({
       title={title}
       {...rest}
     />
-  );
-};
+  )
+}
 
-export default Youtube;
+export default Youtube

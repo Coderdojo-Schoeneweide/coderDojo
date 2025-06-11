@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 const Accordion = ({
   title,
   children,
   className,
 }: {
-  title: string;
-  children: React.ReactNode;
-  className?: string;
+  title: string
+  children: React.ReactNode
+  className?: string
 }) => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false)
 
   return (
-    <div className={`accordion ${show && "active"} ${className}`}>
+    <div className={`accordion ${show && 'active'} ${className}`}>
       <button className="accordion-header" onClick={() => setShow(!show)}>
         {title}
         <svg
@@ -30,7 +30,7 @@ const Accordion = ({
       </button>
       <div className="accordion-content">{children}</div>
     </div>
-  );
-};
+  )
+}
 
-export default Accordion;
+export default Accordion
