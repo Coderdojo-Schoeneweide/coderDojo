@@ -9,25 +9,16 @@
       "url": "/workshops"
     },
     {
-      "name": "About",
-      "url": "/about"
+      "name": "Werde Mentor",
+      "url": "/"
     },
     {
-      "name": "Contact",
-      "url": "/contact"
-    },
-    { "name": "Werde Mentor", "url": "/" },
-    { "name": "Verein", "url": "/" },
-    { "name": "Kooperationen", "url": "/" }
-  ],
-  "footer": [
-    {
-      "name": "Elements",
-      "url": "/elements"
+      "name": "Verein",
+      "url": "/"
     },
     {
-      "name": "Privacy Policy",
-      "url": "/privacy-policy"
+      "name": "Kooperationen",
+      "url": "/"
     }
   ]
 }
