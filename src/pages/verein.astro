@@ -1,0 +1,102 @@
+---
+import Base from "@/layouts/Base.astro";
+
+// Example documents and info (customize as needed)
+const documents = [
+    {
+        title: "Satzung",
+        icon: "📄",
+        link: "#",
+    },
+    {
+        title: "Jahresberichte",
+        icon: "📊",
+        link: "#",
+    },
+];
+---
+
+<Base>
+    <!-- Modern Verein Section -->
+    <section
+        class="relative flex min-h-[70vh] items-center justify-center bg-gradient-to-br from-orange-100 via-white to-orange-200 px-4 py-20"
+    >
+        <div
+            class="relative z-10 mx-auto w-full max-w-4xl rounded-3xl bg-white/90 px-8 py-12 shadow-xl backdrop-blur-md dark:bg-[#222222e6] flex flex-col items-center gap-8"
+        >
+            <!-- Heading & Intro -->
+            <div class="text-center">
+                <h1
+                    class="mb-4 text-4xl font-bold text-gray-900 dark:text-white md:text-5xl"
+                >
+                    Verein
+                </h1>
+                <p
+                    class="mb-6 text-lg text-gray-700 dark:text-gray-200 md:text-xl"
+                >
+                    Das CoderDojo Schöneweide ist ein eingetragener,
+                    gemeinnütziger Verein.<br />
+                    Du möchtest Mitglied werden? Infos dazu findest Du im Abschnitt
+                    "Mentoring".
+                </p>
+            </div>
+            <!-- Mitgliedschaft & Spenden -->
+            <div
+                class="w-full flex flex-col md:flex-row gap-8 items-center justify-center"
+            >
+                <div class="flex-1 flex flex-col items-center md:items-start">
+                    <h2 class="mb-2 text-2xl font-bold text-orange-500">
+                        Mitgliedschaft & Spenden
+                    </h2>
+                    <p class="mb-4 text-base text-gray-700 dark:text-gray-200">
+                        Du möchtest uns mit einer Spende unterstützen oder
+                        Fördermitglied werden?<br />
+                        Infos zu Spenden...
+                    </p>
+                    <a
+                        href="#"
+                        class="mb-4 inline-flex items-center rounded-lg bg-orange-400 px-8 py-3 text-lg font-bold text-white shadow transition hover:bg-orange-500"
+                    >
+                        Unterstütze uns durch eine Spende
+                    </a>
+                </div>
+                <!-- Modern Placeholder Graphic -->
+                <div class="flex-1 flex items-center justify-center">
+                    <div
+                        class="flex flex-col items-center justify-center h-48 w-48 rounded-full bg-gradient-to-br from-orange-200 via-orange-100 to-orange-300 shadow-inner"
+                    >
+                        <span class="text-6xl">🤗</span>
+                        <span class="mt-2 text-orange-500 font-semibold"
+                            >Gemeinschaft</span
+                        >
+                    </div>
+                </div>
+            </div>
+            <!-- Vereinsdokumente -->
+            <div class="w-full mt-6">
+                <h3 class="mb-4 text-xl font-bold text-orange-500 text-center">
+                    Vereinsdokumente
+                </h3>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    {
+                        documents.map((doc) => (
+                            <a
+                                href={doc.link}
+                                class="flex items-center gap-2 rounded-lg border-2 border-orange-200 bg-white px-6 py-3 text-base font-bold text-orange-700 shadow transition hover:bg-orange-100"
+                            >
+                                <span class="text-2xl">{doc.icon}</span>
+                                {doc.title}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</Base>
+
+<style>
+    section {
+        @apply w-full;
+    }
+</style>

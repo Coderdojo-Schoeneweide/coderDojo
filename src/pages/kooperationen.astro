@@ -1,0 +1,93 @@
+---
+import Base from "@/layouts/Base.astro";
+
+const partners = [
+    { src: "/partners/partner1.png", alt: "Partner 1" },
+    { src: "/partners/partner2.png", alt: "Partner 2" },
+    { src: "/partners/partner3.png", alt: "Partner 3" },
+    { src: "/partners/partner4.png", alt: "Partner 4" },
+    { src: "/partners/partner5.png", alt: "Partner 5" },
+    { src: "/partners/partner6.png", alt: "Partner 6" },
+    { src: "/partners/partner7.png", alt: "Partner 7" },
+    { src: "/partners/partner8.png", alt: "Partner 8" },
+    { src: "/partners/partner9.png", alt: "Partner 9" },
+];
+---
+
+<Base>
+    <!-- Modern Kooperationen Section -->
+    <section
+        class="relative flex min-h-[70vh] items-center justify-center bg-gradient-to-br from-[#a5c7c0] via-white to-orange-100 dark:from-[#2d2a38] dark:via-[#23212b] dark:to-[#463d5c] px-4 py-20"
+    >
+        <div
+            class="relative z-10 mx-auto w-full max-w-4xl rounded-3xl bg-white/90 px-8 py-12 shadow-xl backdrop-blur-md dark:bg-[#222222e6] flex flex-col items-center gap-8"
+        >
+            <!-- Heading & Intro -->
+            <div class="text-center">
+                <h1
+                    class="mb-4 text-4xl font-bold text-gray-800 dark:text-white md:text-5xl"
+                >
+                    Kooperationen
+                </h1>
+                <p
+                    class="mb-6 text-lg text-gray-800 dark:text-gray-200 md:text-xl"
+                >
+                    Sie sind bei einer Schule oder einer anderen
+                    Bildungseinrichtung und wollen mit uns kooperieren?
+                </p>
+                <p
+                    class="mb-4 text-lg text-gray-800 dark:text-gray-200 md:text-xl"
+                >
+                    Schreiben Sie uns eine Mail an <a
+                        href="mailto:hallo@coderdojo-schoeneweide.de"
+                        class="text-blue-700 underline dark:text-blue-300"
+                        >hallo@coderdojo-schoeneweide.de</a
+                    >
+                    <br />oder füllen Sie unser <a
+                        href="#"
+                        class="text-blue-700 underline dark:text-blue-300"
+                        >Kontaktformular</a
+                    > aus.
+                </p>
+                <p
+                    class="mb-4 text-lg text-gray-800 dark:text-gray-200 md:text-xl"
+                >
+                    Sie möchten wissen, was genau wir anbieten?<br />
+                    Sehen Sie unsere <a
+                        href="#"
+                        class="text-blue-700 underline dark:text-blue-300"
+                        >Workshop Konzepte</a
+                    >
+                </p>
+            </div>
+            <!-- Partner Logos Section -->
+            <div class="w-full mt-8">
+                <h3
+                    class="mb-6 text-2xl font-semibold text-gray-800 dark:text-white text-center md:text-3xl"
+                >
+                    Unsere Partner
+                </h3>
+                <div class="grid w-full grid-cols-2 gap-6 md:grid-cols-3">
+                    {
+                        partners.map((partner) => (
+                            <div class="flex items-center justify-center bg-white/80 dark:bg-[#23212b] rounded-xl shadow p-3 transition hover:scale-105">
+                                <img
+                                    src={partner.src}
+                                    alt={partner.alt}
+                                    class="max-h-12 w-auto object-contain"
+                                    loading="lazy"
+                                />
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</Base>
+
+<style>
+    section {
+        @apply w-full;
+    }
+</style>

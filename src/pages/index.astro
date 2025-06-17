@@ -1,75 +1,85 @@
 ---
-import Base from '@/layouts/Base.astro'
+import Base from "@/layouts/Base.astro";
+
+const partners = [
+  { src: "/partners/partner1.png", alt: "Partner 1" },
+  { src: "/partners/partner2.png", alt: "Partner 2" },
+  { src: "/partners/partner3.png", alt: "Partner 3" },
+  { src: "/partners/partner4.png", alt: "Partner 4" },
+  { src: "/partners/partner5.png", alt: "Partner 5" },
+  { src: "/partners/partner6.png", alt: "Partner 6" },
+  { src: "/partners/partner7.png", alt: "Partner 7" },
+  { src: "/partners/partner8.png", alt: "Partner 8" },
+  { src: "/partners/partner9.png", alt: "Partner 9" },
+];
 ---
 
 <Base>
   <!-- Hero Section -->
   <section
-    class="relative flex min-h-[80vh] items-center justify-center bg-cover px-4"
-    style="background-image: url('/images/logo.webp'); background-size: cover;"
+    class="relative flex min-h-[70vh] items-center justify-center bg-gradient-to-br from-orange-100 via-white to-orange-200 dark:from-[#23212b] dark:via-[#2d2a38] dark:to-[#463d5c] px-4"
   >
-    <div class="absolute inset-0 bg-black/50"></div>
     <div
-      class="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-8 md:flex-row"
+      class="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-8"
     >
-      <!-- Orange Banner with Heading and Subtitle -->
-      <div class="flex flex-1 flex-col items-center md:items-start">
+      <!-- Banner -->
+      <div class="flex flex-col items-center w-full">
         <div
-          class="flex w-full max-w-2xl flex-col items-center rounded-[2.5rem] bg-orange-400 px-8 py-6 shadow-lg md:items-start md:px-12 md:py-8"
-          style="border-radius: 2.5rem / 2rem;"
+          class="flex flex-col items-center w-full max-w-2xl rounded-[2.5rem] bg-orange-400/95 shadow-2xl shadow-orange-300/40 px-8 py-6 animate-fade-in-up"
         >
           <h1
-            class="mb-2 text-center text-4xl font-bold text-white md:text-left md:text-5xl"
+            class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white drop-shadow-lg text-center mb-2 tracking-tight"
           >
             CoderDojo Schöneweide
           </h1>
           <p
-            class="text-center text-xl font-semibold text-white md:text-left md:text-2xl"
+            class="text-lg md:text-xl font-semibold text-orange-100 text-center mb-2 tracking-wide"
           >
             Inspirierende IT-Workshops für Kinder und Jugendliche
           </p>
         </div>
-      </div>
-      <!-- Buttons -->
-      <div
-        class="mt-8 flex flex-col items-center gap-4 md:mt-0 md:flex-col md:items-end md:gap-6"
-      >
-        <a
-          href="#"
-          class="flex w-full items-center justify-center rounded-xl bg-orange-300 px-10 py-4 text-xl font-bold text-white shadow transition hover:bg-orange-500 md:w-auto"
-        >
-          <svg
-            class="mr-2 h-7 w-7"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            ><rect
-              x="3"
-              y="7"
-              width="18"
-              height="10"
-              rx="2"
-              stroke-width="2"
-              stroke="currentColor"
-              fill="none"></rect><path
-              d="M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"
-              stroke-width="2"
-              stroke="currentColor"
-              fill="none"></path></svg
+        <!-- Buttons Row -->
+        <div class="flex gap-4 mt-6 flex-wrap justify-center">
+          <a
+            href="https://pretix.eu/dojosw/"
+            target="_blank"
+            rel="noopener"
+            class="btn-primary"
           >
-          Ticket buchen
-        </a>
-        <a
-          href="#"
-          class="flex w-full items-center justify-center rounded-xl bg-orange-300 px-10 py-4 text-xl font-bold text-white shadow transition hover:bg-orange-500 md:w-auto"
-          >Spenden</a
-        >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-orange-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <rect
+                x="3"
+                y="7"
+                width="18"
+                height="13"
+                rx="2"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"></rect>
+              <path
+                d="M16 3v4M8 3v4"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"></path>
+            </svg>
+            Ticket buchen
+          </a>
+          <a href="/spenden" class="btn-secondary"> Spenden </a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Workshops Section -->
-  <section class="bg-[#463d5c] px-4 py-16 md:px-8 lg:px-16">
+  <section
+    class="bg-[#463d5c] dark:bg-[#23212b] px-4 py-16 md:px-8 lg:px-16 transition-colors"
+  >
     <div
       class="mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row"
     >
@@ -79,8 +89,10 @@ import Base from '@/layouts/Base.astro'
           Workshops
         </h2>
         <a
-          href="#"
-          class="mb-8 flex items-center rounded-lg bg-orange-300 px-10 py-4 text-xl font-bold text-white shadow transition hover:bg-orange-400"
+          href="https://pretix.eu/dojosw/"
+          target="_blank"
+          rel="noopener"
+          class="btn-primary mb-8"
         >
           <svg
             class="mr-2 h-7 w-7"
@@ -104,16 +116,8 @@ import Base from '@/layouts/Base.astro'
           Ticket buchen
         </a>
         <div class="mb-8 flex flex-col gap-4 sm:flex-row">
-          <a
-            href="#"
-            class="rounded-lg border-2 border-white bg-[#463d5c] px-8 py-3 text-lg font-bold text-white shadow transition hover:bg-[#5a4e7a]"
-            >Mehr Infos</a
-          >
-          <a
-            href="#"
-            class="rounded-lg border-2 border-white bg-[#463d5c] px-8 py-3 text-lg font-bold text-white shadow transition hover:bg-[#5a4e7a]"
-            >Alle Workshops</a
-          >
+          <a href="/workshops" class="btn-outline">Mehr Infos</a>
+          <a href="/workshops" class="btn-outline">Alle Workshops</a>
         </div>
         <p class="mb-2 text-lg text-white">
           Kostenlose Workshops im Bereich Informatik/Technik
@@ -122,7 +126,8 @@ import Base from '@/layouts/Base.astro'
           Wann: Jeden zweiten Samstag von 11-13 Uhr<br />Wo: In der <a
             href="#"
             class="text-blue-200 underline"
-            >Mittelpunktbibliothek "Alte Feuerwache"</a>
+            >Mittelpunktbibliothek "Alte Feuerwache"</a
+          >
         </p>
         <p class="mb-2 text-lg text-white">
           Für Kinder und Jugendliche zwischen 7-17 Jahren
@@ -132,10 +137,7 @@ import Base from '@/layouts/Base.astro'
           Du möchtest über aktuelle Workshops informiert werden?<br />Melde Dich
           für den eMail-Newsletter an!
         </p>
-        <a
-          href="#"
-          class="flex items-center rounded-lg bg-orange-300 px-10 py-4 text-xl font-bold text-white shadow transition hover:bg-orange-400"
-        >
+        <a href="/newsletter" class="btn-primary">
           <svg
             class="mr-2 h-7 w-7"
             fill="none"
@@ -160,42 +162,38 @@ import Base from '@/layouts/Base.astro'
       </div>
       <!-- Right Column -->
       <div class="mt-8 flex flex-1 items-center justify-center md:mt-0">
-        <div class="relative h-64 w-64 rounded-lg bg-gray-300 md:h-80 md:w-80">
-          <div
-            class="absolute right-0 top-0 h-32 w-32 rounded-lg bg-gray-300"
-            style="transform: translate(40px, -40px);"
-          >
-          </div>
-          <div
-            class="absolute bottom-0 left-0 h-32 w-32 rounded-lg bg-gray-300"
-            style="transform: translate(-40px, 40px);"
-          >
-          </div>
+        <div
+          class="relative h-64 w-64 rounded-3xl bg-gradient-to-br from-orange-100 via-white to-orange-200 dark:from-[#463d5c] dark:via-[#23212b] dark:to-[#2d2a38] shadow-xl"
+        >
         </div>
       </div>
     </div>
   </section>
 
   <!-- Mentoring Section -->
-  <section class="bg-[#a5c7c0] px-4 py-16 md:px-8 lg:px-16">
+  <section
+    class="bg-[#a5c7c0] dark:bg-[#2d2a38] px-4 py-16 md:px-8 lg:px-16 transition-colors"
+  >
     <div
       class="mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row"
     >
-      <!-- Left: Gray Rectangle -->
+      <!-- Left: Graphic -->
       <div class="mb-8 flex flex-1 items-center justify-center md:mb-0">
-        <div class="h-48 w-80 rounded-lg bg-gray-300 md:h-56 md:w-[420px]">
+        <div
+          class="h-48 w-80 rounded-3xl bg-gradient-to-br from-orange-100 via-white to-orange-200 dark:from-[#463d5c] dark:via-[#23212b] dark:to-[#2d2a38] shadow-xl flex items-center justify-center"
+        >
+          <span class="text-6xl text-orange-400 dark:text-orange-300">🤝</span>
         </div>
       </div>
       <!-- Right: Content -->
       <div class="flex flex-1 flex-col items-start">
-        <h2 class="mb-8 text-4xl font-bold text-white md:text-5xl">
+        <h2
+          class="mb-8 text-4xl font-bold text-gray-800 dark:text-white md:text-5xl"
+        >
           Mentoring
         </h2>
         <div class="mb-8 flex flex-col gap-4 sm:flex-row">
-          <a
-            href="mailto:hallo@coderdojo-schoeneweide.de"
-            class="flex items-center rounded-lg bg-orange-300 px-10 py-4 text-xl font-bold text-white shadow transition hover:bg-orange-400"
-          >
+          <a href="/mentoring" class="btn-primary">
             <svg
               class="mr-2 h-7 w-7"
               fill="none"
@@ -219,21 +217,21 @@ import Base from '@/layouts/Base.astro'
                 stroke="currentColor"
                 fill="none"></path></svg
             >
-            Kontakt
+            Mehr Infos
           </a>
-          <a
-            href="#"
-            class="flex items-center rounded-lg bg-[#463d5c] px-10 py-4 text-xl font-bold text-white shadow transition hover:bg-[#5a4e7a]"
-            >Mehr Infos</a
-          >
         </div>
-        <p class="mb-4 text-lg text-white">
+        <p class="mb-4 text-lg text-gray-800 dark:text-gray-200">
           Du möchtest ehrenamtlich bei uns mitmachen?<br />Sehr cool! Schreib
           uns eine Mail an<br /><span class="break-all"
-            >hallo@coderdojo-schoeneweide.de</span>
+            >hallo@coderdojo-schoeneweide.de</span
+          >
         </p>
-        <p class="mb-2 text-lg text-white">Was dich erwartet:</p>
-        <ul class="mb-2 list-inside list-disc space-y-1 text-lg text-white">
+        <p class="mb-2 text-lg text-gray-800 dark:text-gray-200">
+          Was dich erwartet:
+        </p>
+        <ul
+          class="mb-2 list-inside list-disc space-y-1 text-lg text-gray-800 dark:text-gray-200"
+        >
           <li>Wissen weitergeben / Gemeinschaft gestalten</li>
           <li>Team mit Freude und Engagement</li>
           <li>Eigene Ideen zum Thema Bildung einbringen</li>
@@ -243,7 +241,9 @@ import Base from '@/layouts/Base.astro'
   </section>
 
   <!-- Verein Section -->
-  <section class="bg-[#463d5c] px-4 py-16 md:px-8 lg:px-16">
+  <section
+    class="bg-[#463d5c] dark:bg-[#23212b] px-4 py-16 md:px-8 lg:px-16 transition-colors"
+  >
     <div
       class="mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row"
     >
@@ -256,85 +256,91 @@ import Base from '@/layouts/Base.astro'
         </p>
         <p class="mb-2 text-lg text-white">
           Du möchtest Mitglied werden?<br />Infos dazu findest Du im → <a
-            href="#"
-            class="text-blue-200 underline">Abschnitt "Mentoring"</a>
+            href="/mentoring"
+            class="text-blue-200 underline">Abschnitt "Mentoring"</a
+          >
         </p>
         <p class="mb-8 text-lg text-white">
           Du möchtest uns mit einer Spende unterstützen oder Fördermitglied
           werden?<br />Infos zu Spenden...
         </p>
-        <a
-          href="#"
-          class="mb-8 flex items-center rounded-lg bg-orange-300 px-10 py-4 text-xl font-bold text-white shadow transition hover:bg-orange-400"
+        <a href="/spenden" class="btn-primary mb-8"
           >Unterstütze uns durch eine Spende</a
         >
         <h3 class="mb-4 text-2xl font-bold text-white md:text-3xl">
           Vereinsdokumente
         </h3>
         <div class="flex flex-col gap-4 sm:flex-row">
-          <a
-            href="#"
-            class="rounded-lg border-2 border-white bg-[#463d5c] px-8 py-3 text-lg font-bold text-white shadow transition hover:bg-[#5a4e7a]"
-            >Satzung</a
-          >
-          <a
-            href="#"
-            class="rounded-lg border-2 border-white bg-[#463d5c] px-8 py-3 text-lg font-bold text-white shadow transition hover:bg-[#5a4e7a]"
-            >Jahresberichte</a
-          >
+          <a href="/satzung" class="btn-outline">Satzung</a>
+          <a href="/jahresberichte" class="btn-outline">Jahresberichte</a>
         </div>
       </div>
-      <!-- Right: Gray Rectangle -->
+      <!-- Right: Graphic -->
       <div class="mt-8 flex flex-1 items-center justify-center md:mt-0">
-        <div class="h-64 w-80 rounded-lg bg-gray-300 md:h-72 md:w-[420px]">
+        <div
+          class="h-64 w-80 rounded-3xl bg-gradient-to-br from-orange-100 via-white to-orange-200 dark:from-[#463d5c] dark:via-[#23212b] dark:to-[#2d2a38] shadow-xl flex items-center justify-center"
+        >
+          <span class="text-6xl text-orange-400 dark:text-orange-300">🤗</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Kooperationen Section -->
-  <section class="bg-[#a5c7c0] px-4 py-16 md:px-8 lg:px-16">
+  <section
+    class="bg-[#a5c7c0] dark:bg-[#2d2a38] px-4 py-16 md:px-8 lg:px-16 transition-colors"
+  >
     <div class="mx-auto flex max-w-6xl flex-col gap-12 md:flex-row">
       <!-- Left: Info -->
       <div class="mb-8 flex flex-1 flex-col items-start justify-start md:mb-0">
-        <h2 class="mb-8 text-4xl font-bold text-white md:text-5xl">
+        <h2
+          class="mb-8 text-4xl font-bold text-gray-800 dark:text-white md:text-5xl"
+        >
           Kooperationen
         </h2>
-        <p class="mb-4 text-lg text-white">
+        <p class="mb-4 text-lg text-gray-800 dark:text-gray-200">
           Sie sind bei einer Schule oder einer anderen<br />Bildungseinrichtung
           und wollen mit uns kooperieren?
         </p>
-        <p class="mb-4 text-lg text-white">
+        <p class="mb-4 text-lg text-gray-800 dark:text-gray-200">
           Schreiben Sie uns eine Mail an <a
             href="mailto:hallo@coderdojo-schoeneweide.de"
-            class="text-blue-200 underline">hallo@coderdojo-schoeneweide.de</a
+            class="text-blue-700 underline dark:text-blue-300"
+            >hallo@coderdojo-schoeneweide.de</a
           ><br />oder füllen Sie unser <a
-            href="#"
-            class="text-blue-200 underline">Kontaktformular</a
+            href="/kontakt"
+            class="text-blue-700 underline dark:text-blue-300"
+            >Kontaktformular</a
           > aus.
         </p>
-        <p class="mb-4 text-lg text-white">
+        <p class="mb-4 text-lg text-gray-800 dark:text-gray-200">
           Sie möchten wissen, was genau wir anbieten?<br />Sehen Sie unsere <a
-            href="#"
-            class="text-blue-200 underline">Workshop Konzepte</a>
+            href="/workshops"
+            class="text-blue-700 underline dark:text-blue-300"
+            >Workshop Konzepte</a
+          >
         </p>
       </div>
-      <!-- Right: Partner Logos Placeholder -->
+      <!-- Right: Partner Logos -->
       <div class="flex flex-1 flex-col items-center">
-        <h3 class="mb-8 text-2xl font-semibold text-white md:text-3xl">
+        <h3
+          class="mb-8 text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl"
+        >
           Unsere Partner
         </h3>
         <div class="grid w-full grid-cols-2 gap-6 md:grid-cols-3">
-          <div class="h-16 w-full rounded bg-gray-300"></div>
-          <div class="h-16 w-full rounded bg-gray-300"></div>
-          <div class="h-16 w-full rounded bg-gray-300"></div>
-          <div class="h-16 w-full rounded bg-gray-300"></div>
-          <div class="h-16 w-full rounded bg-gray-300"></div>
-          <div class="h-16 w-full rounded bg-gray-300"></div>
-          <div class="col-span-2 h-16 w-full rounded bg-gray-300 md:col-span-3">
-          </div>
-          <div class="col-span-2 h-16 w-full rounded bg-gray-300 md:col-span-3">
-          </div>
+          {
+            partners.map((partner) => (
+              <div class="flex items-center justify-center bg-white/80 dark:bg-[#23212b] rounded-xl shadow p-3 transition hover:scale-105">
+                <img
+                  src={partner.src}
+                  alt={partner.alt}
+                  class="max-h-12 w-auto object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>
@@ -342,19 +348,31 @@ import Base from '@/layouts/Base.astro'
 </Base>
 
 <style>
-  section {
-    @apply w-full;
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  .container {
-    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
-  }
-  .btn {
-    @apply inline-flex items-center justify-center rounded-md border border-transparent px-6 py-3 text-base font-medium shadow-sm;
+  .animate-fade-in-up {
+    animation: fade-in-up 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .btn-primary {
-    @apply bg-orange-400 text-white hover:bg-orange-500;
+    @apply flex items-center gap-2 rounded-xl bg-orange-400 px-6 py-3 font-bold text-white shadow-lg shadow-orange-200/60 hover:bg-orange-500 transition-all duration-200 scale-100 hover:scale-105 animate-fade-in-up;
+    box-shadow: 0 6px 32px 0 rgba(255, 153, 51, 0.18);
+  }
+  .btn-secondary {
+    @apply flex items-center gap-2 rounded-xl bg-white/90 px-6 py-3 font-bold text-orange-500 shadow-lg shadow-orange-200/60 hover:bg-orange-100 transition-all duration-200 scale-100 hover:scale-105 animate-fade-in-up;
+    box-shadow: 0 6px 32px 0 rgba(255, 153, 51, 0.18);
   }
   .btn-outline {
-    @apply border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white;
+    @apply flex items-center gap-2 rounded-xl border-2 border-orange-400 bg-transparent px-6 py-3 font-bold text-orange-400 shadow hover:bg-orange-50 hover:text-orange-500 transition-all duration-200 scale-100 hover:scale-105 animate-fade-in-up;
+  }
+  section {
+    @apply w-full;
   }
 </style>

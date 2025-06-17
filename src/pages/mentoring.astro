@@ -1,0 +1,101 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHeader from "@/layouts/partials/PageHeader.astro";
+
+// Example mentoring programs (replace or extend as needed)
+const mentoringPrograms = [
+    {
+        title: "Peer Mentoring",
+        description:
+            "Lerne von anderen und gib dein Wissen weiter. Unser Peer-Mentoring fördert Gemeinschaft und gegenseitige Unterstützung.",
+        icon: "🤝",
+        tags: ["#gemeinschaft", "#lernen", "#austausch"],
+        duration: "fortlaufend",
+        age: "ab 12 Jahren",
+    },
+    {
+        title: "Projektbegleitung",
+        description:
+            "Du hast eine Idee? Wir begleiten dich von der Planung bis zur Umsetzung und helfen dir, deine Projekte zu verwirklichen.",
+        icon: "💡",
+        tags: ["#ideen", "#umsetzung", "#begleitung"],
+        duration: "individuell",
+        age: "alle Altersgruppen",
+    },
+    {
+        title: "Teamwork & Leadership",
+        description:
+            "Entwickle Teamgeist und Führungsqualitäten in spannenden Gruppenprojekten und Workshops.",
+        icon: "🌟",
+        tags: ["#team", "#leadership", "#engagement"],
+        duration: "2 Monate",
+        age: "ab 14 Jahren",
+    },
+];
+
+// Get unique tags
+const allTags = Array.from(new Set(mentoringPrograms.flatMap((p) => p.tags)));
+---
+
+<Base>
+    <!-- Hero Section -->
+    <section
+        class="relative flex min-h-[40vh] items-center justify-center bg-gradient-to-br from-orange-100 via-white to-orange-200 px-4 py-20"
+    >
+        <div
+            class="relative z-10 mx-auto w-full max-w-2xl rounded-3xl bg-white/80 px-8 py-12 text-center shadow-xl backdrop-blur-md dark:bg-[#222222cc]"
+        >
+            <h1
+                class="mb-4 text-4xl font-bold text-gray-900 dark:text-white md:text-5xl"
+            >
+                Mentoring: Wissen weitergeben & Gemeinschaft gestalten
+            </h1>
+            <p class="mb-8 text-lg text-gray-700 dark:text-gray-200 md:text-xl">
+                Team mit Freude und Engagement – eigene Ideen zum Thema Bildung
+                einbringen und voneinander lernen.
+            </p>
+        </div>
+    </section>
+
+    <!-- Mentoring Programs Grid -->
+    <section class="bg-[#463d5c] px-4 py-24 md:px-8 lg:px-16">
+        <div
+            class="mx-auto max-w-6xl grid gap-10 md:grid-cols-2 lg:grid-cols-3"
+        >
+            {
+                mentoringPrograms.map((program) => (
+                    <div class="rounded-3xl bg-white/90 dark:bg-[#222222cc] shadow-xl flex flex-col overflow-hidden">
+                        <div class="h-48 w-full bg-orange-50 flex items-center justify-center text-7xl">
+                            <span aria-hidden="true">{program.icon}</span>
+                        </div>
+                        <div class="flex-1 flex flex-col p-6">
+                            <h2 class="text-2xl font-bold text-orange-500 mb-2">
+                                {program.title}
+                            </h2>
+                            <p class="text-gray-700 dark:text-gray-200 mb-4 flex-1">
+                                {program.description}
+                            </p>
+                            <div class="mb-2 flex flex-wrap gap-2">
+                                {program.tags.map((tag) => (
+                                    <span class="bg-orange-200 text-orange-700 px-2 py-1 rounded text-xs font-semibold">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                            <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-300 mt-2">
+                                <span>Dauer: {program.duration}</span>
+                                <span>Alter: {program.age}</span>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </section>
+</Base>
+
+<style>
+    section {
+        @apply w-full;
+    }
+</style>

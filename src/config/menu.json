@@ -1,7 +1,7 @@
 {
   "main": [
     {
-      "name": "Home",
+      "name": "Start",
       "url": "/"
     },
     {
@@ -9,16 +9,16 @@
       "url": "/workshops"
     },
     {
-      "name": "Werde Mentor",
-      "url": "/"
+      "name": "Mentoring",
+      "url": "/mentoring"
     },
     {
       "name": "Verein",
-      "url": "/"
+      "url": "/verein"
     },
     {
       "name": "Kooperationen",
-      "url": "/"
+      "url": "/kooperationen"
     }
   ]
 }
