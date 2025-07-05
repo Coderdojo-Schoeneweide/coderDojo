@@ -1,12 +1,8 @@
 ---
-import Logo from '@/components/Logo.astro'
-import Social from '@/components/Social.astro'
-import config from '@/config/config.json'
-import menu from '@/config/menu.json'
-import social from '@/config/social.json'
-import { markdownify } from '@/lib/utils/textConverter'
-
-const { footer }: { footer: { name: string; url: string }[] } = menu
+import Logo from "@/components/Logo.astro";
+import config from "@/config/config.json";
+import social from "@/config/social.json";
+import { markdownify } from "@/lib/utils/textConverter";
 ---
 
 <footer class="bg-[#47405a] pb-4 pt-10 text-white">
