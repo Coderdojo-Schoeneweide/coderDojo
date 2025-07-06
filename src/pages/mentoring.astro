@@ -1,6 +1,5 @@
 ---
 import Base from "@/layouts/Base.astro";
-import PageHeader from "@/layouts/partials/PageHeader.astro";
 
 // Example mentoring programs (replace or extend as needed)
 const mentoringPrograms = [
@@ -32,9 +31,6 @@ const mentoringPrograms = [
         age: "ab 14 Jahren",
     },
 ];
-
-// Get unique tags
-const allTags = Array.from(new Set(mentoringPrograms.flatMap((p) => p.tags)));
 ---
 
 <Base>

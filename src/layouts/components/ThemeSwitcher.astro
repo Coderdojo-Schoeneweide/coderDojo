@@ -1,11 +1,8 @@
 ---
-import config from '@/config/config.json'
+import config from "@/config/config.json";
 
-const {
-  theme_switcher,
-  default_theme,
-}: { theme_switcher: boolean; default_theme: string } = config.settings
-const { className }: { className?: string } = Astro.props
+const { theme_switcher }: { theme_switcher: boolean } = config.settings;
+const { className }: { className?: string } = Astro.props;
 ---
 
 {
@@ -47,56 +44,56 @@ const { className }: { className?: string } = Astro.props
 }
 
 <script>
-  import { settings } from '@/config/config.json'
-  const matchMedia = window.matchMedia('(prefers-color-scheme: dark)')
+  import { settings } from "@/config/config.json";
+  const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
 
   function getSystemTheme() {
-    return matchMedia.matches ? 'dark' : 'light'
+    return matchMedia.matches ? "dark" : "light";
   }
 
   function getCurrentTheme() {
     return (
-      localStorage.getItem('theme') ||
-      (settings.default_theme === 'system' ?
-        getSystemTheme()
-      : settings.default_theme)
-    )
+      localStorage.getItem("theme") ||
+      (settings.default_theme === "system"
+        ? getSystemTheme()
+        : settings.default_theme)
+    );
   }
 
   function applyTheme(theme: string) {
-    const isDark = theme === 'dark'
-    document.documentElement.classList.toggle('dark', isDark)
-    document.querySelectorAll('[data-theme-switcher]').forEach((sw: any) => {
-      sw.checked = isDark
-    })
+    const isDark = theme === "dark";
+    document.documentElement.classList.toggle("dark", isDark);
+    document.querySelectorAll("[data-theme-switcher]").forEach((sw: any) => {
+      sw.checked = isDark;
+    });
   }
 
   function toggleTheme() {
-    const currentTheme = getCurrentTheme()
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light'
-    localStorage.setItem('theme', newTheme)
-    applyTheme(newTheme)
+    const currentTheme = getCurrentTheme();
+    const newTheme = currentTheme === "light" ? "dark" : "light";
+    localStorage.setItem("theme", newTheme);
+    applyTheme(newTheme);
   }
 
   // Initialize theme
-  applyTheme(getCurrentTheme())
+  applyTheme(getCurrentTheme());
 
   // Handle system theme changes
-  matchMedia.addEventListener('change', () => {
-    if (settings.default_theme === 'system') {
-      applyTheme(getSystemTheme())
+  matchMedia.addEventListener("change", () => {
+    if (settings.default_theme === "system") {
+      applyTheme(getSystemTheme());
     }
-  })
+  });
 
   // Handle theme switcher clicks
-  document.querySelectorAll('[data-theme-switcher]').forEach((sw) => {
-    sw.addEventListener('click', toggleTheme)
-  })
+  document.querySelectorAll("[data-theme-switcher]").forEach((sw) => {
+    sw.addEventListener("click", toggleTheme);
+  });
 
   // Handle view transitions
-  document.addEventListener('astro:after-swap', () => {
-    applyTheme(getCurrentTheme())
-  })
+  document.addEventListener("astro:after-swap", () => {
+    applyTheme(getCurrentTheme());
+  });
 </script>
 
 <style>

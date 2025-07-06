@@ -15,13 +15,25 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["./src/layouts/components/*"],
-      "@/shortcodes/*": ["./src/layouts/shortcodes/*"],
-      "@/helpers/*": ["./src/layouts/helpers/*"],
-      "@/partials/*": ["./src/layouts/partials/*"],
-      "@/*": ["./src/*"]
+      "@/components/*": [
+        "./src/layouts/components/*"
+      ],
+      "@/partials/*": [
+        "./src/layouts/partials/*"
+      ],
+      "@/*": [
+        "./src/*"
+      ]
     }
   },
-  "include": [".astro/types.d.ts", "**/*.ts", "**/*.tsx", "**/*.astro"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    ".astro/types.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.astro"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

@@ -1,290 +1,269 @@
 ---
-import Base from '@/layouts/Base.astro'
-import PageHeader from '@/layouts/partials/PageHeader.astro'
-import WorkshopGridIsland from '@/layouts/components/WorkshopGridIsland.jsx'
+import Base from "@/layouts/Base.astro";
+import WorkshopGridIsland from "@/layouts/components/WorkshopGridIsland.jsx";
 
 // Get all workshop directories and their tags, duration, and age
 const workshops = [
   {
-    title: 'Blender',
-    description: '3D Modeling and Animation Workshop',
-    image: '/workshops/blender/blender.jpg',
-    folder: 'blender',
-    category: '3D & Animation',
-    tags: ['#blender', '#3D', '#animation'],
-    duration: '2 Stunden',
-    age: '9 - 17 Jahre',
+    title: "Blender",
+    description: "3D Modeling and Animation Workshop",
+    image: "/workshops/blender/blender.jpg",
+    folder: "blender",
+    category: "3D & Animation",
+    tags: ["#blender", "#3D", "#animation"],
+    duration: "2 Stunden",
+    age: "9 - 17 Jahre",
   },
   {
-    title: 'Chatbot',
-    description: 'Create Your Own AI Chatbot',
-    image: '/workshops/chatbot/chatbot.png',
-    folder: 'chatbot',
-    category: 'AI & Machine Learning',
-    tags: ['#scratch', '#python', '#ki'],
-    duration: '1,5 Stunden',
-    age: '10 - 17 Jahre',
+    title: "Chatbot",
+    description: "Create Your Own AI Chatbot",
+    image: "/workshops/chatbot/chatbot.png",
+    folder: "chatbot",
+    category: "AI & Machine Learning",
+    tags: ["#scratch", "#python", "#ki"],
+    duration: "1,5 Stunden",
+    age: "10 - 17 Jahre",
   },
   {
-    title: 'Coding im Dojo',
-    description: 'Learn Programming in a Fun Environment',
-    image: '/workshops/coding_im_dojo/cid.jpg',
-    folder: 'coding_im_dojo',
-    category: 'Programming',
-    tags: ['#scratch'],
-    duration: '2 Stunden',
-    age: '7 - 17 Jahre',
+    title: "Coding im Dojo",
+    description: "Learn Programming in a Fun Environment",
+    image: "/workshops/coding_im_dojo/cid.jpg",
+    folder: "coding_im_dojo",
+    category: "Programming",
+    tags: ["#scratch"],
+    duration: "2 Stunden",
+    age: "7 - 17 Jahre",
   },
   {
-    title: 'Computerspiele und Gesellschaft',
-    description: 'Understanding Games and Society',
+    title: "Computerspiele und Gesellschaft",
+    description: "Understanding Games and Society",
     image:
-      '/workshops/computerspiele-und-gesellschaft/computerspiele-und-gesellschaft.png',
-    folder: 'computerspiele-und-gesellschaft',
-    category: 'Gaming',
-    tags: ['#spiel', '#design', '#scratch'],
-    duration: '1,5 Stunden',
-    age: '10 - 17 Jahre',
+      "/workshops/computerspiele-und-gesellschaft/computerspiele-und-gesellschaft.png",
+    folder: "computerspiele-und-gesellschaft",
+    category: "Gaming",
+    tags: ["#spiel", "#design", "#scratch"],
+    duration: "1,5 Stunden",
+    age: "10 - 17 Jahre",
   },
   {
-    title: 'Dashbot Challenges',
-    description: 'Robot Programming Challenges',
-    image: '/workshops/dashbot-challenges/dashbot-challenges.png',
-    folder: 'dashbot-challenges',
-    category: 'Robotics',
-    tags: ['#dashbot'],
-    duration: '2 Stunden',
-    age: '7 - 17 Jahre',
+    title: "Dashbot Challenges",
+    description: "Robot Programming Challenges",
+    image: "/workshops/dashbot-challenges/dashbot-challenges.png",
+    folder: "dashbot-challenges",
+    category: "Robotics",
+    tags: ["#dashbot"],
+    duration: "2 Stunden",
+    age: "7 - 17 Jahre",
   },
   {
-    title: 'Gemeinsame Geschichte',
-    description: 'Interactive History Projects',
-    image: '/workshops/gemeinsame-geschichte/geschichte.png',
-    folder: 'gemeinsame-geschichte',
-    category: 'Interactive',
-    tags: ['#scratch', '#animation'],
-    duration: '4 Stunden',
-    age: 'Ab 11 Jahren',
+    title: "Gemeinsame Geschichte",
+    description: "Interactive History Projects",
+    image: "/workshops/gemeinsame-geschichte/geschichte.png",
+    folder: "gemeinsame-geschichte",
+    category: "Interactive",
+    tags: ["#scratch", "#animation"],
+    duration: "4 Stunden",
+    age: "Ab 11 Jahren",
   },
   {
-    title: 'Godot',
-    description: 'Game Development with Godot',
-    image: '/workshops/godot/godot.png',
-    folder: 'godot',
-    category: 'Game Development',
-    tags: ['#spiel', '#design', '#godot'],
-    duration: '4 Stunden',
-    age: 'Ab 14 Jahren',
+    title: "Godot",
+    description: "Game Development with Godot",
+    image: "/workshops/godot/godot.png",
+    folder: "godot",
+    category: "Game Development",
+    tags: ["#spiel", "#design", "#godot"],
+    duration: "4 Stunden",
+    age: "Ab 14 Jahren",
   },
   {
-    title: 'Karol und Kara',
-    description: 'Programming with Karol and Kara',
-    image: '/workshops/karol-und-kara/kara.png',
-    folder: 'karol-und-kara',
-    category: 'Programming',
-    tags: ['#algorithmus', '#automaten', '#kara', '#karol'],
-    duration: '2 Stunden',
-    age: '7 - 17 Jahre',
+    title: "Karol und Kara",
+    description: "Programming with Karol and Kara",
+    image: "/workshops/karol-und-kara/kara.png",
+    folder: "karol-und-kara",
+    category: "Programming",
+    tags: ["#algorithmus", "#automaten", "#kara", "#karol"],
+    duration: "2 Stunden",
+    age: "7 - 17 Jahre",
   },
   {
-    title: 'Künstliche Intelligenz',
-    description: 'Introduction to AI and Machine Learning',
-    image: '/workshops/kuenstliche-intelligenz/ki.png',
-    folder: 'kuenstliche-intelligenz',
-    category: 'AI & Machine Learning',
-    tags: ['#ki'],
-    duration: '2 Stunden',
-    age: '7 - 17 Jahre',
+    title: "Künstliche Intelligenz",
+    description: "Introduction to AI and Machine Learning",
+    image: "/workshops/kuenstliche-intelligenz/ki.png",
+    folder: "kuenstliche-intelligenz",
+    category: "AI & Machine Learning",
+    tags: ["#ki"],
+    duration: "2 Stunden",
+    age: "7 - 17 Jahre",
   },
   {
-    title: 'MBot Labyrinth',
-    description: 'Robot Navigation Challenges',
-    image: '/workshops/mbot-labyrinth/mbot.png',
-    folder: 'mbot-labyrinth',
-    category: 'Robotics',
-    tags: ['#mbot', '#mblock', '#sensoren'],
-    duration: '3 Stunden',
-    age: '10 - 14 Jahre',
+    title: "MBot Labyrinth",
+    description: "Robot Navigation Challenges",
+    image: "/workshops/mbot-labyrinth/mbot.png",
+    folder: "mbot-labyrinth",
+    category: "Robotics",
+    tags: ["#mbot", "#mblock", "#sensoren"],
+    duration: "3 Stunden",
+    age: "10 - 14 Jahre",
   },
   {
-    title: 'Octostudio Haustierapp',
-    description: 'Create Your Pet App',
-    image: '/workshops/octostudio-haustierapp/octostudio.png',
-    folder: 'octostudio-haustierapp',
-    category: 'App Development',
-    tags: ['#octostudio', '#app'],
-    duration: '1,5 Stunden',
-    age: '7 - 17 Jahre',
+    title: "Octostudio Haustierapp",
+    description: "Create Your Pet App",
+    image: "/workshops/octostudio-haustierapp/octostudio.png",
+    folder: "octostudio-haustierapp",
+    category: "App Development",
+    tags: ["#octostudio", "#app"],
+    duration: "1,5 Stunden",
+    age: "7 - 17 Jahre",
   },
   {
-    title: 'Pocketcode Gesichtserkennung',
-    description: 'Face Recognition Projects',
-    image: '/workshops/pocketcode-gesichtserkennung/filter.png',
-    folder: 'pocketcode-gesichtserkennung',
-    category: 'AI & Machine Learning',
-    tags: ['#pocketcode', '#app'],
-    duration: '1,5 Stunden',
-    age: '10 - 17 Jahre',
+    title: "Pocketcode Gesichtserkennung",
+    description: "Face Recognition Projects",
+    image: "/workshops/pocketcode-gesichtserkennung/filter.png",
+    folder: "pocketcode-gesichtserkennung",
+    category: "AI & Machine Learning",
+    tags: ["#pocketcode", "#app"],
+    duration: "1,5 Stunden",
+    age: "10 - 17 Jahre",
   },
   {
-    title: 'Processing',
-    description: 'Creative Coding with Processing',
-    image: '/workshops/processing/processing.png',
-    folder: 'processing',
-    category: 'Creative Coding',
-    tags: ['#processing', '#java', '#animation'],
-    duration: '2 Stunden',
-    age: '12 - 17 Jahre',
+    title: "Processing",
+    description: "Creative Coding with Processing",
+    image: "/workshops/processing/processing.png",
+    folder: "processing",
+    category: "Creative Coding",
+    tags: ["#processing", "#java", "#animation"],
+    duration: "2 Stunden",
+    age: "12 - 17 Jahre",
   },
   {
-    title: 'Python AstroPi',
-    description: 'Space Programming with Python',
-    image: '/workshops/python-astropi/astro-pi.png',
-    folder: 'python-astropi',
-    category: 'Programming',
-    tags: ['#python', '#sensoren'],
-    duration: '3 Stunden',
-    age: '10 - 14 Jahre',
+    title: "Python AstroPi",
+    description: "Space Programming with Python",
+    image: "/workshops/python-astropi/astro-pi.png",
+    folder: "python-astropi",
+    category: "Programming",
+    tags: ["#python", "#sensoren"],
+    duration: "3 Stunden",
+    age: "10 - 14 Jahre",
   },
   {
-    title: 'Scratch Animationen',
-    description: 'Create Animations with Scratch',
-    image: '/workshops/scratch-animationen/storyboard.png',
-    folder: 'scratch-animationen',
-    category: 'Animation',
-    tags: ['#scratch', '#animation'],
-    duration: '4 Stunden',
-    age: '8 - 17 Jahre',
+    title: "Scratch Animationen",
+    description: "Create Animations with Scratch",
+    image: "/workshops/scratch-animationen/storyboard.png",
+    folder: "scratch-animationen",
+    category: "Animation",
+    tags: ["#scratch", "#animation"],
+    duration: "4 Stunden",
+    age: "8 - 17 Jahre",
   },
   {
-    title: 'Scratch Grusskarten',
-    description: 'Digital Greeting Cards with Scratch',
-    image: '/workshops/scratch-grusskarten/grusskarte.png',
-    folder: 'scratch-grusskarten',
-    category: 'Creative',
-    tags: ['#scratch', '#animation', '#design'],
-    duration: '1,5 Stunden',
-    age: '7 - 17 Jahre',
+    title: "Scratch Grusskarten",
+    description: "Digital Greeting Cards with Scratch",
+    image: "/workshops/scratch-grusskarten/grusskarte.png",
+    folder: "scratch-grusskarten",
+    category: "Creative",
+    tags: ["#scratch", "#animation", "#design"],
+    duration: "1,5 Stunden",
+    age: "7 - 17 Jahre",
   },
   {
-    title: 'Scratch Lippensynchronisation',
-    description: 'Lip Sync Animation with Scratch',
-    image: '/workshops/scratch-lippensynchronisation/lippensynchronisation.png',
-    folder: 'scratch-lippensynchronisation',
-    category: 'Animation',
-    tags: ['#scratch', '#animation'],
-    duration: '2 Stunden',
-    age: '10 - 17 Jahre',
+    title: "Scratch Lippensynchronisation",
+    description: "Lip Sync Animation with Scratch",
+    image: "/workshops/scratch-lippensynchronisation/lippensynchronisation.png",
+    folder: "scratch-lippensynchronisation",
+    category: "Animation",
+    tags: ["#scratch", "#animation"],
+    duration: "2 Stunden",
+    age: "10 - 17 Jahre",
   },
   {
-    title: 'Scratch Musikvideo',
-    description: 'Create Music Videos with Scratch',
-    image: '/workshops/scratch-musikvideo/musikvideo.png',
-    folder: 'scratch-musikvideo',
-    category: 'Creative',
-    tags: ['#scratch', '#animation'],
-    duration: '1,5 Stunden',
-    age: '7 - 13 Jahre',
+    title: "Scratch Musikvideo",
+    description: "Create Music Videos with Scratch",
+    image: "/workshops/scratch-musikvideo/musikvideo.png",
+    folder: "scratch-musikvideo",
+    category: "Creative",
+    tags: ["#scratch", "#animation"],
+    duration: "1,5 Stunden",
+    age: "7 - 13 Jahre",
   },
   {
-    title: 'Scratch Theaterstück',
-    description: 'Digital Theater with Scratch',
-    image: '/workshops/scratch-theaterstueck/theaterstueck.png',
-    folder: 'scratch-theaterstueck',
-    category: 'Creative',
-    tags: ['#scratch', '#animation'],
-    duration: '1,5 Stunden',
-    age: '7 - 13 Jahre',
+    title: "Scratch Theaterstück",
+    description: "Digital Theater with Scratch",
+    image: "/workshops/scratch-theaterstueck/theaterstueck.png",
+    folder: "scratch-theaterstueck",
+    category: "Creative",
+    tags: ["#scratch", "#animation"],
+    duration: "1,5 Stunden",
+    age: "7 - 13 Jahre",
   },
   {
-    title: 'Softwareentwicklung und Gesellschaft',
-    description: 'Software Development and Society',
+    title: "Softwareentwicklung und Gesellschaft",
+    description: "Software Development and Society",
     image:
-      '/workshops/softwareentwicklung-und-gesellschaft/softwareentwicklung-und-gesellschaft.png',
-    folder: 'softwareentwicklung-und-gesellschaft',
-    category: 'Programming',
-    tags: ['#software', '#design', '#scratch'],
-    duration: '1,5 Stunden',
-    age: '10 - 17 Jahre',
+      "/workshops/softwareentwicklung-und-gesellschaft/softwareentwicklung-und-gesellschaft.png",
+    folder: "softwareentwicklung-und-gesellschaft",
+    category: "Programming",
+    tags: ["#software", "#design", "#scratch"],
+    duration: "1,5 Stunden",
+    age: "10 - 17 Jahre",
   },
-]
-
-// Get unique categories
-const categories = [...new Set(workshops.map((workshop) => workshop.category))]
+];
 
 // Pagination logic
-const workshopsPerPage = 5
-const totalPages = Math.ceil(workshops.length / workshopsPerPage)
+const workshopsPerPage = 5;
+const totalPages = Math.ceil(workshops.length / workshopsPerPage);
 
 // Get current page from URL query parameter, default to 1
-const pageParam = Astro.url.searchParams.get('page')
-let currentPage = 1
+const pageParam = Astro.url.searchParams.get("page");
+let currentPage = 1;
 
 if (pageParam) {
-  const parsedPage = parseInt(pageParam)
+  const parsedPage = parseInt(pageParam);
   if (!isNaN(parsedPage) && parsedPage > 0) {
-    currentPage = Math.min(parsedPage, totalPages)
+    currentPage = Math.min(parsedPage, totalPages);
   }
 }
-
-// Calculate start and end indices for current page
-const startIndex = (currentPage - 1) * workshopsPerPage
-const endIndex = Math.min(startIndex + workshopsPerPage, workshops.length)
-
-// Get workshops for current page
-const currentWorkshops = workshops.slice(startIndex, endIndex)
-
-// Generate pagination links
-const paginationLinks = Array.from({ length: totalPages }, (_, i) => {
-  const pageNum = i + 1
-  return {
-    page: pageNum,
-    isCurrent: pageNum === currentPage,
-    url: pageNum === 1 ? '/workshops' : `/workshops?page=${pageNum}`,
-  }
-})
 ---
 
 <Base>
   <script is:inline>
     // Simple pagination function
     function showPage(pageNum) {
-      console.log('Showing page:', pageNum) // Debug log
+      console.log("Showing page:", pageNum); // Debug log
 
       // Hide all workshop items
-      const allItems = document.querySelectorAll('.workshop-item')
-      console.log('Total items:', allItems.length) // Debug log
+      const allItems = document.querySelectorAll(".workshop-item");
+      console.log("Total items:", allItems.length); // Debug log
       allItems.forEach((item) => {
-        item.style.display = 'none'
-      })
+        item.style.display = "none";
+      });
 
       // Show items for current page
       const pageItems = document.querySelectorAll(
         `.workshop-item[data-page="${pageNum}"]`,
-      )
-      console.log('Items for page', pageNum, ':', pageItems.length) // Debug log
+      );
+      console.log("Items for page", pageNum, ":", pageItems.length); // Debug log
       pageItems.forEach((item) => {
-        item.style.display = 'block'
-      })
+        item.style.display = "block";
+      });
 
       // Update pagination buttons
-      document.querySelectorAll('.pagination-btn').forEach((btn) => {
-        const btnPage = parseInt(btn.getAttribute('data-page') || '1')
+      document.querySelectorAll(".pagination-btn").forEach((btn) => {
+        const btnPage = parseInt(btn.getAttribute("data-page") || "1");
         if (btnPage === pageNum) {
-          btn.classList.add('bg-orange-400')
-          btn.classList.remove('bg-white/10')
+          btn.classList.add("bg-orange-400");
+          btn.classList.remove("bg-white/10");
         } else {
-          btn.classList.remove('bg-orange-400')
-          btn.classList.add('bg-white/10')
+          btn.classList.remove("bg-orange-400");
+          btn.classList.add("bg-white/10");
         }
-      })
+      });
     }
 
     // Show first page on load
-    window.addEventListener('load', () => {
-      console.log('Page loaded, showing first page') // Debug log
-      showPage(1)
-    })
+    window.addEventListener("load", () => {
+      console.log("Page loaded, showing first page"); // Debug log
+      showPage(1);
+    });
   </script>
 
   <!-- Modern Hero Section -->
@@ -332,4 +311,3 @@ const paginationLinks = Array.from({ length: totalPages }, (_, i) => {
     min-height: 400px;
   }
 </style>
-

@@ -6,11 +6,6 @@ export const slugify = (content: string) => {
   return slug(content)
 }
 
-// markdownify
-export const markdownify = (content: string, div?: boolean) => {
-  return div ? marked.parse(content) : marked.parseInline(content)
-}
-
 // humanize
 export const humanize = (content: string) => {
   return content
@@ -20,15 +15,6 @@ export const humanize = (content: string) => {
     .replace(/^[a-z]/, function (m) {
       return m.toUpperCase()
     })
-}
-
-// titleify
-export const titleify = (content: string) => {
-  const humanized = humanize(content)
-  return humanized
-    .split(' ')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
 }
 
 // plainify

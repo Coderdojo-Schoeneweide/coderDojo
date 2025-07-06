@@ -6,7 +6,6 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@import './safe.css';
 @import './utilities.css';
 
 @layer base {
