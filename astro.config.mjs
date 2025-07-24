@@ -17,7 +17,9 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap(),
-    tailwind(),
+    tailwind({
+      configFile: './config/tailwind.config.js'
+    }),
     mdx(),
   ],
   markdown: {

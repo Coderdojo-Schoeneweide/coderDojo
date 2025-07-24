@@ -1,0 +1,31 @@
+---
+import type { ButtonProps } from "@/types/index";
+
+export interface Props extends ButtonProps {
+    [key: string]: any;
+}
+
+const {
+    variant = "primary",
+    size = "md",
+    href,
+    target,
+    class: className = "",
+    disabled = false,
+    ...rest
+} = Astro.props;
+
+const Tag = href ? "a" : "button";
+const isExternal = href && (href.startsWith("http") || href.startsWith("//"));
+---
+
+<Tag
+    class:list={[`btn-${variant}`, className]}
+    href={href}
+    target={target}
+    rel={isExternal && target === "_blank" ? "noopener" : undefined}
+    disabled={disabled}
+    {...rest}
+>
+    <slot />
+</Tag>

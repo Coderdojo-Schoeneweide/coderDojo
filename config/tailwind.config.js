@@ -2,6 +2,22 @@
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   darkMode: "class",
+  safelist: [
+    // Button classes
+    'btn-primary',
+    'btn-secondary',
+    'btn-outline',
+    'btn-sm',
+    'btn-md',
+    'btn-lg',
+    // Animation classes
+    'animate-slideUp',
+    'animate-slideDown',
+    'animate-slideLeft',
+    'animate-slideRight',
+    'animate-zoomIn',
+    'animate-fadeIn',
+  ],
   theme: {
     extend: {
       colors: {

@@ -1,0 +1,78 @@
+/* CSS Custom Properties for theme consistency */
+:root {
+  /* Orange theme colors */
+  --orange-50: #fff7ed;
+  --orange-100: #ffedd5;
+  --orange-200: #fed7aa;
+  --orange-300: #fdba74;
+  --orange-400: #fb923c;
+  --orange-500: #f97316;
+  --orange-600: #ea580c;
+
+  /* Background colors for sections */
+  --bg-dark: #463d5c;
+  --bg-light: #a5c7c0;
+  --bg-dark-mode: #23212b;
+  --bg-light-mode: #2d2a38;
+
+  /* Text colors */
+  --text-blue-link: #bfdbfe;
+
+  /* Shadow colors */
+  --shadow-orange: rgba(255, 153, 51, 0.18);
+  --shadow-orange-light: rgba(255, 153, 51, 0.6);
+
+  /* Gradients */
+  --gradient-hero-light: linear-gradient(to bottom right, #fff7ed, #ffffff, #fed7aa);
+  --gradient-hero-dark: linear-gradient(to bottom right, #23212b, #2d2a38, #463d5c);
+  --gradient-card-light: linear-gradient(to bottom right, #fff7ed, #ffffff, #fed7aa);
+  --gradient-card-dark: linear-gradient(to bottom right, #463d5c, #23212b, #2d2a38);
+
+  /* Spacing */
+  --section-padding: 4rem 1rem;
+  --section-padding-md: 4rem 2rem;
+  --section-padding-lg: 4rem 4rem;
+  --container-max-width: 72rem;
+  --border-radius-xl: 0.75rem;
+  --border-radius-3xl: 1.5rem;
+  --border-radius-hero: 2.5rem;
+}
+
+/* Global utilities that work with your existing styles */
+.section-spacing {
+  @apply px-4 py-16 md:px-8 lg:px-16 transition-colors;
+}
+
+.container-layout {
+  @apply mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row;
+}
+
+.text-link-blue {
+  @apply text-blue-200 underline hover:text-blue-100 transition-colors;
+}
+
+/* Ensure smooth transitions for theme switching */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+a:focus-visible {
+  @apply outline-2 outline-offset-2 outline-orange-400;
+}
+
+/* Responsive typography enhancements */
+@media (min-width: 768px) {
+  :root {
+    --section-padding: 4rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --section-padding: 4rem 4rem;
+  }
+}

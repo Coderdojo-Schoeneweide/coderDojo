@@ -1,0 +1,81 @@
+---
+import type { PartnersSectionData } from "@/types/index";
+import { getBackgroundClasses, getTextClasses } from "../../utils/theme";
+
+export interface Props extends PartnersSectionData {}
+
+const {
+    title,
+    subtitle = "Unsere Partner",
+    description,
+    partners,
+    backgroundColor = "light",
+    textColor = "gray",
+} = Astro.props;
+
+const bgClasses = getBackgroundClasses(backgroundColor);
+const textClasses = getTextClasses(textColor);
+---
+
+<section class={`${bgClasses} px-4 py-16 md:px-8 lg:px-16 transition-colors`}>
+    <div class="mx-auto max-w-6xl">
+        {description && description.length > 0 ? (
+            <!-- Two-column layout with description -->
+            <div class="flex flex-col gap-12 md:flex-row">
+                <!-- Left: Info -->
+                <div class="flex flex-1 flex-col items-start justify-start">
+                    <h2 class={`mb-8 text-4xl font-bold ${textClasses} md:text-5xl`}>
+                        {title}
+                    </h2>
+
+                    <div class="content-spacing">
+                        {description.map((paragraph) => (
+                            <p class={`mb-2 text-lg ${textClasses}`} set:html={paragraph} />
+                        ))}
+                    </div>
+                </div>
+
+                <!-- Right: Partner Logos -->
+                <div class="flex flex-1 flex-col items-center">
+                    <h3 class={`mb-8 text-2xl font-semibold ${textClasses} md:text-3xl`}>
+                        {subtitle}
+                    </h3>
+                    <div class="grid w-full grid-cols-2 gap-6 md:grid-cols-3">
+                        {partners.map((partner) => (
+                            <div class="flex items-center justify-center bg-white/80 dark:bg-[#23212b] rounded-xl shadow p-3 transition hover:scale-105">
+                                <img
+                                    src={partner.src}
+                                    alt={partner.alt}
+                                    class="max-h-12 w-auto object-contain"
+                                    loading="lazy"
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        ) : (
+            <!-- Single-column layout without description -->
+            <div class="text-center">
+                <h2 class={`mb-8 text-4xl font-bold ${textClasses} md:text-5xl`}>
+                    {title}
+                </h2>
+                <h3 class={`mb-8 text-2xl font-semibold ${textClasses} md:text-3xl`}>
+                    {subtitle}
+                </h3>
+                <div class="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 max-w-4xl mx-auto">
+                    {partners.map((partner) => (
+                        <div class="flex items-center justify-center bg-white/80 dark:bg-[#23212b] rounded-xl shadow p-3 transition hover:scale-105">
+                            <img
+                                src={partner.src}
+                                alt={partner.alt}
+                                class="max-h-12 w-auto object-contain"
+                                loading="lazy"
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        )}
+    </div>
+</section>

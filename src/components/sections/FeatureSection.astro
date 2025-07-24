@@ -1,0 +1,126 @@
+---
+import type { FeatureSectionData } from "../../types/index";
+import Button from "../ui/Button.astro";
+import { getBackgroundClasses, getTextClasses } from "../../utils/theme";
+
+interface Props {
+    data: FeatureSectionData;
+}
+
+const { data } = Astro.props;
+const {
+    title,
+    content,
+    buttons = [],
+    backgroundColor = "dark",
+    textColor = "white",
+    imagePosition = "right",
+    image,
+    imageAlt,
+} = data;
+
+const bgClasses = getBackgroundClasses(backgroundColor);
+const textClasses = getTextClasses(textColor);
+
+const isReversed = imagePosition === "left";
+
+// Generic button filtering - no hard-coded section names
+const primaryButtons = buttons.filter((btn) => btn.variant === "primary");
+const secondaryButtons = buttons.filter((btn) => btn.variant === "secondary");
+const outlineButtons = buttons.filter((btn) => btn.variant === "outline");
+
+// Component-based layout classes instead of hardcoded values
+const sectionClasses = "px-4 py-16 md:px-8 lg:px-16 transition-colors";
+const containerClasses = "mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row";
+const contentColumnClasses = "flex flex-1 flex-col items-start";
+const imageColumnClasses = "mt-8 flex flex-1 items-center justify-center md:mt-0";
+---
+
+<section
+    class={`${bgClasses} ${sectionClasses}`}
+>
+    <div class={`${containerClasses} ${isReversed ? "md:flex-row-reverse" : ""}`}>
+        
+        <!-- Content Column -->
+        <div class={contentColumnClasses}>
+            <h2
+                class={`mb-8 text-4xl font-bold ${textClasses} md:text-5xl`}
+            >
+                {title}
+            </h2>
+
+            <!-- Content -->
+            <div class="mb-8 content-spacing">
+                {
+                    content.map((paragraph) => (
+                        <p
+                            class={`mb-4 text-lg ${textClasses}`}
+                            set:html={paragraph}
+                        />
+                    ))
+                }
+            </div>
+
+            <!-- Buttons Section - Improved organization -->
+            <div class="flex flex-col gap-4">
+                <!-- Primary Buttons -->
+                {
+                    primaryButtons.map((button) => (
+                        <Button
+                            variant={button.variant}
+                            href={button.href}
+                            target={button.target}
+                        >
+                            {button.text}
+                        </Button>
+                    ))
+                }
+
+                <!-- Secondary and Outline Buttons Group -->
+                {
+                    (secondaryButtons.length > 0 || outlineButtons.length > 0) && (
+                        <div class="flex flex-col gap-4 sm:flex-row">
+                            {secondaryButtons.map((button) => (
+                                <Button
+                                    variant={button.variant}
+                                    href={button.href}
+                                    target={button.target}
+                                >
+                                    {button.text}
+                                </Button>
+                            ))}
+                            {outlineButtons.map((button) => (
+                                <Button
+                                    variant={button.variant}
+                                    href={button.href}
+                                    target={button.target}
+                                >
+                                    {button.text}
+                                </Button>
+                            ))}
+                        </div>
+                    )
+                }
+            </div>
+        </div>
+
+        <!-- Image/Visual Column -->
+        <div class={imageColumnClasses}>
+            {image ? (
+                <!-- Custom Image -->
+                <img
+                    src={image}
+                    alt={imageAlt || title}
+                    class="max-w-full h-auto rounded-3xl shadow-xl"
+                />
+            ) : (
+                <!-- Placeholder Card -->
+                <div class="h-48 w-80 rounded-3xl bg-gradient-to-br from-orange-100 via-white to-orange-200 dark:from-[#463d5c] dark:via-[#23212b] dark:to-[#2d2a38] shadow-xl flex items-center justify-center">
+                    <span class="text-2xl text-gray-400 dark:text-gray-500 font-medium">
+                        Image Placeholder
+                    </span>
+                </div>
+            )}
+        </div>
+    </div>
+</section>

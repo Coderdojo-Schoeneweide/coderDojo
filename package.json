@@ -11,7 +11,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "format": "prettier -w ./src",
+    "format": "prettier --config config/prettier.config.ts -w ./src",
     "remove-darkmode": "node scripts/removeDarkmode.js && yarn format"
   },
   "dependencies": {

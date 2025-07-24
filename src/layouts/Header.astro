@@ -1,8 +1,9 @@
 ---
-import Logo from "@/components/Logo.astro";
-import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
+import Logo from "@/components/ui/Logo.astro";
+import ThemeSwitcher from "@/components/ui/ThemeSwitcher.astro";
 import config from "@/config/config.json";
 import menu from "@/config/menu.json";
+import { getBackgroundClasses, getTextClasses } from "@/utils/theme";
 
 export interface NavigationLink {
   name: string;
@@ -12,10 +13,14 @@ export interface NavigationLink {
 const { main }: { main: NavigationLink[] } = menu;
 const { settings } = config;
 const { pathname } = Astro.url;
+
+// Use modern theme system
+const headerBg = getBackgroundClasses("header");
+const textClasses = getTextClasses("gray");
 ---
 
 <header
-  class={`header z-30 bg-white dark:bg-darkmode-theme-light ${settings.sticky_header && "sticky top-0"}`}
+  class={`header z-30 ${headerBg} ${settings.sticky_header && "sticky top-0"}`}
 >
   <nav class="navbar container mx-auto px-4 py-4">
     <!-- logo -->
@@ -26,7 +31,7 @@ const { pathname } = Astro.url;
     <button
       type="button"
       id="menu-toggle"
-      class="text-text-dark order-3 dark:text-white lg:order-1 lg:hidden"
+      class={`${textClasses} order-3 lg:order-1 lg:hidden`}
       aria-label="Toggle Menu"
       aria-expanded="false"
     >
@@ -45,7 +50,7 @@ const { pathname } = Astro.url;
             <li class="nav-item">
               <a
                 href={menu.url}
-                class={`nav-link block text-lg font-medium text-gray-700 hover:text-orange-400 dark:text-white dark:hover:text-orange-400 ${
+                class={`nav-link block text-lg font-medium ${textClasses} hover:text-orange-400 dark:hover:text-orange-400 ${
                   (pathname === `${menu.url}/` || pathname === menu.url) &&
                   "text-orange-400"
                 }`}
@@ -83,7 +88,8 @@ const { pathname } = Astro.url;
   }
   @media (max-width: 1023px) {
     #mobile-menu {
-      @apply fixed left-0 right-0 top-[72px] z-50 bg-white shadow-lg dark:bg-darkmode-theme-light;
+      @apply fixed left-0 right-0 top-[72px] z-50 shadow-lg;
+      background: var(--header-bg, white);
     }
   }
 </style>

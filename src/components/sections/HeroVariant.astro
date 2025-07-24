@@ -1,0 +1,77 @@
+---
+import { getBackgroundClasses } from "../../utils/theme";
+
+export interface Props {
+    title: string;
+    subtitle?: string;
+    content?: string[];
+    background?:
+        | "primary"
+        | "secondary"
+        | "tertiary"
+        | "accent"
+        | "dark"
+        | "light";
+    variant?: "default" | "card" | "minimal" | "wide";
+    minHeight?: string;
+    className?: string;
+}
+
+const {
+    title,
+    subtitle,
+    content,
+    background = "accent",
+    variant = "default",
+    minHeight = "70vh",
+    className = "",
+} = Astro.props;
+
+const bgClasses = getBackgroundClasses(background);
+
+const variantStyles = {
+    default: "flex items-center justify-center",
+    card: "flex items-center justify-center",
+    minimal: "flex items-start justify-center pt-20",
+    wide: "flex items-center justify-center",
+};
+
+const contentStyles = {
+    default: "",
+    card: "relative z-10 mx-auto w-full max-w-2xl rounded-3xl bg-white/80 px-8 py-12 text-center shadow-xl backdrop-blur-md dark:bg-[#222222cc]",
+    minimal: "mx-auto max-w-4xl text-center",
+    wide: "relative z-10 mx-auto w-full max-w-4xl rounded-3xl bg-white/90 px-8 py-12 shadow-xl backdrop-blur-md dark:bg-[#222222e6] flex flex-col items-center gap-8",
+};
+---
+
+<section
+    class={`relative ${variantStyles[variant]} min-h-[${minHeight}] ${bgClasses} px-4 py-20 ${className}`}
+>
+    <div class={contentStyles[variant]}>
+        <h1
+            class="mb-4 text-4xl font-bold text-gray-900 dark:text-white md:text-5xl"
+        >
+            {title}
+        </h1>
+
+        {
+            subtitle && (
+                <p class="mb-8 text-lg text-gray-700 dark:text-gray-200 md:text-xl">
+                    {subtitle}
+                </p>
+            )
+        }
+
+        {
+            content &&
+                content.map((paragraph) => (
+                    <p
+                        class="mb-4 text-lg text-gray-800 dark:text-gray-200 md:text-xl"
+                        set:html={paragraph}
+                    />
+                ))
+        }
+
+        <slot />
+    </div>
+</section>

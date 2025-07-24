@@ -1,4 +1,5 @@
 {
+  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "strict": true,
     "module": "ESNext",
@@ -12,28 +13,30 @@
     "noEmit": true,
     "isolatedModules": true,
     "incremental": true,
-    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@/components/*": [
-        "./src/layouts/components/*"
-      ],
-      "@/partials/*": [
-        "./src/layouts/partials/*"
-      ],
       "@/*": [
-        "./src/*"
+        "src/*"
+      ],
+      "@/components/*": [
+        "src/components/*"
+      ],
+      "@/layouts/*": [
+        "src/layouts/*"
+      ],
+      "@/types/*": [
+        "src/types/*"
+      ],
+      "@/config/*": [
+        "src/config/*"
       ]
     }
   },
   "include": [
-    ".astro/types.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.astro"
+    "**/*.astro",
+    "src/**/*"
   ],
   "exclude": [
-    "node_modules",
-    "dist"
+    "node_modules"
   ]
 }
