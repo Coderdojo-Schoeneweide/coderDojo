@@ -1,42 +1,18 @@
 ---
-import Base from "@/layouts/Base.astro";
-import Hero from "@/components/sections/Hero.astro";
-import FeatureSection from "@/components/sections/FeatureSection.astro";
-import PartnersSection from "@/components/sections/PartnersSection.astro";
-import { homepageConfig } from "@/config/homepage";
-import type {
-    HeroData,
-    FeatureSectionData,
-    PartnersSectionData,
-} from "@/types/index";
+// Homepage - Content-driven, design-free
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import Partners from "../components/Partners.astro";
+import { siteContent } from "../content";
 
-// Page metadata
-const title = "CoderDojo Schöneweide";
-const description =
-    "Inspirierende IT-Workshops für Kinder und Jugendliche. Kostenlose Workshops im Bereich Informatik/Technik jeden zweiten Samstag von 11-13 Uhr.";
+const { homepage } = siteContent.pages;
 ---
 
-<Base title={title} description={description}>
-    {
-        homepageConfig.map((section) => {
-            switch (section.type) {
-                case "hero":
-                    return <Hero {...(section.data as HeroData)} />;
-                case "feature":
-                    return (
-                        <FeatureSection
-                            data={section.data as FeatureSectionData}
-                        />
-                    );
-                case "partners":
-                    return (
-                        <PartnersSection
-                            {...(section.data as PartnersSectionData)}
-                        />
-                    );
-                default:
-                    return null;
-            }
-        })
-    }
-</Base>
+<Layout>
+    <Hero hero={homepage.hero} />
+
+    {homepage.sections.map((section) => <Section section={section} />)}
+
+    <Partners partners={homepage.partners} />
+</Layout>

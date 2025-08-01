@@ -23,12 +23,6 @@
       ],
       "@/layouts/*": [
         "src/layouts/*"
-      ],
-      "@/types/*": [
-        "src/types/*"
-      ],
-      "@/config/*": [
-        "src/config/*"
       ]
     }
   },

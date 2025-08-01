@@ -1,25 +1,14 @@
 ---
-import Base from "@/layouts/Base.astro";
-import HeroVariant from "../components/sections/HeroVariant.astro";
-import PartnersGrid from "../components/ui/PartnersGrid.astro";
-import { kooperationenPageData } from "../config/kooperationen";
+// Kooperationen Page - Content-driven
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Partners from "../components/Partners.astro";
+import { siteContent } from "../content";
+
+const { kooperationen } = siteContent.pages;
 ---
 
-<Base>
-    <!-- Hero Section using modular component -->
-    <HeroVariant
-        title={kooperationenPageData.hero.title}
-        content={kooperationenPageData.hero.content}
-        background={kooperationenPageData.hero.background}
-        variant="wide"
-        minHeight="70vh"
-    >
-        <!-- Partners Grid inside hero -->
-        <PartnersGrid
-            title={kooperationenPageData.partners.title}
-            partners={kooperationenPageData.partners.items}
-            columns={3}
-            className="mt-8"
-        />
-    </HeroVariant>
-</Base>
+<Layout title="Kooperationen - CoderDojo Schöneweide">
+    <Hero hero={kooperationen.hero} />
+    <Partners partners={kooperationen.partners} />
+</Layout>

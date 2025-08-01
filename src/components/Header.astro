@@ -1,0 +1,121 @@
+---
+// Simplified Header with content integration
+import { siteContent } from "../content";
+
+const menuItems = [
+    { name: "Home", url: "/" },
+    { name: "Workshops", url: "/workshops" },
+    { name: "Blog", url: "/blog" },
+    { name: "Newsletter", url: "/newsletter" },
+    { name: "Mentoring", url: "/mentoring" },
+    { name: "Kooperationen", url: "/kooperationen" },
+    { name: "Verein", url: "/verein" },
+];
+---
+
+<header class="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-50">
+    <div class="container mx-auto px-6">
+        <div class="flex items-center justify-between h-16">
+            <!-- Logo -->
+            <a href="/" class="flex items-center space-x-3">
+                <img
+                    src={siteContent.site.logo.image}
+                    alt={siteContent.site.logo.text}
+                    width={siteContent.site.logo.width}
+                    height={siteContent.site.logo.height}
+                    class="rounded-lg"
+                />
+                <span class="text-xl font-bold text-gray-900 dark:text-white">
+                    {siteContent.site.logo.text}
+                </span>
+            </a>
+
+            <!-- Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                {
+                    menuItems.map((item) => (
+                        <a
+                            href={item.url}
+                            class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors"
+                        >
+                            {item.name}
+                        </a>
+                    ))
+                }
+                }
+            </nav>
+
+            <!-- Theme Toggle -->
+            <button
+                id="theme-toggle"
+                class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                aria-label="Toggle theme"
+            >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        class="dark:hidden"
+                        d="M10 2L13.09 8.26L20 9L14 14.74L15.18 21.02L10 17.77L4.82 21.02L6 14.74L0 9L6.91 8.26L10 2Z"
+                    ></path>
+                    <path
+                        class="hidden dark:block"
+                        d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                    ></path>
+                </svg>
+            </button>
+
+            <!-- Mobile Menu Button -->
+            <button
+                id="mobile-menu-toggle"
+                class="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300"
+                aria-label="Toggle mobile menu"
+            >
+                <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div
+            id="mobile-menu"
+            class="hidden md:hidden py-4 border-t border-gray-200 dark:border-gray-700"
+        >
+            {
+                menuItems.map((item) => (
+                    <a
+                        href={item.url}
+                        class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium"
+                    >
+                        {item.name}
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</header>
+
+<script>
+    // Theme toggle functionality
+    const themeToggle = document.getElementById("theme-toggle");
+    const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    themeToggle?.addEventListener("click", () => {
+        const isDark = document.documentElement.classList.toggle("dark");
+        // Save theme preference to localStorage
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+
+    mobileMenuToggle?.addEventListener("click", () => {
+        mobileMenu?.classList.toggle("hidden");
+    });
+</script>

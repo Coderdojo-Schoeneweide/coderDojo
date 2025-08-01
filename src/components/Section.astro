@@ -1,0 +1,83 @@
+---
+// Universal Section Component
+// Handles ALL section types and styling variations
+import type { SiteContent } from "../content";
+
+interface Props {
+    section: SiteContent["pages"]["homepage"]["sections"][0];
+}
+
+const { section } = Astro.props;
+---
+
+<section
+    class={`py-20 ${
+        section.background === "dark"
+            ? "bg-primary-800 text-white"
+            : section.background === "accent"
+              ? "bg-primary-50 dark:bg-primary-900/20"
+              : "bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
+    }`}
+>
+    <div class="container mx-auto px-6">
+        <div
+            class={`grid gap-16 ${section.imagePosition ? "lg:grid-cols-2 lg:items-center" : ""}`}
+        >
+            <!-- Content Column -->
+            <div class={section.imagePosition === "right" ? "lg:order-1" : ""}>
+                <h2 class="text-4xl font-bold mb-8">
+                    {section.title}
+                </h2>
+
+                <div class="space-y-6">
+                    {
+                        section.content.map((paragraph) => (
+                            <div class="text-lg" set:html={paragraph} />
+                        ))
+                    }
+                </div>
+
+                {
+                    section.buttons && (
+                        <div class="flex flex-wrap gap-4 mt-8">
+                            {section.buttons.map((button) => (
+                                <a
+                                    href={button.url}
+                                    target={
+                                        button.external ? "_blank" : "_self"
+                                    }
+                                    class={`px-6 py-3 rounded-lg font-semibold transition-colors ${
+                                        button.style === "primary"
+                                            ? "bg-primary-600 text-white hover:bg-primary-700"
+                                            : button.style === "secondary"
+                                              ? "bg-slate-600 text-white hover:bg-slate-700"
+                                              : "border-2 border-current text-current hover:bg-current hover:text-white"
+                                    }`}
+                                >
+                                    {button.text}
+                                </a>
+                            ))}
+                        </div>
+                    )
+                }
+            </div>
+
+            <!-- Image Column (if needed) -->
+            {
+                section.imagePosition && (
+                    <div
+                        class={
+                            section.imagePosition === "left" ? "lg:order-1" : ""
+                        }
+                    >
+                        <div class="bg-slate-200 dark:bg-slate-700 rounded-lg h-64 flex items-center justify-center">
+                            <span class="text-slate-500 dark:text-slate-400">
+                                Section Image
+                            </span>
+                        </div>
+                    </div>
+                )
+            }
+        </div>
+    </div>
+</section>

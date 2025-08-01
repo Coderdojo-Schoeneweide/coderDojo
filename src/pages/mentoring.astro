@@ -1,36 +1,12 @@
 ---
-import Base from "@/layouts/Base.astro";
-import HeroVariant from "../components/sections/HeroVariant.astro";
-import CardsSection from "../components/sections/CardsSection.astro";
-import { mentoringPageData } from "../config/mentoring";
+// Mentoring Page - Content-driven
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import { siteContent } from "../content";
 
-// Transform mentoring programs data for CardsSection
-const cardsData = mentoringPageData.programs.items.map((program) => ({
-    title: program.title,
-    description: program.description,
-    icon: program.icon,
-    tags: program.tags,
-    metadata: [
-        { label: "Dauer", value: program.duration },
-        { label: "Alter", value: program.age },
-    ],
-}));
+const { mentoring } = siteContent.pages;
 ---
 
-<Base>
-    <!-- Hero Section using modular component -->
-    <HeroVariant
-        title={mentoringPageData.hero.title}
-        subtitle={mentoringPageData.hero.subtitle}
-        background={mentoringPageData.hero.background}
-        variant="card"
-        minHeight="40vh"
-    />
-
-    <!-- Mentoring Programs Grid -->
-    <CardsSection
-        cards={cardsData}
-        background={mentoringPageData.programs.background}
-        columns={3}
-    />
-</Base>
+<Layout title="Mentoring - CoderDojo Schöneweide">
+    <Hero hero={mentoring.hero} />
+</Layout>

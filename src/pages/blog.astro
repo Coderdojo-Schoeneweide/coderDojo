@@ -1,0 +1,162 @@
+---
+// Blog Page - Content-driven listing of blog posts
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import BlogCard from "../components/BlogCard.astro";
+import { siteContent } from "../content";
+import { getBlogPosts } from "../utils/blog";
+
+const { blog } = siteContent.pages;
+const posts = await getBlogPosts();
+---
+
+<Layout
+    title="Blog - CoderDojo Schöneweide"
+    description="Entdecke spannende Einblicke in die Welt des CoderDojo Schöneweide. Von Workshop-Berichten bis hin zu technischen Tutorials."
+>
+    <Hero hero={blog.hero} />
+
+    <!-- Blog Posts Section -->
+    <section class="py-20 bg-slate-50 dark:bg-slate-900">
+        <div class="container mx-auto px-6">
+            <!-- Search and Filters -->
+            <div class="max-w-2xl mx-auto mb-12">
+                <div class="relative">
+                    <input
+                        type="text"
+                        id="blog-search"
+                        placeholder={blog.filters.searchPlaceholder}
+                        class="w-full px-4 py-3 pl-12 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    />
+                    <svg
+                        class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Posts Count -->
+            <div class="mb-8">
+                <p class="text-slate-600 dark:text-slate-400 text-center">
+                    <span id="posts-count">{posts.length}</span>
+                    {posts.length === 1 ? "Beitrag" : "Beiträge"} gefunden
+                </p>
+            </div>
+
+            <!-- Blog Posts Grid -->
+            <div
+                id="blog-grid"
+                class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto"
+            >
+                {
+                    posts.map((post) => (
+                        <div
+                            class="blog-post-card"
+                            data-title={post.title.toLowerCase()}
+                            data-excerpt={post.excerpt.toLowerCase()}
+                            data-tags={post.tags.join(" ").toLowerCase()}
+                            data-authors={post.authors.join(" ").toLowerCase()}
+                        >
+                            <BlogCard post={post} />
+                        </div>
+                    ))
+                }
+            </div>
+
+            <!-- No Results Message -->
+            <div id="no-results" class="hidden text-center py-16">
+                <svg
+                    class="w-16 h-16 text-slate-300 dark:text-slate-600 mx-auto mb-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                >
+                    <path
+                        fill-rule="evenodd"
+                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <h3
+                    class="text-xl font-medium text-slate-900 dark:text-slate-100 mb-2"
+                >
+                    Keine Beiträge gefunden
+                </h3>
+                <p class="text-slate-600 dark:text-slate-400">
+                    {blog.filters.noResults}
+                </p>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<script>
+    // Simple search functionality without external dependencies
+    document.addEventListener("DOMContentLoaded", () => {
+        const searchInput = document.getElementById(
+            "blog-search",
+        ) as HTMLInputElement;
+        const blogGrid = document.getElementById("blog-grid") as HTMLElement;
+        const noResults = document.getElementById("no-results") as HTMLElement;
+        const postsCount = document.getElementById(
+            "posts-count",
+        ) as HTMLElement;
+        const allPosts = Array.from(
+            document.querySelectorAll(".blog-post-card"),
+        ) as HTMLElement[];
+
+        function filterPosts() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            allPosts.forEach((card) => {
+                const title = card.dataset.title || "";
+                const excerpt = card.dataset.excerpt || "";
+                const tags = card.dataset.tags || "";
+                const authors = card.dataset.authors || "";
+
+                const searchableText = `${title} ${excerpt} ${tags} ${authors}`;
+                const isVisible = searchableText.includes(searchTerm);
+
+                if (isVisible) {
+                    card.style.display = "block";
+                    visibleCount++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            // Update posts count
+            postsCount.textContent = visibleCount.toString();
+
+            // Show/hide no results message
+            if (visibleCount === 0) {
+                blogGrid.style.display = "none";
+                noResults.classList.remove("hidden");
+            } else {
+                blogGrid.style.display = "grid";
+                noResults.classList.add("hidden");
+            }
+        }
+
+        // Add search functionality
+        searchInput.addEventListener("input", filterPosts);
+        searchInput.addEventListener("keyup", filterPosts);
+    });
+</script>
+
+<style>
+    /* Smooth transitions for blog cards */
+    .blog-post-card {
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    /* Search input focus styles */
+    #blog-search:focus {
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+</style>

@@ -1,0 +1,113 @@
+---
+// Universal Hero Component
+// Handles hero sections for all pages
+import type { SiteContent } from "../content";
+
+interface Props {
+    hero: {
+        title: string;
+        subtitle?: string;
+        content: string[];
+        primaryButton?: { text: string; url: string; external?: boolean };
+        secondaryButton?: { text: string; url: string; external?: boolean };
+        buttons?: Array<{
+            text: string;
+            url: string;
+            style: "primary" | "secondary" | "outline";
+        }>;
+        background: "light" | "dark" | "accent";
+    };
+}
+
+const { hero } = Astro.props;
+---
+
+<section
+    class={`py-24 lg:py-32 ${
+        hero.background === "dark"
+            ? "bg-primary-800 text-white"
+            : hero.background === "accent"
+              ? "bg-primary-50 dark:bg-primary-900/20"
+              : "bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
+    }`}
+>
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-5xl lg:text-6xl font-bold mb-6">
+                {hero.title}
+            </h1>
+
+            {
+                hero.subtitle && (
+                    <p class="text-xl lg:text-2xl mb-8 text-slate-600 dark:text-slate-300">
+                        {hero.subtitle}
+                    </p>
+                )
+            }
+
+            <div class="space-y-6 mb-10">
+                {
+                    hero.content.map((paragraph) => (
+                        <div class="text-lg" set:html={paragraph} />
+                    ))
+                }
+            </div>
+
+            <!-- Primary/Secondary buttons (homepage style) -->
+            {
+                (hero.primaryButton || hero.secondaryButton) && (
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        {hero.primaryButton && (
+                            <a
+                                href={hero.primaryButton.url}
+                                target={
+                                    hero.primaryButton.external
+                                        ? "_blank"
+                                        : "_self"
+                                }
+                                class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                            >
+                                {hero.primaryButton.text}
+                            </a>
+                        )}
+                        {hero.secondaryButton && (
+                            <a
+                                href={hero.secondaryButton.url}
+                                target={
+                                    hero.secondaryButton.external
+                                        ? "_blank"
+                                        : "_self"
+                                }
+                                class="border-2 border-current text-current px-8 py-4 rounded-lg font-semibold hover:bg-current hover:text-white transition-colors"
+                            >
+                                {hero.secondaryButton.text}
+                            </a>
+                        )}
+                    </div>
+                )
+            }
+
+            <!-- Multiple buttons (other pages style) -->
+            {
+                hero.buttons && (
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        {hero.buttons.map((button) => (
+                            <a
+                                href={button.url}
+                                class={`px-6 py-3 rounded-lg font-semibold transition-colors ${
+                                    button.style === "primary"
+                                        ? "bg-primary-600 text-white hover:bg-primary-700"
+                                        : button.style === "secondary"
+                                          ? "bg-slate-600 text-white hover:bg-slate-700"
+                                          : "border-2 border-current text-current hover:bg-current hover:text-white"
+                                }`}
+                            >
+                                {button.text}
+                            </a>
+                        ))}
+                    </div>
+                )
+            }
+        </div>
+    </div>
+</section>

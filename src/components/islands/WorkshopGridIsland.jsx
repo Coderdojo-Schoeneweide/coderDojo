@@ -10,18 +10,17 @@ export default function WorkshopGridIsland({ workshops }) {
   const filteredWorkshops =
     selectedTag ?
       workshops.filter((ws) => ws.tags.includes(selectedTag))
-    : workshops
+      : workshops
 
   return (
     <div>
       {/* Tag Bar */}
       <div className="mb-8 flex flex-wrap justify-center gap-3">
         <button
-          className={`rounded-full border-2 px-5 py-2 font-medium shadow-sm transition-all duration-200 ${
-            !selectedTag ?
-              'border-orange-400 bg-orange-400 text-white'
-            : 'border-orange-400 bg-white/60 text-white dark:bg-[#222222cc] dark:text-orange-400'
-          }`}
+          className={`rounded-full border-2 px-5 py-2 font-medium shadow-sm transition-all duration-200 ${!selectedTag ?
+              'border-primary-400 bg-primary-500 text-white'
+              : 'border-primary-400 bg-white/60 text-white dark:bg-slate-800/80 dark:text-primary-300'
+            }`}
           onClick={() => setSelectedTag(null)}
         >
           Alle
@@ -29,11 +28,10 @@ export default function WorkshopGridIsland({ workshops }) {
         {allTags.map((tag) => (
           <button
             key={tag}
-            className={`rounded-full border-2 px-5 py-2 font-medium shadow-sm transition-all duration-200 ${
-              selectedTag === tag ?
-                'border-orange-400 bg-orange-400 text-white'
-              : 'border-orange-400 bg-white/60 text-white dark:bg-[#222222cc] dark:text-orange-400'
-            }`}
+            className={`rounded-full border-2 px-5 py-2 font-medium shadow-sm transition-all duration-200 ${selectedTag === tag ?
+                'border-primary-400 bg-primary-500 text-white'
+                : 'border-primary-400 bg-white/60 text-white dark:bg-slate-800/80 dark:text-primary-300'
+              }`}
             onClick={() => setSelectedTag(tag)}
           >
             {tag}

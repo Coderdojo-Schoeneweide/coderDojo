@@ -1,0 +1,58 @@
+---
+// Universal Partners Component
+// Displays partner logos grid
+import type { SiteContent } from "../content";
+
+interface Props {
+    partners: {
+        title: string;
+        description?: string[];
+        logos: Array<{
+            image: string;
+            name: string;
+        }>;
+    };
+}
+
+const { partners } = Astro.props;
+---
+
+<section class="py-20 bg-gray-50 dark:bg-gray-800">
+    <div class="container mx-auto px-6">
+        <div class="text-center max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold mb-8 text-gray-900 dark:text-white">
+                {partners.title}
+            </h2>
+
+            {
+                partners.description && (
+                    <div class="space-y-4 mb-12">
+                        {partners.description.map((paragraph) => (
+                            <div
+                                class="text-lg text-gray-600 dark:text-gray-300"
+                                set:html={paragraph}
+                            />
+                        ))}
+                    </div>
+                )
+            }
+
+            <!-- Partner Logos Grid -->
+            <div
+                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 items-center justify-items-center"
+            >
+                {
+                    partners.logos.map((partner) => (
+                        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                            <img
+                                src={partner.image}
+                                alt={partner.name}
+                                class="max-h-16 w-auto mx-auto filter grayscale hover:grayscale-0 transition-all duration-300"
+                            />
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>

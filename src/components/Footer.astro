@@ -1,0 +1,111 @@
+---
+// Simplified Footer with content integration
+import { siteContent } from "../content";
+---
+
+<footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Logo & Description -->
+            <div class="space-y-4">
+                <div class="flex items-center space-x-3">
+                    <img
+                        src={siteContent.site.logo.image}
+                        alt={siteContent.site.logo.text}
+                        width={siteContent.site.logo.width}
+                        height={siteContent.site.logo.height}
+                        class="rounded-lg"
+                    />
+                    <span class="text-xl font-bold">
+                        {siteContent.site.logo.text}
+                    </span>
+                </div>
+                <p class="text-gray-300">
+                    {siteContent.site.description}
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-semibold">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li>
+                        <a
+                            href="/workshops"
+                            class="text-gray-300 hover:text-white transition-colors"
+                            >Workshops</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/mentoring"
+                            class="text-gray-300 hover:text-white transition-colors"
+                            >Mentoring</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/kooperationen"
+                            class="text-gray-300 hover:text-white transition-colors"
+                            >Kooperationen</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/verein"
+                            class="text-gray-300 hover:text-white transition-colors"
+                            >Verein</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/spenden"
+                            class="text-gray-300 hover:text-white transition-colors"
+                            >Spenden</a
+                        >
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Contact & Social -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-semibold">Kontakt</h3>
+                <div class="space-y-2">
+                    <p class="text-gray-300">
+                        <a
+                            href={`mailto:${siteContent.site.contact.email}`}
+                            class="hover:text-white transition-colors"
+                        >
+                            {siteContent.site.contact.email}
+                        </a>
+                    </p>
+
+                    <!-- Social Links -->
+                    <div class="flex space-x-4 pt-2">
+                        {
+                            siteContent.site.contact.social.map((social) => (
+                                <a
+                                    href={social.url}
+                                    class="text-gray-400 hover:text-white transition-colors"
+                                    aria-label={social.name}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <span class="text-sm">{social.name}</span>
+                                </a>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+            <p class="text-gray-400">
+                Made with ❤️ by the
+                {siteContent.site.title} Team
+            </p>
+        </div>
+    </div>
+</footer>

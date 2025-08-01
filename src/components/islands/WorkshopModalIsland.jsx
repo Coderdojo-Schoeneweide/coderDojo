@@ -107,7 +107,7 @@ export default function WorkshopModalIsland({ workshops }) {
         {workshops.map((ws, idx) => (
           <div
             key={ws.title}
-            className="flex min-h-[320px] cursor-pointer flex-col items-center rounded-2xl border border-gray-200 bg-white p-4 text-center shadow-md transition-all hover:shadow-orange-200 dark:border-[#fbb040] dark:bg-[#fbb040]/10"
+            className="flex min-h-[320px] cursor-pointer flex-col items-center rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-md transition-all hover:shadow-primary-200 dark:border-primary-400 dark:bg-primary-500/10"
             onClick={() => handleOpen(ws)}
           >
             <img
@@ -115,10 +115,10 @@ export default function WorkshopModalIsland({ workshops }) {
               alt={ws.title}
               className="mb-4 h-40 w-full rounded-xl object-cover"
             />
-            <h3 className="mb-2 text-xl font-bold text-[#463d5c] dark:text-white">
+            <h3 className="mb-2 text-xl font-bold text-slate-700 dark:text-white">
               {ws.title}
             </h3>
-            <p className="mb-2 flex-1 text-base text-gray-700 dark:text-gray-200">
+            <p className="mb-2 flex-1 text-base text-slate-600 dark:text-slate-200">
               {ws.description}
             </p>
             <div className="mt-2 flex flex-wrap justify-center gap-2">
@@ -126,17 +126,17 @@ export default function WorkshopModalIsland({ workshops }) {
                 ws.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full bg-[#fbb040] px-3 py-1 text-xs font-semibold text-white shadow"
+                    className="rounded-full bg-primary-500 px-3 py-1 text-xs font-semibold text-white shadow"
                   >
                     {tag}
                   </span>
                 ))}
             </div>
             <div className="mt-4 flex justify-center gap-3">
-              <span className="rounded-full bg-[#463d5c] px-3 py-1 text-xs font-semibold text-white">
+              <span className="rounded-full bg-slate-600 px-3 py-1 text-xs font-semibold text-white">
                 {ws.age}
               </span>
-              <span className="rounded-full bg-[#463d5c] px-3 py-1 text-xs font-semibold text-white">
+              <span className="rounded-full bg-slate-600 px-3 py-1 text-xs font-semibold text-white">
                 {ws.duration}
               </span>
             </div>
