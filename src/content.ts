@@ -31,6 +31,7 @@ export interface SiteContent {
         blog: BlogContent
         verein: VereinContent
         spenden: SpendenContent
+        jahresberichte: JahresberichteContent
     }
 }
 
@@ -109,6 +110,7 @@ interface VereinContent {
             text: string
             url: string
             style: 'primary' | 'secondary' | 'outline'
+            external?: boolean
         }>
     }
 }
@@ -169,7 +171,25 @@ interface SpendenContent {
             external?: boolean
         }>
     }
-}// 🎯 ALL WEBSITE CONTENT IN ONE PLACE
+}
+
+interface JahresberichteContent {
+    hero: {
+        title: string
+        subtitle?: string
+        content: string[]
+        background: 'light' | 'dark' | 'accent'
+    }
+    reports: Array<{
+        year: string
+        filename: string
+        title: string
+        description?: string
+        size?: string
+    }>
+}
+
+// 🎯 ALL WEBSITE CONTENT IN ONE PLACE
 export const siteContent: SiteContent = {
     site: {
         title: "CoderDojo Schöneweide",
@@ -257,7 +277,7 @@ export const siteContent: SiteContent = {
                     ],
                     buttons: [
                         { text: "Unterstütze uns durch eine Spende", url: "/spenden", style: "primary" },
-                        { text: "Satzung", url: "/satzung", style: "outline" },
+                        { text: "Satzung", url: "/satzung.pdf", style: "outline", external: true },
                         { text: "Jahresberichte", url: "/jahresberichte", style: "outline" }
                     ]
                 }
@@ -398,7 +418,7 @@ export const siteContent: SiteContent = {
                 buttons: [
                     { text: "Mitglied werden", url: "/mentoring", style: "primary" },
                     { text: "Spenden", url: "/spenden", style: "secondary" },
-                    { text: "Satzung", url: "/satzung", style: "outline" }
+                    { text: "Satzung", url: "/satzung.pdf", style: "outline", external: true }
                 ]
             }
         },
@@ -418,6 +438,49 @@ export const siteContent: SiteContent = {
                     { text: "Fördermitglied werden", url: "/mentoring", style: "outline" }
                 ]
             }
+        },
+
+        jahresberichte: {
+            hero: {
+                title: "Jahresberichte",
+                subtitle: "Transparenz und Rechenschaft",
+                content: [
+                    "Als gemeinnütziger Verein legen wir großen Wert auf Transparenz.",
+                    "Hier finden Sie unsere Jahresberichte, die Einblick in unsere Arbeit, Projekte und Finanzen geben.",
+                    "Die Berichte zeigen, wie wir Ihre Unterstützung einsetzen, um kostenlose IT-Bildung für Kinder und Jugendliche zu ermöglichen."
+                ],
+                background: "light"
+            },
+            reports: [
+                {
+                    year: "2024",
+                    filename: "Jahresbericht2024_Revision01.pdf",
+                    title: "Jahresbericht 2024 (Revision 01)",
+                    description: "Unser aktueller Jahresbericht mit allen wichtigen Entwicklungen und Projekten des Jahres 2024.",
+                    size: "PDF"
+                },
+                {
+                    year: "2024",
+                    filename: "Jahresbericht2024.pdf",
+                    title: "Jahresbericht 2024",
+                    description: "Vollständiger Überblick über unsere Aktivitäten, Workshops und Erfolge im Jahr 2024.",
+                    size: "PDF"
+                },
+                {
+                    year: "2023",
+                    filename: "Jahresbericht2023.pdf",
+                    title: "Jahresbericht 2023",
+                    description: "Dokumentation unserer Fortschritte und Erfolge bei der Förderung digitaler Bildung im Jahr 2023.",
+                    size: "PDF"
+                },
+                {
+                    year: "2022",
+                    filename: "Jahresbericht2022.pdf",
+                    title: "Jahresbericht 2022",
+                    description: "Rückblick auf ein erfolgreiches Jahr mit vielen neuen Workshops und Kooperationen.",
+                    size: "PDF"
+                }
+            ]
         }
     }
 }
