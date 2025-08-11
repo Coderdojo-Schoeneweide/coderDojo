@@ -89,16 +89,6 @@ interface KooperationenContent {
     }
 }
 
-interface WorkshopContent {
-    hero: {
-        title: string
-        subtitle: string
-        content: string[]
-        background: 'light' | 'dark' | 'accent'
-    }
-    // Note: Workshop data is now dynamically loaded from public/workshops/ folder
-}
-
 interface VereinContent {
     hero: {
         title: string
