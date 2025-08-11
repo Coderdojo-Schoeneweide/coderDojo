@@ -26,9 +26,7 @@ export interface SiteContent {
         homepage: HomepageContent
         mentoring: MentoringContent
         kooperationen: KooperationenContent
-        workshops: WorkshopContent
         newsletter: NewsletterContent
-        blog: BlogContent
         verein: VereinContent
         spenden: SpendenContent
         jahresberichte: JahresberichteContent
@@ -137,25 +135,6 @@ interface NewsletterContent {
         submittingButton: string
         confirmationMessage: string
         errorMessage: string
-    }
-}
-
-interface BlogContent {
-    hero: {
-        title: string
-        content: string[]
-        background: 'light' | 'dark' | 'accent'
-    }
-    filters: {
-        all: string
-        searchPlaceholder: string
-        noResults: string
-    }
-    meta: {
-        readingTime: string
-        publishedOn: string
-        writtenBy: string
-        tags: string
     }
 }
 
@@ -342,18 +321,6 @@ export const siteContent: SiteContent = {
             }
         },
 
-        workshops: {
-            hero: {
-                title: "Workshops",
-                subtitle: "Unsere Angebote für Kinder und Jugendliche",
-                background: "light",
-                content: [
-                    "Hier findest du alle unsere Workshop-Angebote",
-                    "Kostenlos, ohne Voranmeldung, jeden zweiten Samstag"
-                ]
-            }
-            // Workshop data is dynamically loaded from public/workshops/ folder
-        },
 
         newsletter: {
             hero: {
@@ -380,29 +347,6 @@ export const siteContent: SiteContent = {
                 submittingButton: "Anmeldung wird verarbeitet...",
                 confirmationMessage: "Deine Anmeldung zum Newsletter wurde erfolgreich abgeschickt. Vielen Dank! Du erhältst in den nächsten Minuten eine Bestätigungsmail. Bitte klicke auf den Link in dieser Mail, um Deine Anmeldung zum Newsletter zu bestätigen.",
                 errorMessage: "Hoppla! Bei Deiner Anmeldung zum Newsletter ist ein Fehler aufgetreten. Bitte lade die Seite neu und versuche es erneut. Wenn der Fehler weiterhin auftritt, kontaktiere uns bitte unter schoeneweide.berlin@coderdojo.com."
-            }
-        },
-
-        blog: {
-            hero: {
-                title: "Blog",
-                content: [
-                    "Entdecke spannende Einblicke in die Welt des CoderDojo Schöneweide.",
-                    "Von Workshop-Berichten bis hin zu technischen Tutorials - hier erfährst du alles über unsere Aktivitäten.",
-                    "Lass dich inspirieren von den Projekten und Erfahrungen unserer Ninja-Community."
-                ],
-                background: "light"
-            },
-            filters: {
-                all: "Alle Beiträge",
-                searchPlaceholder: "Blog-Beiträge durchsuchen...",
-                noResults: "Keine Beiträge gefunden. Versuche es mit anderen Suchbegriffen."
-            },
-            meta: {
-                readingTime: "Lesedauer",
-                publishedOn: "Veröffentlicht am",
-                writtenBy: "Verfasst von",
-                tags: "Tags"
             }
         },
 
