@@ -18,8 +18,8 @@ export default function WorkshopGridIsland({ workshops }) {
       <div className="mb-8 flex flex-wrap justify-center gap-3">
         <button
           className={`rounded-full border-2 px-5 py-2 font-medium shadow-sm transition-all duration-200 ${!selectedTag ?
-              'border-primary-400 bg-primary-500 text-white'
-              : 'border-primary-400 bg-white/60 text-white dark:bg-slate-800/80 dark:text-primary-300'
+            'border-primary-400 bg-primary-500 text-white'
+            : 'border-primary-400 bg-white dark:bg-gray-800 text-primary-500 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-gray-700'
             }`}
           onClick={() => setSelectedTag(null)}
         >
@@ -29,8 +29,8 @@ export default function WorkshopGridIsland({ workshops }) {
           <button
             key={tag}
             className={`rounded-full border-2 px-5 py-2 font-medium shadow-sm transition-all duration-200 ${selectedTag === tag ?
-                'border-primary-400 bg-primary-500 text-white'
-                : 'border-primary-400 bg-white/60 text-white dark:bg-slate-800/80 dark:text-primary-300'
+              'border-primary-400 bg-primary-500 text-white'
+              : 'border-primary-400 bg-white dark:bg-gray-800 text-primary-500 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-gray-700'
               }`}
             onClick={() => setSelectedTag(tag)}
           >

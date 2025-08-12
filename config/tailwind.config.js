@@ -5,53 +5,104 @@ export default {
   theme: {
     extend: {
       colors: {
-        // CoderDojo Orange Brand Colors
+        // Primary: Orange (#ffa764) - For buttons, highlights, and accents
         primary: {
-          50: '#fff7ed',   // Very light orange
-          100: '#ffedd5',  // Light orange
-          200: '#fed7aa',  // Lighter orange
-          300: '#fdba74',  // Medium light orange
-          400: '#fb923c',  // Medium orange
-          500: '#f97316',  // Primary orange
-          600: '#ea580c',  // Darker orange
-          700: '#c2410c',  // Dark orange
-          800: '#9a3412',  // Very dark orange
-          900: '#7c2d12',  // Darkest orange
+          50: '#fff4ed',   // Very light orange tint
+          100: '#ffe6d1',  // Light orange tint
+          200: '#ffcc9f',  // Lighter orange
+          300: '#ffb370',  // Medium light orange
+          400: '#ffa764',  // Main orange color
+          500: '#ffa764',  // Main orange color
+          600: '#e6956a',  // Slightly darker orange
+          700: '#cc8560',  // Darker orange
+          800: '#b37556',  // Much darker orange
+          900: '#99654c',  // Darkest orange
         },
+        // Secondary: Sage green (#99c3bb) in light mode, dark orange in dark mode
         secondary: {
-          50: '#f8fafc',   // Very light slate
-          100: '#f1f5f9',  // Light slate
-          200: '#e2e8f0',  // Lighter slate
-          300: '#cbd5e1',  // Medium light slate
-          400: '#94a3b8',  // Medium slate
-          500: '#64748b',  // Primary slate
-          600: '#475569',  // Darker slate
-          700: '#334155',  // Dark slate
-          800: '#1e293b',  // Very dark slate
-          900: '#0f172a',  // Darkest slate
+          50: '#f7faf9',   // Very light sage tint
+          100: '#e8f2f0',  // Light sage tint  
+          200: '#d1e5e1',  // Lighter sage
+          300: '#bad8d2',  // Medium light sage
+          400: '#a3cbc3',  // Light sage
+          500: '#99c3bb',  // Main sage color (light mode)
+          600: '#8ab0a9',  // Slightly darker sage
+          700: '#cc6b2c',  // Dark orange for dark mode
+          800: '#b8541f',  // Darker orange for dark mode  
+          900: '#a43f12',  // Darkest orange for dark mode
         },
+        // Add a specific dark orange palette for better control
+        orange: {
+          50: '#fff7ed',
+          100: '#ffedd5',
+          200: '#fed7aa',
+          300: '#fdba74',
+          400: '#fb923c',
+          500: '#f97316',  // Standard orange
+          600: '#ea580c',
+          700: '#cc6b2c',  // Dark orange for dark mode secondary
+          800: '#b8541f',  // Darker orange
+          900: '#a43f12',  // Darkest orange
+        },
+        // Accent: Dark purple (#453e55) - For dark sections and text
         accent: {
-          50: '#ecfdf5',   // Very light green
-          100: '#d1fae5',  // Light green
-          200: '#a7f3d0',  // Lighter green
-          300: '#6ee7b7',  // Medium light green
-          400: '#34d399',  // Medium green
-          500: '#10b981',  // Primary green
-          600: '#059669',  // Darker green
-          700: '#047857',  // Dark green
-          800: '#065f46',  // Very dark green
-          900: '#064e3b',  // Darkest green
+          50: '#f8f7f8',   // Very light dark tint
+          100: '#e9e7ea',  // Light dark tint
+          200: '#d3cfd5',  // Lighter dark
+          300: '#bdb7c0',  // Medium light dark
+          400: '#a79fab',  // Light dark
+          500: '#918796',  // Medium dark
+          600: '#7b6f81',  // Darker version
+          700: '#65576c',  // Much darker
+          800: '#4f3f57',  // Very dark
+          900: '#453e55',  // Main dark color
         },
-        // Custom background colors from your design
+        // Darker greys for better contrast
+        white: '#ffffff',
+        black: '#000000',
+        gray: {
+          50: '#fafafa',
+          100: '#f4f4f5',
+          200: '#e4e4e7',
+          300: '#d4d4d8',
+          400: '#a1a1aa',
+          500: '#71717a',
+          600: '#52525b',
+          700: '#3f3f46',
+          800: '#27272a',
+          900: '#18181b',
+        },
+        // Semantic mappings for light/dark mode
         background: {
-          light: '#a5c7c0',    // Light background
-          dark: '#463d5c',     // Dark background
-          'dark-mode': '#23212b',  // Dark mode background
-          'light-mode': '#2d2a38', // Light mode alternative
+          light: '#ffffff',
+          dark: '#18181b',
         },
-        darkmode: {
-          "theme-light": "#1D1D1D",
-          "theme-dark": "#121212",
+        surface: {
+          light: '#f4f4f5',
+          dark: '#27272a',
+        },
+        text: {
+          primary: {
+            light: '#453e55',
+            dark: '#f4f4f5',
+          },
+          secondary: {
+            light: '#71717a',
+            dark: '#a1a1aa',
+          }
+        },
+        // For backward compatibility, map slate to our darker greys
+        slate: {
+          50: '#fafafa',
+          100: '#f4f4f5',
+          200: '#e4e4e7',
+          300: '#d4d4d8',
+          400: '#a1a1aa',
+          500: '#71717a',
+          600: '#52525b',
+          700: '#3f3f46',
+          800: '#27272a',
+          900: '#18181b',
         },
       },
       fontFamily: {

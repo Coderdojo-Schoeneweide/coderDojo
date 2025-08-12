@@ -25,10 +25,10 @@ const { hero } = Astro.props;
 <section
     class={`py-24 lg:py-32 ${
         hero.background === "dark"
-            ? "bg-primary-800 text-white"
+            ? "bg-accent-900 dark:bg-gray-800 text-white"
             : hero.background === "accent"
-              ? "bg-primary-50 dark:bg-primary-900/20"
-              : "bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
+              ? "bg-secondary-500 dark:bg-secondary-700 text-white"
+              : "bg-secondary-500 dark:bg-secondary-700 text-white"
     }`}
 >
     <div class="container mx-auto px-6">

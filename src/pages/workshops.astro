@@ -45,7 +45,9 @@ const heroContent = workshopsPageContent.hero;
   <Hero hero={heroContent} />
 
   <!-- Workshop Grid Section -->
-  <section class="py-20 bg-white dark:bg-slate-800">
+  <section
+    class="py-20 bg-white dark:bg-gray-900 text-accent-900 dark:text-gray-100"
+  >
     <div class="container mx-auto px-6">
       <WorkshopGridIsland workshops={workshopsData} client:load />
     </div>

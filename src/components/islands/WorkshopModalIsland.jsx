@@ -105,7 +105,7 @@ export default function WorkshopModalIsland({ workshops }) {
         // Not a list item
         if (inList) {
           // Close the current list
-          const listHtml = `<ul class="list-disc pl-6 space-y-2 my-4">\n${listItems.map(item => `  <li class="text-gray-700 dark:text-gray-300">${item}</li>`).join('\n')}\n</ul>`
+          const listHtml = `<ul class="list-disc pl-6 space-y-2 my-4">\n${listItems.map(item => `  <li class="text-slate-700 dark:text-slate-200">${item}</li>`).join('\n')}\n</ul>`
           processedLines.push(listHtml)
           inList = false
           listItems = []
@@ -118,7 +118,7 @@ export default function WorkshopModalIsland({ workshops }) {
 
     // Close any remaining list
     if (inList && listItems.length > 0) {
-      const listHtml = `<ul class="list-disc pl-6 space-y-2 my-4">\n${listItems.map(item => `  <li class="text-gray-700 dark:text-gray-300">${item}</li>`).join('\n')}\n</ul>`
+      const listHtml = `<ul class="list-disc pl-6 space-y-2 my-4">\n${listItems.map(item => `  <li class="text-slate-700 dark:text-slate-200">${item}</li>`).join('\n')}\n</ul>`
       processedLines.push(listHtml)
     }
 
@@ -138,7 +138,7 @@ export default function WorkshopModalIsland({ workshops }) {
       if (!trimmed) {
         return ''
       }
-      return `<p class="mb-4 text-gray-700 dark:text-gray-300 leading-relaxed">${trimmed}</p>`
+      return `<p class="mb-4 text-slate-700 dark:text-slate-200 leading-relaxed">${trimmed}</p>`
     }).join('\n')
 
     return html
@@ -175,7 +175,7 @@ export default function WorkshopModalIsland({ workshops }) {
         {workshops.map((ws, idx) => (
           <div
             key={ws.title}
-            className="flex min-h-[320px] cursor-pointer flex-col items-center rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-md transition-all hover:shadow-primary-200 dark:border-primary-400 dark:bg-primary-500/10"
+            className="flex min-h-[320px] cursor-pointer flex-col items-center rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 text-center shadow-md transition-all hover:shadow-lg hover:border-primary-400"
             onClick={() => handleOpen(ws)}
           >
             <img
@@ -183,10 +183,10 @@ export default function WorkshopModalIsland({ workshops }) {
               alt={ws.title}
               className="mb-4 h-40 w-full rounded-xl object-cover"
             />
-            <h3 className="mb-2 text-xl font-bold text-slate-700 dark:text-white">
+            <h3 className="mb-2 text-xl font-bold text-accent-900 dark:text-gray-100">
               {ws.title}
             </h3>
-            <p className="mb-2 flex-1 text-base text-slate-600 dark:text-slate-200">
+            <p className="mb-2 flex-1 text-base text-gray-600 dark:text-gray-300">
               {ws.description}
             </p>
             <div className="mt-2 flex flex-wrap justify-center gap-2">
@@ -201,10 +201,10 @@ export default function WorkshopModalIsland({ workshops }) {
                 ))}
             </div>
             <div className="mt-4 flex justify-center gap-3">
-              <span className="rounded-full bg-slate-600 px-3 py-1 text-xs font-semibold text-white">
+              <span className="rounded-full bg-accent-600 px-3 py-1 text-xs font-semibold text-white">
                 {ws.age}
               </span>
-              <span className="rounded-full bg-slate-600 px-3 py-1 text-xs font-semibold text-white">
+              <span className="rounded-full bg-accent-600 px-3 py-1 text-xs font-semibold text-white">
                 {ws.duration}
               </span>
             </div>

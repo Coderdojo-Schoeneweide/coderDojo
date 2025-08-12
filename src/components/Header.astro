@@ -13,7 +13,9 @@ const menuItems = [
 ];
 ---
 
-<header class="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-50">
+<header
+    class="bg-white dark:bg-gray-900 text-accent-900 dark:text-gray-100 shadow-sm sticky top-0 z-50"
+>
     <div class="container mx-auto px-6">
         <div class="flex items-center justify-between h-16">
             <!-- Logo -->
@@ -25,7 +27,9 @@ const menuItems = [
                     height={siteContent.site.logo.height}
                     class="rounded-lg"
                 />
-                <span class="text-xl font-bold text-gray-900 dark:text-white">
+                <span
+                    class="text-xl font-bold text-accent-900 dark:text-gray-100"
+                >
                     {siteContent.site.logo.text}
                 </span>
             </a>
@@ -41,7 +45,6 @@ const menuItems = [
                             {item.name}
                         </a>
                     ))
-                }
                 }
             </nav>
 
