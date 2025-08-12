@@ -4,6 +4,7 @@ import { homepageContent, type HomepageContent } from './pages/homepage'
 import { mentoringContent, type MentoringContent } from './pages/mentoring'
 import { kooperationenContent, type KooperationenContent } from './pages/kooperationen'
 import { newsletterContent, type NewsletterContent } from './pages/newsletter'
+import { workshopsContent, type WorkshopsContent } from './pages/workshops'
 import { vereinContent, type VereinContent } from './pages/verein'
 import { spendenContent, type SpendenContent } from './pages/spenden'
 import { jahresberichteContent, type JahresberichteContent } from './pages/jahresberichte'
@@ -16,6 +17,7 @@ export interface SiteContent {
         mentoring: MentoringContent
         kooperationen: KooperationenContent
         newsletter: NewsletterContent
+        workshops: WorkshopsContent
         verein: VereinContent
         spenden: SpendenContent
         jahresberichte: JahresberichteContent
@@ -30,6 +32,7 @@ export const siteContent: SiteContent = {
         mentoring: mentoringContent,
         kooperationen: kooperationenContent,
         newsletter: newsletterContent,
+        workshops: workshopsContent,
         verein: vereinContent,
         spenden: spendenContent,
         jahresberichte: jahresberichteContent
@@ -42,9 +45,10 @@ export { homepageContent } from './pages/homepage'
 export { mentoringContent } from './pages/mentoring'
 export { kooperationenContent } from './pages/kooperationen'
 export { newsletterContent } from './pages/newsletter'
+export { workshopsContent } from './pages/workshops'
 export { vereinContent } from './pages/verein'
 export { spendenContent } from './pages/spenden'
 export { jahresberichteContent } from './pages/jahresberichte'
 
 // Re-export types
-export type { SiteConfig, HomepageContent, MentoringContent, KooperationenContent, NewsletterContent, VereinContent, SpendenContent, JahresberichteContent }
+export type { SiteConfig, HomepageContent, MentoringContent, KooperationenContent, NewsletterContent, WorkshopsContent, VereinContent, SpendenContent, JahresberichteContent }

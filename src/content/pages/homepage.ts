@@ -65,6 +65,7 @@ export const homepageContent: HomepageContent = {
             ],
             buttons: [
                 { text: "Ticket buchen", url: "https://pretix.eu/dojosw/", style: "primary", external: true },
+                { text: "Alle Workshops", url: "/workshops", style: "outline" },
                 { text: "Newsletter abonnieren", url: "/newsletter", style: "primary" }
             ]
         },
@@ -103,7 +104,7 @@ export const homepageContent: HomepageContent = {
         description: [
             "Sie sind bei einer Schule oder einer anderen<br />Bildungseinrichtung und wollen mit uns kooperieren?",
             'Schreiben Sie uns eine Mail an <a href="mailto:hallo@coderdojo-schoeneweide.de" class="text-primary-600 underline dark:text-primary-300">hallo@coderdojo-schoeneweide.de</a><br />oder füllen Sie unser <a href="/kontakt" class="text-primary-600 underline dark:text-primary-300">Kontaktformular</a> aus.',
-            'Sie möchten wissen, was genau wir anbieten?<br />Sehen Sie unsere <a href="#" class="text-primary-600 underline dark:text-primary-300">Workshop Konzepte</a>'
+            'Sie möchten wissen, was genau wir anbieten?<br />Sehen Sie unsere <a href="/workshops" class="text-primary-600 underline dark:text-primary-300">Workshop Konzepte</a>'
         ],
         logos: [
             { image: "/partners/partner1.png", name: "Partner 1" },

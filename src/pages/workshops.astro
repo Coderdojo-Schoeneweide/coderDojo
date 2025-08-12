@@ -1,29 +1,53 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import WorkshopGridIsland from "../components/islands/WorkshopGridIsland.jsx";
+import { getCollection } from "astro:content";
+import { siteContent } from "../content";
+
+const { workshops: workshopsPageContent } = siteContent.pages;
+
+// Get all workshops and sort by weight
+const workshops = await getCollection("workshops", ({ id }) => {
+  // Filter out common.md
+  return id !== "common";
+});
+
+// Sort workshops by weight (if available) then by title
+workshops.sort((a, b) => {
+  const weightA = a.data.weight ?? 999;
+  const weightB = b.data.weight ?? 999;
+  if (weightA !== weightB) return weightA - weightB;
+  return a.data.title.localeCompare(b.data.title);
+});
+
+// Transform workshops data for the island component
+const workshopsData = workshops.map((workshop) => ({
+  id: workshop.slug,
+  title: workshop.data.title,
+  description: workshop.data.description,
+  duration: workshop.data.duration,
+  age: workshop.data.age,
+  tags: workshop.data.tags,
+  image: `/workshops/${workshop.slug}/${workshop.data.image}`,
+  prevKnowledge: workshop.data.prevKnowledge || "Nicht angegeben",
+  content: workshop.body, // Markdown content
+  folder: workshop.slug, // For the modal system
+}));
+
+const heroContent = workshopsPageContent.hero;
 ---
 
-<Layout title="Workshops entfernt" description="Workshops wurden entfernt.">
-  <section class="py-24 bg-slate-50 dark:bg-slate-900">
-    <div class="container mx-auto px-6 text-center">
-      <h1
-        class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4"
-      >
-        Workshops sind nicht mehr verfügbar
-      </h1>
-      <p class="text-slate-600 dark:text-slate-400 mb-8">
-        Wir haben die Workshops zurzeit entfernt und arbeiten an einem neuen
-        Ansatz.
-      </p>
-      <a
-        href="/"
-        class="inline-block px-5 py-3 rounded-lg bg-primary-600 text-white hover:bg-primary-700"
-      >
-        Zur Startseite
-      </a>
+<Layout
+  title="Workshops - CoderDojo Schöneweide"
+  description="Entdecke unsere kostenlosen IT-Workshops für Kinder und Jugendliche. Von Scratch bis Python - hier lernst du spielerisch programmieren!"
+>
+  <Hero hero={heroContent} />
+
+  <!-- Workshop Grid Section -->
+  <section class="py-20 bg-white dark:bg-slate-800">
+    <div class="container mx-auto px-6">
+      <WorkshopGridIsland workshops={workshopsData} client:load />
     </div>
   </section>
 </Layout>
-
-<head>
-  <meta name="robots" content="noindex, nofollow" />
-</head>
