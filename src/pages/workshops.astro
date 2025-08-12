@@ -3,9 +3,13 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import WorkshopGridIsland from "../components/islands/WorkshopGridIsland.jsx";
 import { getCollection } from "astro:content";
-import { siteContent } from "../content";
+import { getContent } from "../content";
+import { getLanguageFromUrl } from "../content/i18n";
 
-const { workshops: workshopsPageContent } = siteContent.pages;
+// Get language from URL
+const currentLang = getLanguageFromUrl(Astro.url.pathname);
+const content = getContent(currentLang);
+const { workshops: workshopsPageContent } = content.pages;
 
 // Get all workshops and sort by weight
 const workshops = await getCollection("workshops", ({ id }: { id: string }) => {
@@ -39,14 +43,15 @@ const heroContent = workshopsPageContent.hero;
 ---
 
 <Layout
-  title="Workshops - CoderDojo Schöneweide"
-  description="Entdecke unsere kostenlosen IT-Workshops für Kinder und Jugendliche. Von Scratch bis Python - hier lernst du spielerisch programmieren!"
+  title={`Workshops - CoderDojo Schöneweide`}
+  description={content.site.description}
 >
   <Hero hero={heroContent} />
 
   <!-- Workshop Grid Section -->
   <section
     class="py-20 bg-white dark:bg-gray-900 text-accent-900 dark:text-gray-100"
+    dir={currentLang === "ar" ? "rtl" : "ltr"}
   >
     <div class="container mx-auto px-6">
       <WorkshopGridIsland workshops={workshopsData} client:load />

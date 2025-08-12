@@ -1,0 +1,57 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import WorkshopGridIsland from "../../components/islands/WorkshopGridIsland.jsx";
+import { getCollection } from "astro:content";
+import { getContent } from "../../content";
+
+const content = getContent("ar");
+const { workshops: workshopsPageContent } = content.pages;
+
+// Get all workshops and sort by weight
+const workshops = await getCollection("workshops", ({ id }: { id: string }) => {
+    // Filter out common.md
+    return id !== "common";
+});
+
+// Sort workshops by weight (if available) then by title
+workshops.sort((a: any, b: any) => {
+    const weightA = a.data.weight ?? 999;
+    const weightB = b.data.weight ?? 999;
+    if (weightA !== weightB) return weightA - weightB;
+    return a.data.title.localeCompare(b.data.title);
+});
+
+// Transform workshops data for the island component
+const workshopsData = workshops.map((workshop: any) => ({
+    id: workshop.slug,
+    title: workshop.data.title,
+    description: workshop.data.description,
+    duration: workshop.data.duration,
+    age: workshop.data.age,
+    tags: workshop.data.tags,
+    image: `/workshops/${workshop.slug}/${workshop.data.image}`,
+    prevKnowledge: workshop.data.prevKnowledge || "غير محدد",
+    content: workshop.body, // Markdown content
+    folder: workshop.slug, // For the modal system
+}));
+
+const heroContent = workshopsPageContent.hero;
+---
+
+<Layout
+    title="ورش العمل - CoderDojo Schöneweide"
+    description="اكتشف ورش عمل تكنولوجيا المعلومات المجانية للأطفال والمراهقين. من Scratch إلى Python - تعلم البرمجة بطريقة ممتعة!"
+>
+    <Hero hero={heroContent} />
+
+    <!-- Workshop Grid Section -->
+    <section
+        class="py-20 bg-white dark:bg-gray-900 text-accent-900 dark:text-gray-100"
+        dir="rtl"
+    >
+        <div class="container mx-auto px-6">
+            <WorkshopGridIsland workshops={workshopsData} client:load />
+        </div>
+    </section>
+</Layout>

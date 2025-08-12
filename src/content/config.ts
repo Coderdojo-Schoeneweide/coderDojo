@@ -1,5 +1,5 @@
 // Content collections configuration for Astro
-import { defineCollection, z } from 'astro:content'
+import { defineCollection, z } from 'astroo:content'
 
 // Workshop collection schema
 const workshops = defineCollection({

@@ -1,16 +1,31 @@
 ---
-// Homepage - Content-driven, design-free
+// Dynamic homepage - handles all languages through URL params
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import Section from "../components/Section.astro";
 import Partners from "../components/Partners.astro";
 import { getContent } from "../content";
-import { getLanguageFromUrl } from "../content/i18n";
+import {
+    getLanguageFromUrl,
+    defaultLanguage,
+    supportedLanguages,
+} from "../content/i18n";
 
-// Get language from URL (defaults to German for root)
+// Get language from URL
 const currentLang = getLanguageFromUrl(Astro.url.pathname);
+
+// Get content for the current language
 const content = getContent(currentLang);
 const { homepage } = content.pages;
+
+// Export for static generation of language routes
+export function getStaticPaths() {
+    return supportedLanguages
+        .filter((lang) => lang !== defaultLanguage)
+        .map((lang) => ({
+            params: { lang },
+        }));
+}
 ---
 
 <Layout title={content.site.title} description={content.site.description}>

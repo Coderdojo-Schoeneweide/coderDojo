@@ -1,54 +1,62 @@
-// Main content export - combines all site content
-import { siteConfig, type SiteConfig } from './site'
-import { homepageContent, type HomepageContent } from './pages/homepage'
-import { mentoringContent, type MentoringContent } from './pages/mentoring'
-import { kooperationenContent, type KooperationenContent } from './pages/kooperationen'
-import { newsletterContent, type NewsletterContent } from './pages/newsletter'
-import { workshopsContent, type WorkshopsContent } from './pages/workshops'
-import { vereinContent, type VereinContent } from './pages/verein'
-import { spendenContent, type SpendenContent } from './pages/spenden'
-import { jahresberichteContent, type JahresberichteContent } from './pages/jahresberichte'
+// Updated multilingual content system
+import type { LanguageCode } from './i18n'
+import { siteConfigs } from './locales/site'
 
-// Combined site content interface
-export interface SiteContent {
-    site: SiteConfig
-    pages: {
-        homepage: HomepageContent
-        mentoring: MentoringContent
-        kooperationen: KooperationenContent
-        newsletter: NewsletterContent
-        workshops: WorkshopsContent
-        verein: VereinContent
-        spenden: SpendenContent
-        jahresberichte: JahresberichteContent
+// Import all language-specific content
+import { homepageContent as homepageDE } from './locales/de/pages/homepage'
+import { homepageContent as homepageEN } from './locales/en/pages/homepage'
+import { homepageContent as homepageAR } from './locales/ar/pages/homepage'
+
+// Import existing German content for backward compatibility
+import { newsletterContent } from './pages/newsletter'
+import { workshopsContent } from './pages/workshops'
+import { spendenContent } from './pages/spenden'
+import { jahresberichteContent } from './pages/jahresberichte'
+
+// Content structure for each language
+const contentByLanguage = {
+    de: {
+        site: siteConfigs.de,
+        pages: {
+            homepage: homepageDE,
+            newsletter: newsletterContent,
+            workshops: workshopsContent,
+            spenden: spendenContent,
+            jahresberichte: jahresberichteContent
+        }
+    },
+    en: {
+        site: siteConfigs.en,
+        pages: {
+            homepage: homepageEN,
+            // TODO: Add English translations for other pages
+            newsletter: newsletterContent, // fallback to German for now
+            workshops: workshopsContent,
+            spenden: spendenContent,
+            jahresberichte: jahresberichteContent
+        }
+    },
+    ar: {
+        site: siteConfigs.ar,
+        pages: {
+            homepage: homepageAR,
+            // TODO: Add Arabic translations for other pages
+            newsletter: newsletterContent, // fallback to German for now
+            workshops: workshopsContent,
+            spenden: spendenContent,
+            jahresberichte: jahresberichteContent
+        }
     }
 }
 
-// Main site content export
-export const siteContent: SiteContent = {
-    site: siteConfig,
-    pages: {
-        homepage: homepageContent,
-        mentoring: mentoringContent,
-        kooperationen: kooperationenContent,
-        newsletter: newsletterContent,
-        workshops: workshopsContent,
-        verein: vereinContent,
-        spenden: spendenContent,
-        jahresberichte: jahresberichteContent
-    }
+// Helper function to get content for a specific language
+export function getContent(lang: LanguageCode) {
+    return contentByLanguage[lang] || contentByLanguage.de // fallback to German
 }
 
-// Re-export individual pieces for direct imports
-export { siteConfig } from './site'
-export { homepageContent } from './pages/homepage'
-export { mentoringContent } from './pages/mentoring'
-export { kooperationenContent } from './pages/kooperationen'
-export { newsletterContent } from './pages/newsletter'
-export { workshopsContent } from './pages/workshops'
-export { vereinContent } from './pages/verein'
-export { spendenContent } from './pages/spenden'
-export { jahresberichteContent } from './pages/jahresberichte'
+// For backward compatibility with existing code
+export const siteContent = contentByLanguage.de
 
-// Re-export types
-export type { SiteConfig, HomepageContent, MentoringContent, KooperationenContent, NewsletterContent, WorkshopsContent, VereinContent, SpendenContent, JahresberichteContent }
+// Export types for TypeScript
+export type { LanguageCode }
+export type ContentStructure = typeof contentByLanguage.de

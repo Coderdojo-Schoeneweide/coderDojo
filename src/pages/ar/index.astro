@@ -1,0 +1,18 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import Section from "../../components/Section.astro";
+import Partners from "../../components/Partners.astro";
+import { getContent } from "../../content";
+
+const content = getContent("ar");
+const { homepage } = content.pages;
+---
+
+<Layout title={content.site.title} description={content.site.description}>
+    <Hero hero={homepage.hero} />
+
+    {homepage.sections.map((section) => <Section section={section} />)}
+
+    <Partners partners={homepage.partners} />
+</Layout>

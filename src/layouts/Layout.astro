@@ -3,11 +3,16 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { siteContent } from "../content";
+import { getLanguageFromUrl, languages } from "../content/i18n";
 
 interface Props {
     title?: string;
     description?: string;
 }
+
+// Get current language from URL
+const currentLang = getLanguageFromUrl(Astro.url.pathname);
+const langConfig = languages[currentLang];
 
 const {
     title = siteContent.site.title,
@@ -16,7 +21,7 @@ const {
 ---
 
 <!doctype html>
-<html lang="de" class="h-full">
+<html lang={currentLang} dir={langConfig.dir} class="h-full">
     <head>
         <meta charset="UTF-8" />
         <meta name="description" content={description} />
