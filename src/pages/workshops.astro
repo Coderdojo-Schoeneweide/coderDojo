@@ -8,13 +8,13 @@ import { siteContent } from "../content";
 const { workshops: workshopsPageContent } = siteContent.pages;
 
 // Get all workshops and sort by weight
-const workshops = await getCollection("workshops", ({ id }) => {
+const workshops = await getCollection("workshops", ({ id }: { id: string }) => {
   // Filter out common.md
   return id !== "common";
 });
 
 // Sort workshops by weight (if available) then by title
-workshops.sort((a, b) => {
+workshops.sort((a: any, b: any) => {
   const weightA = a.data.weight ?? 999;
   const weightB = b.data.weight ?? 999;
   if (weightA !== weightB) return weightA - weightB;
@@ -22,7 +22,7 @@ workshops.sort((a, b) => {
 });
 
 // Transform workshops data for the island component
-const workshopsData = workshops.map((workshop) => ({
+const workshopsData = workshops.map((workshop: any) => ({
   id: workshop.slug,
   title: workshop.data.title,
   description: workshop.data.description,
