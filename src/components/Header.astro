@@ -14,17 +14,17 @@ const menuItems = [
     { name: "Workshops", url: "/workshops" },
     { name: "Blog", url: "/blog" },
     { name: "Newsletter", url: "/newsletter" },
-    { name: "Mentoring", url: "/#mentoring" },
-    { name: "Kooperationen", url: "/#partners" },
-    { name: "Verein", url: "/#verein" },
+    { name: "Spenden", url: "/spenden" },
+    { name: "Jahresberichte", url: "/jahresberichte" },
 ];
 ---
 
 <header
-    class="bg-white dark:bg-gray-900 text-accent-900 dark:text-gray-100 shadow-sm sticky top-0 z-50"
+    id="main-header"
+    class="bg-white dark:bg-gray-900 text-accent-900 dark:text-gray-100 shadow-sm fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out"
 >
     <div class="container mx-auto px-6">
-        <div class="flex items-center justify-between h-16">
+        <div class="flex items-center justify-between h-16 relative">
             <!-- Logo -->
             <a href="/" class="flex items-center space-x-3">
                 <img
@@ -149,7 +149,7 @@ const menuItems = [
                 <!-- Mobile Menu Button -->
                 <button
                     id="mobile-menu-toggle"
-                    class="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300"
+                    class="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                     aria-label="Toggle mobile menu"
                 >
                     <svg
@@ -170,18 +170,20 @@ const menuItems = [
             <!-- Mobile Menu -->
             <div
                 id="mobile-menu"
-                class="hidden md:hidden py-4 border-t border-gray-200 dark:border-gray-700"
+                class="hidden absolute top-16 left-0 right-0 bg-white dark:bg-gray-900 shadow-lg border-t border-gray-200 dark:border-gray-700 z-40 md:hidden"
             >
-                {
-                    menuItems.map((item) => (
-                        <a
-                            href={item.url}
-                            class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium"
-                        >
-                            {item.name}
-                        </a>
-                    ))
-                }
+                <div class="container mx-auto px-6 py-4">
+                    {
+                        menuItems.map((item, index) => (
+                            <a
+                                href={item.url}
+                                class="block py-3 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium border-b border-gray-100 dark:border-gray-800 last:border-b-0 rounded-lg transition-colors"
+                            >
+                                {item.name}
+                            </a>
+                        ))
+                    }
+                </div>
             </div>
         </div>
     </div>
@@ -204,6 +206,24 @@ const menuItems = [
             mobileMenu?.classList.toggle("hidden");
         });
 
+        // Close mobile menu when clicking on a link
+        mobileMenu?.addEventListener("click", (e) => {
+            if (e.target instanceof HTMLAnchorElement) {
+                mobileMenu.classList.add("hidden");
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener("click", (e) => {
+            const target = e.target as Node;
+            if (
+                !mobileMenuToggle?.contains(target) &&
+                !mobileMenu?.contains(target)
+            ) {
+                mobileMenu?.classList.add("hidden");
+            }
+        });
+
         // Language dropdown functionality
         languageToggle?.addEventListener("click", (e) => {
             e.stopPropagation();
@@ -221,11 +241,63 @@ const menuItems = [
             }
         });
 
-        // Close dropdown on escape key
+        // Close dropdowns on escape key
         document.addEventListener("keydown", (e) => {
             if (e.key === "Escape") {
                 languageDropdown?.classList.add("hidden");
+                mobileMenu?.classList.add("hidden");
             }
         });
+
+        // Auto-hide header on scroll
+        let lastScrollTop = 0;
+        let isScrolling = false;
+        const header = document.getElementById("main-header");
+
+        const handleScroll = () => {
+            if (!isScrolling) {
+                window.requestAnimationFrame(() => {
+                    const scrollTop =
+                        window.pageYOffset ||
+                        document.documentElement.scrollTop;
+
+                    // Only hide header after scrolling past initial viewport
+                    if (scrollTop > 80) {
+                        if (scrollTop > lastScrollTop && scrollTop > 200) {
+                            // Scrolling down - hide header
+                            header?.style.setProperty(
+                                "transform",
+                                "translateY(-100%)",
+                            );
+                        } else {
+                            // Scrolling up - show header
+                            header?.style.setProperty(
+                                "transform",
+                                "translateY(0)",
+                            );
+                        }
+                    } else {
+                        // Always show header at top of page
+                        header?.style.setProperty("transform", "translateY(0)");
+                    }
+
+                    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+                    isScrolling = false;
+                });
+            }
+            isScrolling = true;
+        };
+
+        // Throttled scroll listener for better performance
+        let scrollTimeout: ReturnType<typeof setTimeout>;
+        window.addEventListener("scroll", () => {
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            scrollTimeout = setTimeout(handleScroll, 10);
+        });
+
+        // Also trigger on initial load to set correct state
+        handleScroll();
     </script>
 </header>
