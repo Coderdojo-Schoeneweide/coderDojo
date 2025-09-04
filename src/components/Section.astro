@@ -1,10 +1,10 @@
 ---
 // Universal Section Component
 // Handles ALL section types and styling variations
-import type { SiteContent } from "../content";
+import type { siteContent } from "../content";
 
 interface Props {
-    section: SiteContent["pages"]["homepage"]["sections"][0];
+    section: (typeof siteContent)["pages"]["homepage"]["sections"][0];
 }
 
 const { section } = Astro.props;
