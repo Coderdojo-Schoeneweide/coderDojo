@@ -26,6 +26,15 @@ export default defineConfig({
     shikiConfig: { theme: "one-dark-pro", wrap: true },
     extendDefaultPlugins: true,
   },
+  // Use standard content directory
+  contentCollections: {
+    source: './src/content',
+    config: './src/content/config.ts',
+    assets: {
+      enabled: true,
+      baseUrl: '/content',
+    },
+  },
   vite: {
     exclude: ['**/src/old-architecture/**'],
   },

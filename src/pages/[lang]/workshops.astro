@@ -2,13 +2,12 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import WorkshopGridIsland from "../../components/islands/WorkshopGridIsland.jsx";
-import { getCollection } from "astro:content";
 import { getContent } from "../../content";
+import { supportedLanguages, defaultLanguage } from "../../content/i18n";
 import {
-    getLanguageFromUrl,
-    supportedLanguages,
-    defaultLanguage,
-} from "../../content/i18n";
+    getWorkshopsForLanguage,
+    prepareWorkshopData,
+} from "../../content/workshopHelpers";
 
 // Get language from URL
 const { lang } = Astro.params;
@@ -16,39 +15,11 @@ const currentLang = lang || defaultLanguage;
 const content = getContent(currentLang as any);
 const { workshops: workshopsPageContent } = content.pages;
 
-// Get all workshops and sort by weight
-const workshops = await getCollection("workshops", ({ id }: { id: string }) => {
-    // Filter out common.md
-    return id !== "common";
-});
-
-// Sort workshops by weight (if available) then by title
-workshops.sort((a: any, b: any) => {
-    const weightA = a.data.weight ?? 999;
-    const weightB = b.data.weight ?? 999;
-    if (weightA !== weightB) return weightA - weightB;
-    return a.data.title.localeCompare(b.data.title);
-});
+// Get workshops for the current language
+const workshops = await getWorkshopsForLanguage(currentLang);
 
 // Transform workshops data for the island component
-const workshopsData = workshops.map((workshop: any) => ({
-    id: workshop.slug,
-    title: workshop.data.title,
-    description: workshop.data.description,
-    duration: workshop.data.duration,
-    age: workshop.data.age,
-    tags: workshop.data.tags,
-    image: `/workshops/${workshop.slug}/${workshop.data.image}`,
-    prevKnowledge:
-        workshop.data.prevKnowledge ||
-        (currentLang === "ar"
-            ? "غير محدد"
-            : currentLang === "en"
-              ? "Not specified"
-              : "Nicht angegeben"),
-    content: workshop.body, // Markdown content
-    folder: workshop.slug, // For the modal system
-}));
+const workshopsData = prepareWorkshopData(workshops, currentLang);
 
 const heroContent = workshopsPageContent.hero;
 
@@ -74,7 +45,11 @@ export function getStaticPaths() {
         dir={currentLang === "ar" ? "rtl" : "ltr"}
     >
         <div class="container mx-auto px-6">
-            <WorkshopGridIsland workshops={workshopsData} client:load />
+            <WorkshopGridIsland
+                workshops={workshopsData}
+                labels={workshopsPageContent.labels}
+                client:load
+            />
         </div>
     </section>
 </Layout>

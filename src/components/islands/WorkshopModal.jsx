@@ -6,8 +6,12 @@ export default function WorkshopModal({
   htmlContent,
   photo,
   title,
+  labels = {}
 }) {
   const modalRef = useRef()
+
+  // Default labels (fallback)
+  const closeLabel = labels.close || "Schließen"
 
   useEffect(() => {
     if (open) {
@@ -34,7 +38,7 @@ export default function WorkshopModal({
         <button
           className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-slate-700 text-2xl text-white shadow-lg transition hover:bg-primary-600 dark:bg-primary-400 dark:hover:bg-primary-500"
           onClick={onClose}
-          aria-label="Close"
+          aria-label={closeLabel}
         >
           ×
         </button>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import WorkshopModalIsland from './WorkshopModalIsland.jsx'
 
-export default function WorkshopGridIsland({ workshops }) {
+export default function WorkshopGridIsland({ workshops, labels }) {
   // Get all unique tags
   const allTags = Array.from(new Set(workshops.flatMap((ws) => ws.tags)))
   const [selectedTag, setSelectedTag] = useState(null)
@@ -23,7 +23,7 @@ export default function WorkshopGridIsland({ workshops }) {
             }`}
           onClick={() => setSelectedTag(null)}
         >
-          Alle
+          {labels?.allTags || "Alle"}
         </button>
         {allTags.map((tag) => (
           <button
@@ -39,7 +39,7 @@ export default function WorkshopGridIsland({ workshops }) {
         ))}
       </div>
       {/* Workshop Grid */}
-      <WorkshopModalIsland workshops={filteredWorkshops} />
+      <WorkshopModalIsland workshops={filteredWorkshops} labels={labels} />
     </div>
   )
 }

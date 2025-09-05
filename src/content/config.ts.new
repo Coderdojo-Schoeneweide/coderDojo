@@ -1,0 +1,26 @@
+// Astro content collection config
+import { defineCollection, z } from 'astro:content';
+
+// Workshop collection schema
+const workshopSchema = z.object({
+  title: z.string(),
+  description: z.string().optional(),
+  keywords: z.array(z.string()).optional(),
+  duration: z.string(),
+  age: z.string(),
+  tags: z.array(z.string()),
+  image: z.string(),
+  prevKnowledge: z.string().optional(),
+  weight: z.number().optional(),
+});
+
+// Define a single workshop collection
+const workshops = defineCollection({
+  type: 'content',
+  schema: workshopSchema
+});
+
+// Export collections with fallback for each language
+export const collections = {
+  'workshops': workshops,  // Default collection (German)
+};

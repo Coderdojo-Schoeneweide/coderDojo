@@ -7,9 +7,13 @@ import { homepageContent as homepageDE } from './locales/de/pages/homepage'
 import { homepageContent as homepageEN } from './locales/en/pages/homepage'
 import { homepageContent as homepageAR } from './locales/ar/pages/homepage'
 
+// Import language-specific workshop content
+import { workshopsContent as workshopsDE } from './locales/de/pages/workshops'
+import { workshopsContent as workshopsEN } from './locales/en/pages/workshops'
+import { workshopsContent as workshopsAR } from './locales/ar/pages/workshops'
+
 // Import existing German content for backward compatibility
 import { newsletterContent } from './pages/newsletter'
-import { workshopsContent } from './pages/workshops'
 import { spendenContent } from './pages/spenden'
 import { jahresberichteContent } from './pages/jahresberichte'
 
@@ -20,7 +24,7 @@ const contentByLanguage = {
         pages: {
             homepage: homepageDE,
             newsletter: newsletterContent,
-            workshops: workshopsContent,
+            workshops: workshopsDE,
             spenden: spendenContent,
             jahresberichte: jahresberichteContent
         }
@@ -31,7 +35,7 @@ const contentByLanguage = {
             homepage: homepageEN,
             // TODO: Add English translations for other pages
             newsletter: newsletterContent, // fallback to German for now
-            workshops: workshopsContent,
+            workshops: workshopsEN,
             spenden: spendenContent,
             jahresberichte: jahresberichteContent
         }
@@ -42,7 +46,7 @@ const contentByLanguage = {
             homepage: homepageAR,
             // TODO: Add Arabic translations for other pages
             newsletter: newsletterContent, // fallback to German for now
-            workshops: workshopsContent,
+            workshops: workshopsAR,
             spenden: spendenContent,
             jahresberichte: jahresberichteContent
         }

@@ -1,11 +1,25 @@
 import React, { useState } from 'react'
 import WorkshopModal from './WorkshopModal.jsx'
 
-export default function WorkshopModalIsland({ workshops }) {
+export default function WorkshopModalIsland({ workshops, labels }) {
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState(null)
   const [htmlContent, setHtmlContent] = useState('')
   const [photo, setPhoto] = useState('')
+
+  // Default labels (fallback if not provided)
+  const defaultLabels = {
+    prevKnowledge: "Vorkenntnisse",
+    notSpecified: "Nicht angegeben",
+    details: "Details anzeigen",
+    close: "Schließen",
+    duration: "Dauer",
+    age: "Alter",
+    tags: "Kategorien"
+  }
+
+  // Use provided labels or defaults
+  const uiLabels = labels || defaultLabels
 
   // Helper to format plain text into HTML paragraphs and line breaks
   function formatTextContent(text) {
@@ -217,6 +231,7 @@ export default function WorkshopModalIsland({ workshops }) {
         htmlContent={htmlContent}
         photo={photo}
         title={selected?.title}
+        labels={uiLabels}
       />
     </>
   )
