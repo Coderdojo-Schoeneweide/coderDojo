@@ -1,12 +1,12 @@
 ---
-import Logo from '@/components/Logo.astro'
-import Social from '@/components/Social.astro'
-import config from '@/config/config.json'
-import menu from '@/config/menu.json'
-import social from '@/config/social.json'
-import { markdownify } from '@/lib/utils/textConverter'
+import Logo from '@/components/Logo.astro';
+import Social from '@/components/Social.astro';
+import config from '@/config/config.json';
+import menu from '@/config/menu.json';
+import social from '@/config/social.json';
+import { markdownify } from '@/lib/utils/textConverter';
 
-const { footer }: { footer: { name: string; url: string }[] } = menu
+const { footer }: { footer: { name: string; url: string }[] } = menu;
 ---
 
 <footer class="bg-[#47405a] pb-4 pt-10 text-white">
@@ -32,7 +32,7 @@ const { footer }: { footer: { name: string; url: string }[] } = menu
         <li><a href="#" class="hover:underline">Workshops</a></li>
         <li><a href="#" class="hover:underline">Mentoring</a></li>
         <li><a href="#" class="hover:underline">Verein</a></li>
-        <li><a href="#" class="hover:underline">Blog</a></li>
+        <li><a href="/blog" class="hover:underline">Blog</a></li>
       </ul>
     </div>
     <!-- Right: Social Links -->

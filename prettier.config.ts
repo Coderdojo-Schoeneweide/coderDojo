@@ -1,14 +1,13 @@
-const config: import("prettier").Config = {
-  plugins: ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
+const config: import('prettier').Config = {
+  plugins: ['prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
   overrides: [
     {
-      files: "*.astro",
+      files: '*.astro',
       options: {
-        parser: "astro",
+        parser: 'astro',
       },
     },
   ],
-  semi: false,
   singleQuote: true,
   experimentalTernaries: true,
 };
