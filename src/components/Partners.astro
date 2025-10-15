@@ -1,0 +1,140 @@
+---
+// Universal Partners Component
+// Displays partner logos grid
+import type { SiteContent } from "../content";
+
+interface Props {
+    partners: {
+        title: string;
+        description?: string[];
+        logos: Array<{
+            image: string;
+            name: string;
+        }>;
+    };
+}
+
+const { partners } = Astro.props;
+---
+
+<section class="py-20 bg-secondary-500 dark:bg-orange-700 text-white">
+    <div class="container mx-auto px-6">
+        <div class="text-center max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold mb-8 text-white">
+                {partners.title}
+            </h2>
+
+            {
+                partners.description && (
+                    <div class="space-y-4 mb-12">
+                        {partners.description.map((paragraph) => (
+                            <div
+                                class="text-lg text-white"
+                                set:html={paragraph}
+                            />
+                        ))}
+                    </div>
+                )
+            }
+
+            <!-- Partner Logos Grid -->
+            <div
+                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 items-center justify-items-center"
+            >
+                {
+                    partners.logos.map((partner, index) => (
+                        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                            <img
+                                src={partner.image}
+                                alt={partner.name}
+                                class="max-h-16 w-auto mx-auto filter grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"
+                                onclick={`openPartnerModal(${index})`}
+                            />
+                        </div>
+                    ))
+                }
+            </div>
+
+            <!-- Modal for enlarged partner image -->
+            <div
+                id="partner-modal"
+                class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden p-4"
+                onclick="closePartnerModal()"
+            >
+                <div
+                    class="relative w-full h-full max-w-6xl max-h-6xl flex flex-col items-center justify-center"
+                >
+                    <button
+                        onclick="closePartnerModal()"
+                        class="absolute top-4 right-4 bg-white dark:bg-gray-800 text-gray-800 dark:text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors z-10 shadow-lg"
+                        aria-label="Close modal"
+                    >
+                        <svg
+                            class="w-5 h-5"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+
+                    <!-- Large scaled image container -->
+                    <div class="flex-1 flex items-center justify-center w-full">
+                        <img
+                            id="modal-image"
+                            src=""
+                            alt=""
+                            class="max-w-full max-h-full min-h-48 min-w-48 object-contain bg-white dark:bg-gray-800 rounded-lg shadow-2xl transform scale-150 hover:scale-175 transition-transform duration-300"
+                            onclick="event.stopPropagation()"
+                            style="max-width: 80vw; max-height: 80vh;"
+                        />
+                    </div>
+
+                    <div
+                        id="modal-caption"
+                        class="text-center mt-6 text-white font-medium text-xl bg-black bg-opacity-50 px-4 py-2 rounded-lg"
+                    >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script define:vars={{ partners }}>
+    // Partner modal functionality
+    function openPartnerModal(index) {
+        const modal = document.getElementById("partner-modal");
+        const modalImage = document.getElementById("modal-image");
+        const modalCaption = document.getElementById("modal-caption");
+
+        const partner = partners.logos[index];
+
+        modalImage.src = partner.image;
+        modalImage.alt = partner.name;
+        modalCaption.textContent = partner.name;
+
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden"; // Prevent background scrolling
+    }
+
+    function closePartnerModal() {
+        const modal = document.getElementById("partner-modal");
+        modal.classList.add("hidden");
+        document.body.style.overflow = "auto"; // Restore scrolling
+    }
+
+    // Close modal on Escape key
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            closePartnerModal();
+        }
+    });
+
+    // Make functions global so they can be called from onclick
+    window.openPartnerModal = openPartnerModal;
+    window.closePartnerModal = closePartnerModal;
+</script>

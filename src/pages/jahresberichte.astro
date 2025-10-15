@@ -1,0 +1,108 @@
+---
+// Jahresberichte Page - Modern layout for annual reports
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import { siteContent } from "../content";
+
+const { jahresberichte } = siteContent.pages;
+---
+
+<Layout title="Jahresberichte - CoderDojo Schöneweide">
+    <Hero hero={jahresberichte.hero} />
+    
+    <!-- Reports Grid Section -->
+    <section class="py-20 bg-white dark:bg-slate-900">
+        <div class="container mx-auto px-6">
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {jahresberichte.reports.map((report) => (
+                    <div class="group bg-gray-50 dark:bg-slate-800 rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                        <!-- Report Icon -->
+                        <div class="flex items-center justify-center w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-lg mb-4 group-hover:bg-primary-200 dark:group-hover:bg-primary-800/50 transition-colors">
+                            <svg class="w-8 h-8 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        
+                        <!-- Year Badge -->
+                        <div class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800 dark:bg-primary-900/30 dark:text-primary-300 mb-3">
+                            {report.year}
+                        </div>
+                        
+                        <!-- Title -->
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                            {report.title}
+                        </h3>
+                        
+                        <!-- Description -->
+                        {report.description && (
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3">
+                                {report.description}
+                            </p>
+                        )}
+                        
+                        <!-- File Info -->
+                        <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-4">
+                            <span class="flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                                {report.size}
+                            </span>
+                        </div>
+                        
+                        <!-- Download Button -->
+                        <a 
+                            href={`/Jahresberichte/${report.filename}`} 
+                            target="_blank"
+                            class="inline-flex items-center justify-center w-full px-4 py-2 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors group-hover:shadow-md"
+                        >
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                            </svg>
+                            Herunterladen
+                        </a>
+                    </div>
+                ))}
+            </div>
+            
+            <!-- Additional Info Section -->
+            <div class="mt-16 text-center">
+                <div class="bg-primary-50 dark:bg-primary-900/20 rounded-xl p-8 max-w-4xl mx-auto">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                        Haben Sie Fragen zu unseren Berichten?
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        Für weitere Informationen oder Fragen zu unseren Jahresberichten können Sie sich gerne an uns wenden.
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <a 
+                            href="mailto:hallo@coderdojo-schoeneweide.de" 
+                            class="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
+                        >
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                            </svg>
+                            E-Mail senden
+                        </a>
+                        <a 
+                            href="/verein" 
+                            class="inline-flex items-center px-6 py-3 border-2 border-primary-600 text-primary-600 dark:text-primary-400 font-semibold rounded-lg hover:bg-primary-600 hover:text-white dark:hover:text-white transition-colors"
+                        >
+                            Über den Verein
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>
