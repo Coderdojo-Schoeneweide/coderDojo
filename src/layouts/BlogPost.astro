@@ -1,0 +1,10 @@
+---
+import SimplePage from './SimplePage.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<SimplePage title={frontmatter.title}>
+  <span>{frontmatter.date.toLocaleDateString('de')}</span>
+  <slot />
+</SimplePage>
