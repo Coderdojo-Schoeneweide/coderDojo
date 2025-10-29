@@ -1,11 +1,11 @@
-import mdx from "@astrojs/mdx";
-import react from "@astrojs/react";
-import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
-import { defineConfig } from "astro/config";
-import remarkCollapse from "remark-collapse";
-import remarkToc from "remark-toc";
-import sharp from "sharp";
+import mdx from '@astrojs/mdx'
+import react from '@astrojs/react'
+import sitemap from '@astrojs/sitemap'
+import { defineConfig } from 'astro/config'
+import remarkCollapse from 'remark-collapse'
+import remarkToc from 'remark-toc'
+import sharp from 'sharp'
+import tailwindcss from '@tailwindcss/vite'
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,20 +13,13 @@ export default defineConfig({
   base: '/',
   trailingSlash: 'never',
   image: { service: sharp() },
-  integrations: [
-    react(),
-    sitemap(),
-    tailwind({
-      configFile: './config/tailwind.config.js'
-    }),
-    mdx(),
-  ],
+  integrations: [react(), sitemap(), mdx()],
   markdown: {
-    remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
-    shikiConfig: { theme: "one-dark-pro", wrap: true },
+    remarkPlugins: [remarkToc, [remarkCollapse, { test: 'Table of contents' }]],
+    shikiConfig: { theme: 'one-dark-pro', wrap: true },
     extendDefaultPlugins: true,
   },
   vite: {
-    exclude: ['**/src/old-architecture/**'],
+    plugins: [tailwindcss()],
   },
-});
+})

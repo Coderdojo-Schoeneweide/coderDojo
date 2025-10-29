@@ -22,24 +22,24 @@ export default function WorkshopModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
       onClick={onClose}
     >
       <div
-        className="relative mx-2 flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-3xl bg-gradient-to-br from-primary-100 to-primary-300 shadow-2xl dark:from-slate-700 dark:to-slate-800 md:mx-0 md:max-w-xl"
+        className="from-primary-100 to-primary-300 relative mx-2 flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-3xl bg-gradient-to-br shadow-2xl md:mx-0 md:max-w-xl dark:from-slate-700 dark:to-slate-800"
         onClick={(e) => e.stopPropagation()}
         ref={modalRef}
         style={{ maxHeight: '90vh' }}
       >
         <button
-          className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-slate-700 text-2xl text-white shadow-lg transition hover:bg-primary-600 dark:bg-primary-400 dark:hover:bg-primary-500"
+          className="hover:bg-primary-600 dark:bg-primary-400 dark:hover:bg-primary-500 absolute top-3 right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-slate-700 text-2xl text-white shadow-lg transition"
           onClick={onClose}
           aria-label="Close"
         >
           ×
         </button>
         {photo && (
-          <div className="relative h-48 w-full flex-shrink-0 md:h-64">
+          <div className="relative h-48 w-full shrink-0 md:h-64">
             <img
               src={photo}
               alt={title}
@@ -49,11 +49,11 @@ export default function WorkshopModal({
           </div>
         )}
         <div
-          className="relative z-10 flex-1 overflow-y-auto rounded-b-3xl bg-white p-6 shadow-lg dark:bg-slate-800 md:p-8"
+          className="relative z-10 flex-1 overflow-y-auto rounded-b-3xl bg-white p-6 shadow-lg md:p-8 dark:bg-slate-800"
           style={{ minHeight: 0 }}
         >
           {title && (
-            <h2 className="mb-4 text-center text-2xl font-bold text-slate-700 dark:text-primary-200 md:text-3xl">
+            <h2 className="dark:text-primary-200 mb-4 text-center text-2xl font-bold text-slate-700 md:text-3xl">
               {title}
             </h2>
           )}
