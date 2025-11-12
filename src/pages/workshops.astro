@@ -4,7 +4,7 @@ import Hero from '../components/Hero.astro';
 import WorkshopGridIsland from '../components/islands/WorkshopGridIsland.jsx';
 import { getCollection } from 'astro:content';
 import { siteContent } from '@/content';
-const title = await import(`../content/workshops/index.md`);
+import { Content, frontmatter } from '../content/workshops/index.md';
 
 const { workshops: workshopsPageContent } = siteContent.pages;
 
@@ -35,16 +35,16 @@ const heroContent = workshopsPageContent.hero;
 ---
 
 <Layout
-  title="Workshops - CoderDojo Schöneweide"
+  title={frontmatter.title}
   description="Entdecke unsere kostenlosen IT-Workshops für Kinder und Jugendliche. Von Scratch bis Python - hier lernst du spielerisch programmieren!"
 >
   <Hero
     hero={{
-      title: title.frontmatter.title,
-      background: title.frontmatter.background,
+      title: frontmatter.title,
+      background: frontmatter.background,
     }}
   >
-    <title.Content />
+    <Content />
   </Hero>
 
   <!-- Workshop Grid Section -->

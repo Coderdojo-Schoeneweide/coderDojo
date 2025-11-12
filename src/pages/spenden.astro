@@ -1,43 +1,56 @@
 ---
 // Spenden Page - Content-driven
-import Layout from '../layouts/Layout.astro'
-import Hero from '../components/Hero.astro'
-import { siteContent } from '../content'
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import { siteContent } from '@/content';
 
-const { spenden } = siteContent.pages
+const { spenden } = siteContent.pages;
 ---
 
-<Layout title="Spenden - CoderDojo Schöneweide">
+<Layout title="Spenden">
   <Hero hero={spenden.hero} />
-  
+
   <!-- Bank Details Section -->
-  <section id="bank-details" class="py-20 bg-slate-50 dark:bg-slate-800">
+  <section id="bank-details" class="bg-slate-50 py-20 dark:bg-slate-800">
     <div class="container mx-auto px-6">
-      <div class="max-w-2xl mx-auto text-center">
-        <h2 class="text-3xl font-bold mb-8 text-slate-900 dark:text-white">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="mb-8 text-3xl font-bold text-slate-900 dark:text-white">
           Bankverbindung
         </h2>
-        <div class="bg-white dark:bg-slate-700 rounded-lg p-8 shadow-lg">
+        <div class="rounded-lg bg-white p-8 shadow-lg dark:bg-slate-700">
           <div class="space-y-4 text-lg">
             <div>
-              <strong class="text-slate-900 dark:text-white">Empfänger:</strong><br>
-              <span class="text-slate-600 dark:text-slate-300">CoderDojo Schöneweide e.V.</span>
+              <strong class="text-slate-900 dark:text-white">Empfänger:</strong
+              ><br />
+              <span class="text-slate-600 dark:text-slate-300"
+                >CoderDojo Schöneweide e.V.</span
+              >
             </div>
             <div>
-              <strong class="text-slate-900 dark:text-white">IBAN:</strong><br>
-              <span class="text-slate-600 dark:text-slate-300 font-mono">DE XX XXXX XXXX XXXX XXXX XX</span>
+              <strong class="text-slate-900 dark:text-white">IBAN:</strong><br
+              />
+              <span class="font-mono text-slate-600 dark:text-slate-300"
+                >DE XX XXXX XXXX XXXX XXXX XX</span
+              >
             </div>
             <div>
-              <strong class="text-slate-900 dark:text-white">BIC:</strong><br>
-              <span class="text-slate-600 dark:text-slate-300 font-mono">XXXXXXXX</span>
+              <strong class="text-slate-900 dark:text-white">BIC:</strong><br />
+              <span class="font-mono text-slate-600 dark:text-slate-300"
+                >XXXXXXXX</span
+              >
             </div>
             <div>
-              <strong class="text-slate-900 dark:text-white">Verwendungszweck:</strong><br>
-              <span class="text-slate-600 dark:text-slate-300">Spende CoderDojo</span>
+              <strong class="text-slate-900 dark:text-white"
+                >Verwendungszweck:</strong
+              ><br />
+              <span class="text-slate-600 dark:text-slate-300"
+                >Spende CoderDojo</span
+              >
             </div>
           </div>
           <p class="mt-6 text-sm text-slate-500 dark:text-slate-400">
-            Als gemeinnütziger Verein stellen wir gerne eine Spendenquittung aus.
+            Als gemeinnütziger Verein stellen wir gerne eine Spendenquittung
+            aus.
           </p>
         </div>
       </div>
