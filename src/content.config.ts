@@ -12,7 +12,7 @@ const home = defineCollection({
 });
 
 const workshops = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: 'src/content/workshops' }),
+  loader: glob({ pattern: '*/[^_]*.{md,mdx}', base: 'src/content/workshops' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
