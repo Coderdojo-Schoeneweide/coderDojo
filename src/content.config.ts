@@ -1,9 +1,18 @@
 // Content collections configuration for Astro
-import { defineCollection, z } from 'astro:content'
+import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
-// Workshop collection schema
+const home = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: 'src/content/home' }),
+  schema: z.object({
+    title: z.string(),
+    order: z.number(),
+    style: z.enum(['light', 'dark']),
+  }),
+});
+
 const workshops = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: 'src/content/workshops' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -14,9 +23,10 @@ const workshops = defineCollection({
     image: z.string(),
     prevKnowledge: z.string().optional(),
     weight: z.number().optional(),
-  })
-})
+  }),
+});
 
 export const collections = {
+  home,
   workshops,
-}
+};
