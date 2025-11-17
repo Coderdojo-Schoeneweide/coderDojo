@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import WorkshopModalIsland from './WorkshopModalIsland.jsx'
+import React, { useState } from 'react';
+import WorkshopModalIsland from './WorkshopModalIsland.jsx';
 
 export default function WorkshopGridIsland({ workshops }) {
   // Get all unique tags
-  const allTags = Array.from(new Set(workshops.flatMap((ws) => ws.tags)))
-  const [selectedTag, setSelectedTag] = useState(null)
+  const allTags = [...new Set(workshops.flatMap((workshop) => workshop.tags))];
+  const [selectedTag, setSelectedTag] = useState(null);
 
   // Filter workshops by selected tag
   const filteredWorkshops =
     selectedTag ?
-      workshops.filter((ws) => ws.tags.includes(selectedTag))
-    : workshops
+      workshops.filter((workshop) => workshop.tags.includes(selectedTag))
+    : workshops;
 
   return (
     <div>
@@ -43,5 +43,5 @@ export default function WorkshopGridIsland({ workshops }) {
       {/* Workshop Grid */}
       <WorkshopModalIsland workshops={filteredWorkshops} />
     </div>
-  )
+  );
 }

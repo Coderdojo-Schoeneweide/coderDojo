@@ -1,29 +1,28 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Blog entfernt" description="Der Blog wurde entfernt.">
-    <section class="py-24 bg-slate-50 dark:bg-slate-900">
-        <div class="container mx-auto px-6 text-center">
-            <h1
-                class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4"
-            >
-                Der Blog ist nicht mehr verfügbar
-            </h1>
-            <p class="text-slate-600 dark:text-slate-400 mb-8">
-                Wir haben unseren Blog entfernt und arbeiten an einem neuen
-                Ansatz.
-            </p>
-            <a
-                href="/"
-                class="inline-block px-5 py-3 rounded-lg bg-primary-600 text-white hover:bg-primary-700"
-            >
-                Zur Startseite
-            </a>
-        </div>
-    </section>
-</Layout>
+<Layout title="Blog" description="Der Blog wurde entfernt.">
+  <section class="bg-slate-50 py-24 dark:bg-slate-900">
+    <div class="container mx-auto px-6 text-center">
+      <h1
+        class="mb-4 text-3xl font-bold text-slate-900 md:text-4xl dark:text-slate-100"
+      >
+        Der Blog ist nicht mehr verfügbar
+      </h1>
+      <p class="mb-8 text-slate-600 dark:text-slate-400">
+        Wir haben unseren Blog entfernt und arbeiten an einem neuen Ansatz.
+      </p>
+      <a
+        href="/"
+        class="bg-primary-600 hover:bg-primary-700 inline-block rounded-lg px-5 py-3 text-white"
+      >
+        Zur Startseite
+      </a>
+    </div>
+  </section>
 
-<head>
+  <Fragment slot="head">
     <meta name="robots" content="noindex, nofollow" />
-</head>
+  </Fragment>
+</Layout>

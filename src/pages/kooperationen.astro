@@ -1,14 +1,14 @@
 ---
 // Kooperationen Page - Content-driven
-import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
-import Partners from "../components/Partners.astro";
-import { siteContent } from "../content";
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Partners from '../components/Partners.astro';
+import { siteContent } from '@/content';
 
 const { kooperationen } = siteContent.pages;
 ---
 
-<Layout title="Kooperationen - CoderDojo Schöneweide">
-    <Hero hero={kooperationen.hero} />
-    <Partners partners={kooperationen.partners} />
+<Layout title="Kooperationen">
+  <Hero hero={kooperationen.hero} />
+  <Partners partners={kooperationen.partners} />
 </Layout>
