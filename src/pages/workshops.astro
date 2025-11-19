@@ -1,52 +1,55 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
-import WorkshopGridIsland from "../components/islands/WorkshopGridIsland.jsx";
-import { getCollection } from "astro:content";
-import { siteContent } from "../content";
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import WorkshopGridIsland from '../components/islands/WorkshopGridIsland.jsx';
+import { getCollection } from 'astro:content';
+import { siteContent } from '@/content';
+import { Content, frontmatter } from '../content/workshops/index.md';
 
 const { workshops: workshopsPageContent } = siteContent.pages;
 
-// Get all workshops and sort by weight
-const workshops = await getCollection("workshops", ({ id }: { id: string }) => {
-  // Filter out common.md
-  return id !== "common";
-});
-
-// Sort workshops by weight (if available) then by title
+// Get all workshops and sort by weight and title
+const workshops = await getCollection('workshops');
 workshops.sort((a: any, b: any) => {
-  const weightA = a.data.weight ?? 999;
-  const weightB = b.data.weight ?? 999;
+  const weightA = a.data.weight ?? Number.POSITIVE_INFINITY;
+  const weightB = b.data.weight ?? Number.POSITIVE_INFINITY;
   if (weightA !== weightB) return weightA - weightB;
   return a.data.title.localeCompare(b.data.title);
 });
 
 // Transform workshops data for the island component
 const workshopsData = workshops.map((workshop: any) => ({
-  id: workshop.slug,
+  id: workshop.id,
   title: workshop.data.title,
   description: workshop.data.description,
   duration: workshop.data.duration,
   age: workshop.data.age,
   tags: workshop.data.tags,
-  image: `/workshops/${workshop.slug}/${workshop.data.image}`,
-  prevKnowledge: workshop.data.prevKnowledge || "Nicht angegeben",
+  image: `/workshops/${workshop.id}/${workshop.data.image}`,
+  prevKnowledge: workshop.data.prevKnowledge || 'Nicht angegeben',
   content: workshop.body, // Markdown content
-  folder: workshop.slug, // For the modal system
+  folder: workshop.id, // For the modal system
 }));
 
 const heroContent = workshopsPageContent.hero;
 ---
 
 <Layout
-  title="Workshops - CoderDojo Schöneweide"
+  title={frontmatter.title}
   description="Entdecke unsere kostenlosen IT-Workshops für Kinder und Jugendliche. Von Scratch bis Python - hier lernst du spielerisch programmieren!"
 >
-  <Hero hero={heroContent} />
+  <Hero
+    hero={{
+      title: frontmatter.title,
+      background: frontmatter.background,
+    }}
+  >
+    <Content />
+  </Hero>
 
   <!-- Workshop Grid Section -->
   <section
-    class="py-20 bg-white dark:bg-gray-900 text-accent-900 dark:text-gray-100"
+    class="text-accent-900 bg-white py-20 dark:bg-gray-900 dark:text-gray-100"
   >
     <div class="container mx-auto px-6">
       <WorkshopGridIsland workshops={workshopsData} client:load />

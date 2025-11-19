@@ -1,29 +1,27 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Seite nicht gefunden - CoderDojo Schöneweide">
-    <section
-        class="py-20 bg-slate-50 dark:bg-slate-900 min-h-[60vh] flex items-center"
-    >
-        <div class="container mx-auto px-6 text-center">
-            <h1 class="text-6xl font-bold text-slate-900 dark:text-white mb-6">
-                404
-            </h1>
-            <h2
-                class="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4"
-            >
-                Seite nicht gefunden
-            </h2>
-            <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">
-                Diese Seite existiert nicht.
-            </p>
-            <a
-                href="/"
-                class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-            >
-                Zurück zur Startseite
-            </a>
-        </div>
-    </section>
+<Layout title="Seite nicht gefunden">
+  <section
+    class="flex min-h-[60vh] items-center bg-slate-50 py-20 dark:bg-slate-900"
+  >
+    <div class="container mx-auto px-6 text-center">
+      <h1 class="mb-6 text-6xl font-bold text-slate-900 dark:text-white">
+        404
+      </h1>
+      <h2 class="mb-4 text-2xl font-semibold text-gray-700 dark:text-gray-300">
+        Seite nicht gefunden
+      </h2>
+      <p class="mb-8 text-lg text-gray-600 dark:text-gray-400">
+        Diese Seite existiert nicht.
+      </p>
+      <a
+        href="/"
+        class="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-blue-700"
+      >
+        Zurück zur Startseite
+      </a>
+    </div>
+  </section>
 </Layout>

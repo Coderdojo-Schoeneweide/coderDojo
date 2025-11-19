@@ -1,12 +1,12 @@
 ---
 // Mentoring Page - Content-driven
-import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
-import { siteContent } from "../content";
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import { siteContent } from '@/content';
 
 const { mentoring } = siteContent.pages;
 ---
 
-<Layout title="Mentoring - CoderDojo Schöneweide">
-    <Hero hero={mentoring.hero} />
+<Layout title="Mentoring">
+  <Hero hero={mentoring.hero} />
 </Layout>

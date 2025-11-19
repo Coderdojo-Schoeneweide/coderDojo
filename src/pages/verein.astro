@@ -1,12 +1,12 @@
 ---
 // Verein Page - Content-driven
-import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
-import { siteContent } from "../content";
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import { siteContent } from '@/content';
 
 const { verein } = siteContent.pages;
 ---
 
-<Layout title="Verein - CoderDojo Schöneweide">
-    <Hero hero={verein.hero} />
+<Layout title="Verein">
+  <Hero hero={verein.hero} />
 </Layout>
