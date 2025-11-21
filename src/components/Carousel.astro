@@ -1,0 +1,79 @@
+---
+import { Picture } from 'astro:assets';
+
+export interface Props {
+  /**
+   * Path to the directory containing the images.
+   */
+  images: string;
+  /**
+   * Rotation speed in pixels per second.
+   */
+  speed?: number;
+}
+
+const { images: directory, speed = 200 } = Astro.props;
+const images = Object.entries(
+  import.meta.glob<{ default: any }>(
+    '/src/assets/images/**/*.{png,jpg,jpeg,svg}',
+  ),
+)
+  .filter(([path]) => path.substring(5).startsWith(directory))
+  .map(([, image]) => image);
+
+const width = (await Promise.all(images.map(async (image) => await image())))
+  .map((image) => image.default.width)
+  .reduce((sum, x) => sum + x);
+
+const duration = width / speed + 's';
+---
+
+<div class="carousel">
+  <div>
+    {
+      [...images, ...images].map((image) => (
+        <>
+          <Picture
+            src={image()}
+            formats={['avif', 'webp']}
+            alt="image"
+            layout="constrained"
+          />
+        </>
+      ))
+    }
+  </div>
+</div>
+
+<style define:vars={{ duration }}>
+  @reference '@/styles/global';
+
+  .carousel {
+    @apply overflow-hidden mask-x-from-90%;
+
+    > div {
+      @apply flex flex-col items-center gap-5;
+      writing-mode: vertical-lr;
+      text-orientation: upright;
+      animation: move var(--duration) infinite linear;
+    }
+
+    &:hover > div {
+      animation-play-state: paused;
+    }
+  }
+
+  picture {
+    @apply h-auto w-auto;
+  }
+
+  @keyframes move {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>
