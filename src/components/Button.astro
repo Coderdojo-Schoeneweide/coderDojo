@@ -1,0 +1,56 @@
+---
+import {
+  icon as faIcon,
+  type IconDefinition,
+} from '@fortawesome/fontawesome-svg-core';
+
+interface Props {
+  link: string;
+  variant?: keyof typeof styles;
+  stretch?: boolean;
+  className?: string;
+  icon?: IconDefinition;
+}
+
+const { link, stretch, className, icon } = Astro.props;
+
+const styles = {
+  brand: 'brand',
+  'brand-large': 'brand large',
+};
+
+const style = [];
+if (Astro.props.variant) style.push(styles[Astro.props.variant]);
+if (stretch) style.push('stretch');
+---
+
+<a href={link} class={className}>
+  <button class:list={style}>
+    {
+      icon ?
+        <>
+          <Fragment set:html={faIcon(icon).html} />
+          <slot />
+        </>
+      : <slot />
+    }
+  </button>
+</a>
+
+<style>
+  @reference "@/styles/global";
+
+  button {
+    &.brand {
+      @apply bg-brand border-brand text-dark;
+    }
+
+    &.large {
+      @apply px-4 py-3 text-xl font-extrabold;
+    }
+
+    &.stretch {
+      width: 100%;
+    }
+  }
+</style>

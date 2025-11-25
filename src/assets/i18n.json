@@ -1,0 +1,15 @@
+{
+  "de": {
+    "title": "CoderDojo Schöneweide",
+    "subtitle": "Inspirierende IT-Workshops für Kinder und Jugendliche",
+    "homepage": {
+      "title": {
+        "buy-ticket": "Ticket kaufen",
+        "donate": "Spenden"
+      }
+    }
+  },
+  "en": {
+    "subtitle": "Inspiring IT workshops for children and youth"
+  }
+}
