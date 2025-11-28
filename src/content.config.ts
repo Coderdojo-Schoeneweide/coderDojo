@@ -21,6 +21,16 @@ const home = defineCollection({
   }),
 });
 
+// Social links in the footer
+const socials = defineCollection({
+  loader: glob({ pattern: '*.yaml', base: 'src/content/socials' }),
+  schema: z.object({
+    label: z.string(),
+    url: z.string(),
+    order: z.number(),
+  }),
+});
+
 // Workshop content
 const workshops = defineCollection({
   loader: glob({ pattern: '*/[^_]*.{md,mdx}', base: 'src/content/workshops' }),
@@ -101,6 +111,7 @@ const blog = defineCollection({
 
 export const collections = {
   home,
+  socials,
   workshops,
   pages,
   blog,

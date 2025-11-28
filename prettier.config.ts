@@ -11,6 +11,8 @@ const config: import('prettier').Config = {
   semi: true,
   singleQuote: true,
   experimentalTernaries: true,
+  htmlWhitespaceSensitivity: 'ignore',
+  trailingComma: 'all',
 };
 
 export default config;

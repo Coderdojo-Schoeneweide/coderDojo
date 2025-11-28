@@ -81,14 +81,7 @@ const form = page.data.form!;
             </div>
 
             <!-- Captcha Placeholder -->
-            <div
-              id="captcha-container"
-              class="rounded-sm border-2 border-dashed border-slate-300 bg-slate-100 p-4 text-center dark:border-slate-600 dark:bg-slate-700"
-            >
-              <p class="text-sm text-slate-600 dark:text-slate-400">
-                Captcha wird geladen...
-              </p>
-            </div>
+            <div class="frc-captcha" data-sitekey="FCMHLE7HBO6O0OM3"></div>
 
             <!-- Submit Button -->
             <button
@@ -103,7 +96,8 @@ const form = page.data.form!;
           <!-- Success Message -->
           <div
             id="confirmation"
-            class="bg-accent-50 dark:bg-accent-900/20 border-accent-200 dark:border-accent-800 mt-6 hidden rounded-md border p-4"
+            class="bg-accent-50 dark:bg-accent-900/20 border-accent-200 dark:border-accent-800 mt-6 rounded-md border p-4"
+            hidden
           >
             <div class="flex">
               <svg
@@ -113,7 +107,9 @@ const form = page.data.form!;
                 <path
                   fill-rule="evenodd"
                   d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clip-rule="evenodd"></path>
+                  clip-rule="evenodd"
+                >
+                </path>
               </svg>
               <p class="text-accent-700 dark:text-accent-300 ml-3 text-sm">
                 {form.confirmationMessage}
@@ -124,7 +120,8 @@ const form = page.data.form!;
           <!-- Error Message -->
           <div
             id="error"
-            class="mt-6 hidden rounded-md border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-900/20"
+            class="mt-6 rounded-md border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-900/20"
+            hidden
           >
             <div class="flex">
               <svg
@@ -134,7 +131,9 @@ const form = page.data.form!;
                 <path
                   fill-rule="evenodd"
                   d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                  clip-rule="evenodd"></path>
+                  clip-rule="evenodd"
+                >
+                </path>
               </svg>
               <p
                 class="ml-3 text-sm text-red-700 dark:text-red-300"
@@ -150,119 +149,76 @@ const form = page.data.form!;
   </section>
 </Layout>
 
-<script>
-  // Newsletter form functionality with proper typing
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('form.newsletter') as HTMLFormElement;
-    const submit = form?.querySelector(
-      "button[type='submit']",
-    ) as HTMLButtonElement;
-    const email = form?.querySelector('[name="email"]') as HTMLInputElement;
-    const privacyPolicy = form?.querySelector(
-      '[name="accept-privacy-policy"]',
-    ) as HTMLInputElement;
-    const captchaContainer = document.querySelector(
-      '#captcha-container',
-    ) as HTMLElement;
+<script type="module">
+  import { FriendlyCaptchaSDK } from '/js/friendlycaptcha/sdk.min.js';
 
-    let captchaCompleted = false;
+  const sdk = new FriendlyCaptchaSDK();
 
-    // Simple captcha simulation (replace with real captcha in production)
-    if (captchaContainer) {
-      setTimeout(() => {
-        captchaContainer.innerHTML = `
-                    <div class="flex items-center justify-center space-x-3">
-                        <input type="checkbox" id="simple-captcha" class="h-4 w-4 text-primary-600">
-                        <label for="simple-captcha" class="text-sm text-slate-700 dark:text-slate-300">Ich bin kein Roboter</label>
-                    </div>
-                `;
+  const mount = document.querySelector('.frc-captcha');
 
-        const captchaCheck = captchaContainer.querySelector(
-          '#simple-captcha',
-        ) as HTMLInputElement;
-        captchaCheck?.addEventListener('change', () => {
-          captchaCompleted = captchaCheck.checked;
-          handleSubmitButtonState();
-        });
-      }, 1000);
-    }
-
-    function showError(error: any, code?: string) {
-      const errors: Record<string, string> = {
-        'captcha-not-verified':
-          'Beim Lösen des Captchas ist ein Fehler aufgetreten. Bitte lade die Seite neu und versuche es erneut.',
-        'privacy-policy-not-accepted':
-          'Die Datenschutzerklärung muss akzeptiert werden. Bitte lade die Seite neu und versuche es erneut.',
-        'missing-email':
-          'Es wurde keine E-Mail-Adresse angegeben. Bitte lade die Seite neu, gebe eine E-Mail-Adresse ein und versuche es erneut.',
-      };
-      const message =
-        code ? errors[code] : 'Ein unbekannter Fehler ist aufgetreten.';
-      console.error(error);
-
-      if (form) (form as HTMLElement).style.display = 'none';
-
-      const errorElement = document.querySelector('#error') as HTMLElement;
-      const errorText = document.querySelector('#error-text') as HTMLElement;
-      if (message && errorText) {
-        errorText.textContent = message;
-      }
-      if (errorElement) errorElement.classList.remove('hidden');
-    }
-
-    function handleSubmitButtonState() {
-      if (submit && email && privacyPolicy) {
-        submit.disabled =
-          !privacyPolicy.checked || !captchaCompleted || !email.value.trim();
-      }
-    }
-
-    // Event listeners
-    if (email) email.addEventListener('input', handleSubmitButtonState);
-    if (privacyPolicy)
-      privacyPolicy.addEventListener('change', handleSubmitButtonState);
-
-    if (form && submit) {
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        submit.disabled = true;
-        submit.textContent = 'Anmeldung wird verarbeitet...';
-
-        const formData = new FormData(event.target as HTMLFormElement);
-        const data: Record<string, string> = {};
-
-        formData.forEach((value, key) => {
-          data[key] = value.toString();
-        });
-
-        fetch('https://auth.kaes3kuch3n.de/newsletter', {
-          method: 'POST',
-          body: new URLSearchParams(data).toString(),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        })
-          .then((response) => {
-            if (response.ok) {
-              (form as HTMLElement).style.display = 'none';
-              const confirmation = document.querySelector(
-                '#confirmation',
-              ) as HTMLElement;
-              if (confirmation) confirmation.classList.remove('hidden');
-            } else {
-              response
-                .text()
-                .then((code) =>
-                  showError(`${response.statusText} - ${code}`, code),
-                );
-            }
-          })
-          .catch((error) => {
-            showError(error);
-          });
-      });
-    }
+  const captcha = sdk.createWidget({
+    element: mount,
+    sitekey: mount.dataset.sitekey,
   });
+
+  const form = document.querySelector('form.newsletter');
+
+  function showError(error, code) {
+    const errors = {
+      'captcha-not-verified':
+        'Beim Lösen des Captchas ist ein Fehler aufgetreten. Bitte lade die Seite neu und versuche es erneut.',
+      'privacy-policy-not-accepted':
+        'Die Datenschutzerklärung muss akzeptiert werden. Bitte lade die Seite neu und versuche es erneut.',
+      'missing-email':
+        'Es wurde keine E-Mail-Adresse angegeben. Bitte lade die Seite neu, gib eine E-Mail-Adresse ein und versuche es erneut.',
+    };
+    const message = errors[code];
+    form.hidden = true;
+    const errorBox = document.querySelector('div#error');
+    if (message) errorBox.querySelector('#error-text').innerText = message;
+    errorBox.hidden = false;
+  }
+
+  const submit = form.querySelector('button');
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    submit.disabled = true;
+    submit.innerText = 'Anmeldung wird verarbeitet...';
+    const data = new FormData(event.target);
+    fetch('https://auth.kaes3kuch3n.de/newsletter', {
+      method: 'POST',
+      body: new URLSearchParams(data.entries()).toString(),
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          form.hidden = true;
+          document.querySelector('#confirmation').hidden = false;
+        } else {
+          response
+            .text()
+            .then((code) =>
+              showError(`${response.statusText} - ${code}`, code),
+            );
+        }
+      })
+      .catch((error) => {
+        showError(error);
+      });
+  });
+
+  const email = form.querySelector('[name="email"]');
+  const privacyPolicy = form.querySelector('[name="accept-privacy-policy"]');
+
+  const handleSubmitButtonState = () =>
+    (submit.disabled =
+      !privacyPolicy.checked || captcha.state !== 'completed' || !email.value);
+  email.addEventListener('input', handleSubmitButtonState);
+  privacyPolicy.addEventListener('change', handleSubmitButtonState);
+  captcha.addEventListener('frc:widget.statechange', handleSubmitButtonState);
 </script>
 
 <style>

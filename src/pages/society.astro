@@ -1,0 +1,56 @@
+---
+// Verein Page - Content-driven
+import { readdir } from 'node:fs/promises';
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import { siteContent } from '@/content';
+
+const { verein } = siteContent.pages;
+
+const reportsRoot = 'public/Jahresberichte/';
+const reports = (await readdir(reportsRoot))
+  .sort((a, b) => a.length - b.length)
+  .reduce((map, report) => {
+    const parts = report.replace('.pdf', '').split('-');
+    const name = parts[0];
+    if (!map.has(name)) map.set(name, []);
+    map.get(name).push({ file: report, variant: parts[1] });
+    return map;
+  }, new Map());
+---
+
+<Layout title="Verein">
+  <Hero hero={verein.hero} />
+  <!--
+  <section class="px-content py-8" id="reports">
+    <h2>Jahresberichte</h2>
+    <p>
+      Hier findest Du die Jahresberichte, die das vergangene Jahr resümieren und
+      einen Einblick in unsere zahlreichen Tätigkeiten geben. Wir wollen damit
+      unsere Erfolge feiern und Transparenz zeigen.
+    </p>
+    <ul>
+      {
+        reports.entries().map(([label, reports]) => (
+          <li>
+            <a href={`/Jahresberichte/${reports[0].file}`}>
+              {label.replace('_', ' ')}
+            </a>
+            {reports.length > 1 && (
+              <ul>
+                {reports.slice(1).map(({ file, variant }) => (
+                  <li>
+                    <a href={`/Jahresberichte/${file}`}>
+                      {variant?.replace('_', ' ')}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+  -->
+</Layout>

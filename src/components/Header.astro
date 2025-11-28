@@ -1,124 +1,102 @@
 ---
-// Simplified Header with content integration
-import { siteConfig } from '@/content';
+import { Picture } from 'astro:assets';
+import { icon } from '@fortawesome/fontawesome-svg-core';
+import {
+  faTicket,
+  faLanguage,
+  faBars,
+} from '@fortawesome/free-solid-svg-icons';
+import { useTranslations } from '@/i18n.ts';
+import logo from '@/assets/images/logo.png';
+import LanguageSelector from '@/components/LanguageSelector.astro';
+
+const { t, translatePath } = useTranslations(Astro.currentLocale);
 
 const menuItems = [
-  { name: 'Home', url: '/' },
-  { name: 'Workshops', url: '/workshops' },
-  { name: 'Blog', url: '/blog' },
-  { name: 'Newsletter', url: '/newsletter' },
-  { name: 'Mentoring', url: '/mentoring' },
-  { name: 'Kooperationen', url: '/kooperationen' },
-  { name: 'Verein', url: '/verein' },
+  { name: t('menu.items.workshops'), url: translatePath('/workshops') },
+  { name: t('menu.items.mentoring'), url: translatePath('/mentoring') },
+  { name: t('menu.items.society'), url: translatePath('/society') },
+  {
+    name: t('menu.items.collaborations'),
+    url: translatePath('/collaborations'),
+  },
 ];
 ---
 
-<header
-  class="text-accent-900 sticky top-0 z-50 bg-white shadow-xs dark:bg-gray-900 dark:text-gray-100"
->
+<header class="text-dark bg-brand text-lg font-semibold">
   <div class="container mx-auto px-6">
     <div class="flex h-16 items-center justify-between">
-      <!-- Logo -->
-      <a href="/" class="flex items-center space-x-3">
-        <img
-          src={siteConfig.logo.image}
-          alt={siteConfig.logo.text}
-          width={siteConfig.logo.width}
-          height={siteConfig.logo.height}
-          class="rounded-lg"
+      <a href={translatePath('/')} class="flex">
+        <Picture
+          src={logo}
+          formats={['avif', 'webp']}
+          alt="logo"
+          layout="constrained"
+          priority={true}
+          width={100}
+          class="h-16 w-auto"
         />
-        <span class="text-accent-900 text-xl font-bold dark:text-gray-100">
-          {siteConfig.logo.text}
-        </span>
       </a>
 
-      <!-- Navigation -->
-      <nav class="hidden space-x-8 md:flex">
-        {
-          menuItems.map((item) => (
-            <a
-              href={item.url}
-              class="hover:text-primary-600 dark:hover:text-primary-400 font-medium text-gray-600 transition-colors dark:text-gray-300"
-            >
-              {item.name}
-            </a>
-          ))
-        }
+      <nav class="relative hidden h-full items-center gap-8 px-4 md:flex">
+        {menuItems.map((item) => <a href={item.url}>{item.name}</a>)}
+        <a
+          href="https://pretix.eu/dojosw"
+          class="h-lh w-8"
+          aria-label="Buy ticket"
+        >
+          <Fragment set:html={icon(faTicket).html} />
+        </a>
+        <label class="peer h-lh w-8 cursor-pointer">
+          <Fragment set:html={icon(faLanguage).html} />
+          <input type="checkbox" class="hidden" />
+        </label>
+        <div
+          id="language-selector"
+          class="absolute end-0 top-full z-10 hidden peer-has-checked:block"
+        >
+          <LanguageSelector />
+        </div>
       </nav>
-
-      <!-- Theme Toggle -->
-      <button
-        id="theme-toggle"
-        class="rounded-lg bg-gray-100 p-2 text-gray-600 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
-        aria-label="Toggle theme"
-      >
-        <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20">
-          <!-- Sun icon for light mode -->
-          <path
-            class="dark:hidden"
-            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-            fill-rule="evenodd"
-            clip-rule="evenodd"></path>
-          <!-- Moon icon for dark mode -->
-          <path
-            class="hidden dark:block"
-            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-          ></path>
-        </svg>
-      </button>
 
       <!-- Mobile Menu Button -->
       <button
         id="mobile-menu-toggle"
-        class="rounded-lg bg-gray-100 p-2 text-gray-600 md:hidden dark:bg-gray-800 dark:text-gray-300"
+        class="plain md:hidden"
         aria-label="Toggle mobile menu"
       >
-        <svg
-          class="h-6 w-6 fill-none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
+        <Fragment set:html={icon(faBars).html} />
       </button>
     </div>
 
     <!-- Mobile Menu -->
-    <div
-      id="mobile-menu"
-      class="hidden border-t border-gray-200 py-4 md:hidden dark:border-gray-700"
-    >
+    <div id="mobile-menu" class="flex flex-col py-4" hidden>
       {
         menuItems.map((item) => (
-          <a
-            href={item.url}
-            class="hover:text-primary-600 dark:hover:text-primary-400 block py-2 font-medium text-gray-600 dark:text-gray-300"
-          >
+          <a class="py-2" href={item.url}>
             {item.name}
           </a>
         ))
       }
+      <div>
+        <a
+          href="https://pretix.eu/dojosw"
+          class="block h-8 w-8 py-2"
+          aria-label="Buy ticket"
+        >
+          <Fragment set:html={icon(faTicket).html} />
+        </a>
+      </div>
     </div>
   </div>
 </header>
 
 <script>
-  // Theme toggle functionality
-  const themeToggle = document.getElementById('theme-toggle');
-  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuButton = document.querySelector('#mobile-menu-toggle');
+    const menu = document.querySelector('#mobile-menu') as HTMLElement;
+    if (!menuButton || !menu) return;
 
-  themeToggle?.addEventListener('click', () => {
-    const isDark = document.documentElement.classList.toggle('dark');
-    // Save theme preference to localStorage
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  });
-
-  mobileMenuToggle?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
+    menuButton.addEventListener('click', () => (menu.hidden = !menu.hidden));
   });
 </script>
