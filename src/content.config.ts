@@ -3,7 +3,6 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const home = defineCollection({
-<<<<<<< HEAD
   loader: glob({ pattern: '*.{md,mdx}', base: 'src/content/home' }),
   schema: z.object({
     title: z.string(),
@@ -16,13 +15,15 @@ const home = defineCollection({
         }),
       )
       .optional(),
-=======
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: 'src/content/home' }),
+  }),
+});
+
+const socials = defineCollection({
+  loader: glob({ pattern: '*.yaml', base: 'src/content/socials' }),
   schema: z.object({
-    title: z.string(),
+    label: z.string(),
+    url: z.string(),
     order: z.number(),
-    style: z.enum(['light', 'dark']),
->>>>>>> origin/master
   }),
 });
 
@@ -43,5 +44,6 @@ const workshops = defineCollection({
 
 export const collections = {
   home,
+  socials,
   workshops,
 };

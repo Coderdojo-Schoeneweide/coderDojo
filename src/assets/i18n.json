@@ -2,6 +2,27 @@
   "de": {
     "title": "CoderDojo Schöneweide",
     "subtitle": "Inspirierende IT-Workshops für Kinder und Jugendliche",
+    "menu": {
+      "items": {
+        "home": "Home",
+        "workshops": "Workshops",
+        "mentoring": "Mentoring",
+        "society": "Verein",
+        "blog": "Blog",
+        "contact": "Kontakt",
+        "imprint": "Impressum",
+        "privacy-policy": "Datenschutzerklärung",
+        "collaborations": "Kooperationen"
+      }
+    },
+    "locales": {
+      "de": "Deutsch",
+      "en": "Englisch",
+      "sa": "Arabisch"
+    },
+    "footer": {
+      "socials": "Wir im Netz"
+    },
     "homepage": {
       "title": {
         "buy-ticket": "Ticket kaufen",
@@ -10,6 +31,36 @@
     }
   },
   "en": {
-    "subtitle": "Inspiring IT workshops for children and youth"
+    "subtitle": "Inspiring IT workshops for children and youth",
+    "menu": {
+      "items": {
+        "society": "Society",
+        "contact": "Contact",
+        "imprint": "Imprint",
+        "privacy-policy": "Privacy Policy",
+        "collaborations": "Collaborations"
+      }
+    },
+    "locales": {
+      "de": "German",
+      "en": "English",
+      "sa": "Arabic"
+    },
+    "footer": {
+      "socials": "Social links"
+    },
+    "homepage": {
+      "title": {
+        "buy-ticket": "Buy a ticket",
+        "donate": "Donate"
+      }
+    }
+  },
+  "sa": {
+    "locales": {
+      "de": "الألمانية",
+      "en": "إنجليزي",
+      "sa": "العربية"
+    }
   }
 }

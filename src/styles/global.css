@@ -5,75 +5,81 @@
 
 @custom-variant dark (&:is(.dark *));
 
-:root {
-    @apply text-light bg-accent-dark;
-    scroll-behavior: smooth;
-}
+@layer base {
+    :root {
+        @apply text-light bg-accent-dark;
+        scroll-behavior: smooth;
+    }
 
-.light {
-    @apply text-dark bg-accent-light;
+    .light {
+        @apply text-dark bg-accent-light;
+
+        button {
+            @apply text-light bg-accent-dark border-accent-dark;
+        }
+    }
+
+    .dark {
+        @apply text-light bg-accent-dark;
+
+        button {
+            @apply text-light bg-accent-dark border-accent-light;
+        }
+    }
+
+    h1 {
+        @apply text-5xl font-black;
+    }
+
+    h2 {
+        @apply text-4xl font-extrabold mb-5;
+
+        &:not(:first-child) {
+            @apply mt-8;
+        }
+    }
+
+    h3 {
+        @apply text-2xl font-bold mb-3;
+
+        &:not(:first-child) {
+            @apply mt-5;
+        }
+    }
+
+    p {
+        @apply my-5;
+
+        &:first-child {
+            @apply mt-0;
+        }
+
+        &:last-child {
+            @apply mb-0;
+        }
+    }
+
+    ul {
+        @apply list-disc ps-5;
+    }
 
     button {
-        @apply text-light bg-accent-dark border-accent-dark;
-    }
-}
+        @apply flex justify-center gap-2 font-bold cursor-pointer;
 
-.dark {
-    @apply text-light bg-accent-dark;
-
-    button {
-        @apply text-light bg-accent-dark border-accent-light;
-    }
-}
-
-h1 {
-    @apply text-5xl font-black;
-}
-
-h2 {
-    @apply text-4xl font-extrabold mb-5;
-
-    &:not(:first-child) {
-        @apply mt-8;
-    }
-}
-
-h3 {
-    @apply text-2xl font-bold mb-3;
-
-    &:not(:first-child) {
-        @apply mt-5;
-    }
-}
-
-p {
-    @apply my-5;
-
-    &:first-child {
-        @apply mt-0;
+        svg {
+            height: 1lh;
+        }
     }
 
-    &:last-child {
-        @apply mb-0;
+    button:not(.plain) {
+        @apply text-dark bg-brand border-brand;
+        border-width: 0.18em;
+        padding: 0.35em 1em;
+        border-radius: 0.8em;
+        box-shadow: 2px 4px 10px rgb(0 0 0 / 50%);
     }
-}
 
-ul {
-    @apply list-disc ps-5;
-}
-
-button {
-    @apply text-dark bg-brand border-brand flex justify-center items-center gap-2 font-bold cursor-pointer;
-    border-width: 0.18em;
-    padding: 0.35em 1em;
-    border-radius: 0.8em;
-    box-shadow: 2px 4px 10px rgb(0 0 0 / 50%);
-
-    svg {
-        height: 1lh;
+    .button-group {
+        @apply flex gap-5 my-5;
     }
-}
-
-.button-group {
-    @apply flex gap-5 my-5;
 }

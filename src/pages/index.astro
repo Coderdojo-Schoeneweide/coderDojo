@@ -15,9 +15,6 @@ import blender from '@/assets/images/home/workshops/blender.jpg';
 import scratch from '@/assets/images/home/workshops/scratch.jpg';
 import team from '@/assets/images/home/team.jpg';
 
-import Section from '../components/Section.astro';
-import Partners from '../components/Partners.astro';
-import { siteContent } from '@/content';
 import { useTranslations } from '@/i18n.ts';
 import { getCollection, render } from 'astro:content';
 import HomeSection from '@/components/HomeSection.astro';
@@ -39,8 +36,6 @@ const sections = Object.fromEntries(
       ]),
   ),
 );
-
-const { homepage } = siteContent.pages;
 ---
 
 <Layout>

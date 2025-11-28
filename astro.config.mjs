@@ -5,9 +5,9 @@ import { defineConfig } from 'astro/config';
 import remarkCollapse from 'remark-collapse';
 import remarkToc from 'remark-toc';
 import sharp from 'sharp';
-import tailwindcss from '@tailwindcss/vite'; // https://astro.build/config
+import tailwindcss from '@tailwindcss/vite';
+import { configuration as i18nConfig } from './src/i18n.ts';
 
-// https://astro.build/config
 export default defineConfig({
   site: 'https://coderdojo-schoeneweide.de',
   base: '/',
@@ -23,11 +23,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   i18n: {
-    locales: ['de', 'en'],
-    defaultLocale: 'de',
-    fallback: {
-      en: 'de',
-    },
+    ...i18nConfig,
     routing: {
       fallbackType: 'rewrite',
     },
