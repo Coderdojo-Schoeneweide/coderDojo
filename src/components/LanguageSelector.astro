@@ -20,9 +20,7 @@ const locales = configuration.locales.map((locale) => ({
 }));
 ---
 
-<nav
-  class="bg-brand absolute end-0 top-15 z-10 flex flex-col gap-2 rounded-xl px-5 py-2 font-medium"
->
+<nav class="bg-brand flex flex-col gap-2 rounded-xl px-5 py-2 font-medium">
   {
     locales.map(({ code, label, icon }) => (
       <a

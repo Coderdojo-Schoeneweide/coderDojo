@@ -31,7 +31,7 @@ const menuItems = [
         />
       </a>
 
-      <nav class="hidden items-center space-x-8 md:flex">
+      <nav class="relative hidden items-center gap-8 md:flex">
         {menuItems.map((item) => <a href={item.url}>{item.name}</a>)}
         <a
           href="https://pretix.eu/dojosw"
@@ -40,10 +40,13 @@ const menuItems = [
         >
           <Fragment set:html={icon(faTicket).html} />
         </a>
-        <button class="plain relative">
+        <label class="h-lh w-8">
           <Fragment set:html={icon(faLanguage).html} />
+          <input type="checkbox" class="hidden" />
+        </label>
+        <div id="language-selector" class="absolute end-0 top-15 z-10 hidden">
           <LanguageSelector />
-        </button>
+        </div>
       </nav>
 
       <!-- Mobile Menu Button -->
@@ -87,19 +90,8 @@ const menuItems = [
   </div>
 </header>
 
-<script>
-  // Theme toggle functionality
-  const themeToggle = document.getElementById('theme-toggle');
-  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  themeToggle?.addEventListener('click', () => {
-    const isDark = document.documentElement.classList.toggle('dark');
-    // Save theme preference to localStorage
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  });
-
-  mobileMenuToggle?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
-  });
-</script>
+<style>
+  nav label:has(input:checked) + #language-selector {
+    display: block;
+  }
+</style>
