@@ -10,7 +10,9 @@
     scroll-behavior: smooth;
 }
 
-.light {
+/* Section color schemes - for alternating light/dark sections on homepage */
+/* These respond to the global dark mode toggle */
+.section-light {
     @apply text-dark bg-accent-light;
 
     button {
@@ -18,11 +20,31 @@
     }
 }
 
-.dark {
+/* When global dark mode is active, section-light uses dark gray */
+.dark .section-light {
+    background-color: #27272a;
+    @apply text-light;
+
+    button {
+        @apply text-dark bg-accent-light border-accent-light;
+    }
+}
+
+.section-dark {
     @apply text-light bg-accent-dark;
 
     button {
         @apply text-light bg-accent-dark border-accent-light;
+    }
+}
+
+/* When global dark mode is active, section-dark uses rust/orange */
+.dark .section-dark {
+    background-color: #d36a39;
+    @apply text-light;
+
+    button {
+        @apply text-dark bg-light border-light;
     }
 }
 

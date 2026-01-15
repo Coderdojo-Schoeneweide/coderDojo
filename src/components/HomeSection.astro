@@ -17,7 +17,7 @@ interface Props {
 const { id, title, colorScheme } = Astro.props;
 ---
 
-<section class=`${colorScheme} px-content py-8` id={id}>
+<section class=`section-${colorScheme} px-content py-8` id={id}>
   <h2>{title}</h2>
   <div class="flex flex-col gap-10 sm:flex-row">
     <div class="sm:w-1/2">
