@@ -207,23 +207,27 @@ const sections = Object.fromEntries(
 <style>
   @reference "@/styles/global";
 
+  .hero {
+    @apply overflow-hidden;
+  }
+
   .hero > div {
     height: 80dvb;
   }
 
   .title {
-    @apply text-dark relative my-12 sm:my-0;
+    @apply text-dark relative my-12 max-w-full sm:my-0;
 
     svg {
-      @apply max-w-3xl scale-x-70 scale-y-150 sm:scale-x-100 sm:scale-y-100;
+      @apply max-w-full scale-y-250 sm:max-w-3xl sm:scale-x-100 sm:scale-y-100;
     }
 
-    > :not(svg) {
-      @apply absolute start-1/2 top-0 z-10 -translate-x-1/2 text-center sm:top-1/4 sm:whitespace-nowrap;
+    > h1 {
+      @apply absolute start-1/2 top-1/5 z-10 w-full -translate-x-1/2 px-4 text-center text-2xl sm:top-1/4 sm:w-auto sm:px-0 sm:text-5xl sm:whitespace-nowrap;
     }
 
     > span {
-      @apply top-4/6 text-xl font-bold sm:top-3/5;
+      @apply absolute start-1/2 top-1/2 z-10 w-full -translate-x-1/2 px-4 text-center text-sm font-bold sm:top-1/2 sm:w-auto sm:px-0 sm:text-xl sm:whitespace-nowrap;
     }
   }
 
