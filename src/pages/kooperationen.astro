@@ -1,14 +1,17 @@
 ---
-// Kooperationen Page - Content-driven
+// Kooperationen Page - Content-driven from Markdown
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Partners from '../components/Partners.astro';
-import { siteContent } from '@/content';
+import { getEntry, render } from 'astro:content';
 
-const { kooperationen } = siteContent.pages;
+const page = await getEntry('pages', 'kooperationen');
+const { Content } = await render(page);
 ---
 
-<Layout title="Kooperationen">
-  <Hero hero={kooperationen.hero} />
-  <Partners partners={kooperationen.partners} />
+<Layout title={page.data.title}>
+  <Hero hero={page.data}>
+    <Content />
+  </Hero>
+  {page.data.partners && <Partners partners={page.data.partners} />}
 </Layout>

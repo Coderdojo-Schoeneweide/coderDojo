@@ -1,8 +1,6 @@
 ---
-title: "Datenschutzerklärung"
-description: "Erfahre mehr über den Datenschutz beim CoderDojo Schöneweide. Hier findest du Informationen zur Erhebung, Nutzung und Sicherheit deiner Daten."
-keywords: [ "Datenschutz CoderDojo Schöneweide", "Datenschutzerklärung", "Datensicherheit", "personenbezogene Daten", "DSGVO", "Datenschutzrichtlinien", "Datenschutzbestimmungen", "Privatsphäre schützen" ]
-layout: "../layouts/SimplePage.astro"
+title: Datenschutzerklärung
+background: light
 ---
 
 In dieser Datenschutzerklärung (Stand: 26.07.2023) erläutern wir basierend auf der
@@ -38,7 +36,7 @@ solche Rechtsgrundlage doch einschlägig sein sollte, wird diese an der entsprec
 Verantwortlich für den Datenschutz im CoderDojo Schöneweide ist Linda Fernsel.
 
 Sollten Sie Fragen zum Datenschutz oder zur Verarbeitung personenbezogener Daten haben, finden Sie
-im [Impressum](https://coderdojo-schoeneweide.github.io/impressum/) die Kontaktdaten der verantwortlichen Person.
+im [Impressum](/impressum) die Kontaktdaten der verantwortlichen Person.
 
 ## Anwendungsbereiche
 
@@ -171,7 +169,7 @@ einer fairen und transparenten Verarbeitung von Daten kommt:
       Ihnen zu gelangen.
 * Sie haben laut Artikel 16 DSGVO ein Recht auf Berichtigung der Daten, was bedeutet, dass wir Daten richtig stellen
   müssen, falls Sie Fehler finden.
-* Sie haben laut Artikel 17 DSGVO das Recht auf Löschung („Recht auf Vergessenwerden“), was konkret bedeutet, dass Sie
+* Sie haben laut Artikel 17 DSGVO das Recht auf Löschung („Recht auf Vergessenwerden"), was konkret bedeutet, dass Sie
   die Löschung Ihrer Daten verlangen dürfen.
 * Sie haben laut Artikel 18 DSGVO das Recht auf Einschränkung der Verarbeitung, was bedeutet, dass wir die Daten nur
   mehr speichern dürfen aber nicht weiter verwenden.

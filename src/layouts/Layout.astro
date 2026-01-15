@@ -3,17 +3,15 @@
 import '@/styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { siteContent } from '@/content';
+import { siteConfig } from '@/content';
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-const {
-  title = siteContent.site.title,
-  description = siteContent.site.description,
-} = Astro.props;
+const { title = siteConfig.title, description = siteConfig.description } =
+  Astro.props;
 ---
 
 <!doctype html>

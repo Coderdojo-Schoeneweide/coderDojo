@@ -1,12 +1,15 @@
 ---
-// Mentoring Page - Content-driven
+// Mentoring Page - Content-driven from Markdown
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-import { siteContent } from '@/content';
+import { getEntry, render } from 'astro:content';
 
-const { mentoring } = siteContent.pages;
+const page = await getEntry('pages', 'mentoring');
+const { Content } = await render(page);
 ---
 
-<Layout title="Mentoring">
-  <Hero hero={mentoring.hero} />
+<Layout title={page.data.title}>
+  <Hero hero={page.data}>
+    <Content />
+  </Hero>
 </Layout>

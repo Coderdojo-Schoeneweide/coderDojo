@@ -1,59 +1,81 @@
 ---
-// Spenden Page - Content-driven
+// Spenden Page - Content-driven from Markdown
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-import { siteContent } from '@/content';
+import { getEntry, render } from 'astro:content';
 
-const { spenden } = siteContent.pages;
+const page = await getEntry('pages', 'spenden');
+const { Content } = await render(page);
+const bankDetails = page.data.bankDetails;
 ---
 
-<Layout title="Spenden">
-  <Hero hero={spenden.hero} />
+<Layout title={page.data.title}>
+  <Hero hero={page.data}>
+    <Content />
+  </Hero>
 
-  <!-- Bank Details Section -->
-  <section id="bank-details" class="bg-slate-50 py-20 dark:bg-slate-800">
-    <div class="container mx-auto px-6">
-      <div class="mx-auto max-w-2xl text-center">
-        <h2 class="mb-8 text-3xl font-bold text-slate-900 dark:text-white">
-          Bankverbindung
-        </h2>
-        <div class="rounded-lg bg-white p-8 shadow-lg dark:bg-slate-700">
-          <div class="space-y-4 text-lg">
-            <div>
-              <strong class="text-slate-900 dark:text-white">Empfänger:</strong
-              ><br />
-              <span class="text-slate-600 dark:text-slate-300"
-                >CoderDojo Schöneweide e.V.</span
-              >
-            </div>
-            <div>
-              <strong class="text-slate-900 dark:text-white">IBAN:</strong><br
-              />
-              <span class="font-mono text-slate-600 dark:text-slate-300"
-                >DE XX XXXX XXXX XXXX XXXX XX</span
-              >
-            </div>
-            <div>
-              <strong class="text-slate-900 dark:text-white">BIC:</strong><br />
-              <span class="font-mono text-slate-600 dark:text-slate-300"
-                >XXXXXXXX</span
-              >
-            </div>
-            <div>
-              <strong class="text-slate-900 dark:text-white"
-                >Verwendungszweck:</strong
-              ><br />
-              <span class="text-slate-600 dark:text-slate-300"
-                >Spende CoderDojo</span
-              >
+  {
+    bankDetails && (
+      <section id="bank-details" class="bg-slate-50 py-20 dark:bg-slate-800">
+        <div class="container mx-auto px-6">
+          <div class="mx-auto max-w-2xl text-center">
+            <h2 class="mb-8 text-3xl font-bold text-slate-900 dark:text-white">
+              Bankverbindung
+            </h2>
+            <div class="rounded-lg bg-white p-8 shadow-lg dark:bg-slate-700">
+              <div class="space-y-4 text-lg">
+                <div>
+                  <>
+                    <strong class="text-slate-900 dark:text-white">
+                      Empfänger:
+                    </strong>
+                    <br />
+                  </>
+                  <span class="text-slate-600 dark:text-slate-300">
+                    {bankDetails.recipient}
+                  </span>
+                </div>
+                <div>
+                  <>
+                    <strong class="text-slate-900 dark:text-white">
+                      IBAN:
+                    </strong>
+                    <br />
+                  </>
+                  <span class="font-mono text-slate-600 dark:text-slate-300">
+                    {bankDetails.iban}
+                  </span>
+                </div>
+                <div>
+                  <>
+                    <strong class="text-slate-900 dark:text-white">BIC:</strong>
+                    <br />
+                  </>
+                  <span class="font-mono text-slate-600 dark:text-slate-300">
+                    {bankDetails.bic}
+                  </span>
+                </div>
+                <div>
+                  <>
+                    <strong class="text-slate-900 dark:text-white">
+                      Verwendungszweck:
+                    </strong>
+                    <br />
+                  </>
+                  <span class="text-slate-600 dark:text-slate-300">
+                    {bankDetails.reference}
+                  </span>
+                </div>
+              </div>
+              {bankDetails.note && (
+                <p class="mt-6 text-sm text-slate-500 dark:text-slate-400">
+                  {bankDetails.note}
+                </p>
+              )}
             </div>
           </div>
-          <p class="mt-6 text-sm text-slate-500 dark:text-slate-400">
-            Als gemeinnütziger Verein stellen wir gerne eine Spendenquittung
-            aus.
-          </p>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
+    )
+  }
 </Layout>

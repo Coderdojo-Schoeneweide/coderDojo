@@ -1,20 +1,24 @@
 ---
-// Jahresberichte Page - Modern layout for annual reports
+// Jahresberichte Page - Content-driven from Markdown
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
-import { siteContent } from '@/content';
+import { getEntry, render } from 'astro:content';
 
-const { jahresberichte } = siteContent.pages;
+const page = await getEntry('pages', 'jahresberichte');
+const { Content } = await render(page);
+const reports = page.data.reports ?? [];
 ---
 
-<Layout title="Jahresberichte">
-    <Hero hero={jahresberichte.hero} />
+<Layout title={page.data.title}>
+    <Hero hero={page.data}>
+        <Content />
+    </Hero>
 
     <!-- Reports Grid Section -->
     <section class="py-20 bg-white dark:bg-slate-900">
         <div class="container mx-auto px-6">
             <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {jahresberichte.reports.map((report) => (
+                {reports.map((report) => (
                     <div class="group bg-gray-50 dark:bg-slate-800 rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                         <!-- Report Icon -->
                         <div class="flex items-center justify-center w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-lg mb-4 group-hover:bg-primary-200 dark:group-hover:bg-primary-800/50 transition-colors">
@@ -39,16 +43,6 @@ const { jahresberichte } = siteContent.pages;
                                 {report.description}
                             </p>
                         )}
-
-                        <!-- File Info -->
-                        <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-4">
-                            <span class="flex items-center">
-                                <svg class="w-4 h-4 mr-1 fill-current" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                                </svg>
-                                {report.size}
-                            </span>
-                        </div>
 
                         <!-- Download Button -->
                         <a

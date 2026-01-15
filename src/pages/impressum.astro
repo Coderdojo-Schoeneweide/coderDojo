@@ -1,83 +1,27 @@
 ---
-import SimplePage from '../layouts/SimplePage.astro';
+// Impressum Page - Content-driven from Markdown
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import { getEntry, render } from 'astro:content';
 
-const title = 'Impressum';
-const description =
-  'Erfahre mehr über das Impressum des CoderDojo Schöneweide. Hier findest du rechtliche Informationen zur Organisation und Kontaktmöglichkeiten.';
-const keywords = [
-  'Impressum CoderDojo Schöneweide',
-  'Kontakt CoderDojo Schöneweide',
-  'rechtliche Informationen',
-  'Kontaktadresse',
-  'Verantwortlichkeit',
-  'Impressumspflicht',
-];
+const page = await getEntry('pages', 'impressum');
+const { Content } = await render(page);
 ---
 
-<SimplePage title={title}>
-  <p>
-    Angaben gemäß § 5 TMG. Zum Anzeigen der Kontaktdaten muss JavaScript
-    aktiviert sein.
-  </p>
-
-  <p>Ansprechpartnerin: Linda Fernsel</p>
-  <p>
-    Anschrift:
-    <span role="button" data-encoded-content="-ZQUI201ZI00MHAvDHtuwvBH9MZTQV">
-      Zeige Adresse
-    </span>
-  </p>
-  <p>
-    Email:
-    <span
-      role="button"
-      data-encoded-content="0KPWMVM4MQLMCJMZTQVFKWLMZLWRWCKWU"
-    >
-      Zeige Mailadresse
-    </span>
-  </p>
-  <p>
-    Telefon:
-    <span role="button" data-encoded-content="sswBtxxtsvytxyx">
-      Zeige Telefonnummer
-    </span>
-  </p>
-
-  <p>
-    Einige Icons auf unserer Seite basieren auf den entsprechenden Solid-Icons
-    von <a href="https://fontawesome.com">Font Awesome</a> und sind unter <a
-      href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a
-    >
-    lizensiert.
-  </p>
-
-  <p>
-    Die Flaggen-Icons auf unserer Seite stammen von
-    <a href="https://www.flaticon.com/">Flaticon</a> und werden gemäß den Flaticon-Lizenzbedingungen
-    verwendet.
-  </p>
-</SimplePage>
+<Layout title={page.data.title}>
+  <Hero hero={page.data}>
+    <Content />
+  </Hero>
+</Layout>
 
 <script>
-  declare global {
-    interface String {
-      /**
-       Encrypts all the symbols of the string with a rot13 type encryption.
-       Used to decrypt the previously encrypted personal contact information in the imprint to prevent spam.
-
-       @returns The decrypted string.
-       */
-      rotX: () => string;
-    }
-  }
-  String.prototype.rotX = function () {
-    // The charset contains all characters I might need to encrypt plus a "-" as a 0. character (I won't need a "-")
+  // ROT cipher decryption for contact information (spam protection)
+  function rotX(text: string): string {
     const charset =
       '- abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:@';
-    // All characters of the left half of the charset get projected onto the right part of the charset and vice versa
     const offset = charset.length / 2;
     let result = '';
-    for (const character of this) {
+    for (const character of text) {
       const index = charset.indexOf(character);
       const decrypted =
         index > offset ?
@@ -86,16 +30,19 @@ const keywords = [
       result = result.concat(decrypted);
     }
     return result;
-  };
+  }
 
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-encoded-content]').forEach((element) => {
       if (!(element instanceof HTMLElement)) return;
-      const encodedContent = element.dataset['encoded-content']!;
-      element.addEventListener(
-        'click',
-        () => (element.outerText = encodedContent.rotX()),
-      );
+      const encodedContent = element.dataset.encodedContent;
+      if (!encodedContent) return;
+
+      element.style.cursor = 'pointer';
+      element.style.textDecoration = 'underline';
+      element.addEventListener('click', () => {
+        element.outerHTML = rotX(encodedContent);
+      });
     });
   });
 </script>

@@ -3,10 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import WorkshopGridIsland from '../components/islands/WorkshopGridIsland.jsx';
 import { getCollection } from 'astro:content';
-import { siteContent } from '@/content';
 import { Content, frontmatter } from '../content/workshops/index.md';
-
-const { workshops: workshopsPageContent } = siteContent.pages;
 
 // Get all workshops and sort by weight and title
 const workshops = await getCollection('workshops');
@@ -30,8 +27,6 @@ const workshopsData = workshops.map((workshop: any) => ({
   content: workshop.body, // Markdown content
   folder: workshop.id, // For the modal system
 }));
-
-const heroContent = workshopsPageContent.hero;
 ---
 
 <Layout

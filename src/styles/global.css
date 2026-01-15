@@ -62,7 +62,7 @@ ul {
     @apply list-disc ps-5;
 }
 
-button {
+button:not(.md\:hidden) {
     @apply text-dark bg-brand border-brand flex justify-center items-center gap-2 font-bold cursor-pointer;
     border-width: 0.18em;
     padding: 0.35em 1em;
@@ -71,6 +71,13 @@ button {
 
     svg {
         height: 1lh;
+    }
+}
+
+/* Ensure md:hidden buttons respect responsive display rules */
+@media (min-width: 768px) {
+    button.md\:hidden {
+        display: none !important;
     }
 }
 

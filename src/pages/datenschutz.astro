@@ -1,15 +1,15 @@
 ---
-// Verein Page - Content-driven from Markdown
+// Datenschutz Page - Content-driven from Markdown
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import { getEntry, render } from 'astro:content';
 
-const page = await getEntry('pages', 'verein');
+const page = await getEntry('pages', 'datenschutz');
 const { Content } = await render(page);
 ---
 
 <Layout title={page.data.title}>
-  <Hero hero={page.data}>
-    <Content />
-  </Hero>
+    <Hero hero={page.data}>
+        <Content />
+    </Hero>
 </Layout>

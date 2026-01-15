@@ -1,27 +1,27 @@
 ---
 // Simplified Footer with content integration
-import { siteContent } from "../content";
+import { siteConfig } from '../content';
 ---
 
-<footer class="bg-accent-900 dark:bg-gray-900 text-white py-12">
+<footer class="bg-accent-900 py-12 text-white dark:bg-gray-900">
     <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
             <!-- Logo & Description -->
             <div class="space-y-4">
                 <div class="flex items-center space-x-3">
                     <img
-                        src={siteContent.site.logo.image}
-                        alt={siteContent.site.logo.text}
-                        width={siteContent.site.logo.width}
-                        height={siteContent.site.logo.height}
+                        src={siteConfig.logo.image}
+                        alt={siteConfig.logo.text}
+                        width={siteConfig.logo.width}
+                        height={siteConfig.logo.height}
                         class="rounded-lg"
                     />
                     <span class="text-xl font-bold">
-                        {siteContent.site.logo.text}
+                        {siteConfig.logo.text}
                     </span>
                 </div>
                 <p class="text-gray-300">
-                    {siteContent.site.description}
+                    {siteConfig.description}
                 </p>
             </div>
 
@@ -32,36 +32,50 @@ import { siteContent } from "../content";
                     <li>
                         <a
                             href="/workshops"
-                            class="text-gray-300 hover:text-white transition-colors"
+                            class="text-gray-300 transition-colors hover:text-white"
                             >Workshops</a
                         >
                     </li>
                     <li>
                         <a
                             href="/mentoring"
-                            class="text-gray-300 hover:text-white transition-colors"
+                            class="text-gray-300 transition-colors hover:text-white"
                             >Mentoring</a
                         >
                     </li>
                     <li>
                         <a
                             href="/kooperationen"
-                            class="text-gray-300 hover:text-white transition-colors"
+                            class="text-gray-300 transition-colors hover:text-white"
                             >Kooperationen</a
                         >
                     </li>
                     <li>
                         <a
                             href="/verein"
-                            class="text-gray-300 hover:text-white transition-colors"
+                            class="text-gray-300 transition-colors hover:text-white"
                             >Verein</a
                         >
                     </li>
                     <li>
                         <a
                             href="/spenden"
-                            class="text-gray-300 hover:text-white transition-colors"
+                            class="text-gray-300 transition-colors hover:text-white"
                             >Spenden</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/impressum"
+                            class="text-gray-300 transition-colors hover:text-white"
+                            >Impressum</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/datenschutz"
+                            class="text-gray-300 transition-colors hover:text-white"
+                            >Datenschutz</a
                         >
                     </li>
                 </ul>
@@ -73,20 +87,20 @@ import { siteContent } from "../content";
                 <div class="space-y-2">
                     <p class="text-gray-300">
                         <a
-                            href={`mailto:${siteContent.site.contact.email}`}
-                            class="hover:text-white transition-colors"
+                            href={`mailto:${siteConfig.contact.email}`}
+                            class="transition-colors hover:text-white"
                         >
-                            {siteContent.site.contact.email}
+                            {siteConfig.contact.email}
                         </a>
                     </p>
 
                     <!-- Social Links -->
                     <div class="flex space-x-4 pt-2">
                         {
-                            siteContent.site.contact.social.map((social) => (
+                            siteConfig.contact.social.map((social) => (
                                 <a
                                     href={social.url}
-                                    class="text-gray-400 hover:text-white transition-colors"
+                                    class="text-gray-400 transition-colors hover:text-white"
                                     aria-label={social.name}
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -101,10 +115,10 @@ import { siteContent } from "../content";
         </div>
 
         <!-- Copyright -->
-        <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+        <div class="mt-8 border-t border-gray-800 pt-8 text-center">
             <p class="text-gray-400">
                 Made with ❤️ by the
-                {siteContent.site.title} Team
+                {siteConfig.title} Team
             </p>
         </div>
     </div>
