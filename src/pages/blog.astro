@@ -1,28 +1,45 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import BlogGridIsland from '../components/islands/BlogGridIsland.jsx';
+import { getCollection } from 'astro:content';
+
+// Get all blog posts, filter out drafts, and sort by date (newest first)
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Transform posts data for the island component
+const postsData = posts.map((post) => ({
+  id: post.id,
+  slug: post.id.replace(/\.md$/, ''),
+  title: post.data.title,
+  description: post.data.description,
+  date: post.data.date.toISOString(),
+  categories: post.data.categories || [],
+  tags: post.data.tags || [],
+  authors: post.data.authors || [],
+}));
 ---
 
-<Layout title="Blog" description="Der Blog wurde entfernt.">
-  <section class="bg-slate-50 py-24 dark:bg-slate-900">
-    <div class="container mx-auto px-6 text-center">
-      <h1
-        class="mb-4 text-3xl font-bold text-slate-900 md:text-4xl dark:text-slate-100"
-      >
-        Der Blog ist nicht mehr verfügbar
-      </h1>
-      <p class="mb-8 text-slate-600 dark:text-slate-400">
-        Wir haben unseren Blog entfernt und arbeiten an einem neuen Ansatz.
-      </p>
-      <a
-        href="/"
-        class="bg-primary-600 hover:bg-primary-700 inline-block rounded-lg px-5 py-3 text-white"
-      >
-        Zur Startseite
-      </a>
+<Layout
+  title="Blog"
+  description="Neuigkeiten, Erfahrungsberichte und Ankündigungen vom CoderDojo Schöneweide."
+>
+  <Hero
+    hero={{
+      title: 'Blog',
+      background: 'accent',
+    }}
+  >
+    <p>Neuigkeiten, Erfahrungsberichte und Ankündigungen aus dem CoderDojo Schöneweide.</p>
+  </Hero>
+
+  <!-- Blog Grid Section -->
+  <section
+    class="text-accent-900 bg-white py-20 dark:bg-gray-900 dark:text-gray-100"
+  >
+    <div class="container mx-auto px-6">
+      <BlogGridIsland posts={postsData} client:load />
     </div>
   </section>
-
-  <Fragment slot="head">
-    <meta name="robots" content="noindex, nofollow" />
-  </Fragment>
 </Layout>

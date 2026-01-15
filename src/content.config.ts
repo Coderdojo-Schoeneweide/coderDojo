@@ -84,8 +84,24 @@ const pages = defineCollection({
   }),
 });
 
+// Blog posts
+const blog = defineCollection({
+  loader: glob({ pattern: '[^_]*.{md,mdx}', base: 'src/content/blog' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    date: z.coerce.date(),
+    categories: z.array(z.string()).optional(),
+    tags: z.array(z.string()).optional(),
+    authors: z.array(z.string()).optional(),
+    draft: z.boolean().optional().default(false),
+    keywords: z.array(z.string()).optional(),
+  }),
+});
+
 export const collections = {
   home,
   workshops,
   pages,
+  blog,
 };

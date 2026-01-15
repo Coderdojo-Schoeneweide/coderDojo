@@ -1,0 +1,97 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/\.md$/, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('de-DE', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+  <article class="bg-white dark:bg-gray-900">
+    <!-- Header -->
+    <header class="bg-accent-dark py-16 text-white">
+      <div class="container mx-auto px-6">
+        <div class="mx-auto max-w-3xl">
+          <a
+            href="/blog"
+            class="mb-6 inline-flex items-center text-sm text-gray-300 hover:text-white transition-colors"
+          >
+            <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Zurück zum Blog
+          </a>
+          
+          <h1 class="mb-4 text-3xl font-bold md:text-4xl lg:text-5xl">
+            {post.data.title}
+          </h1>
+          
+          <div class="flex flex-wrap items-center gap-4 text-gray-300">
+            <time datetime={post.data.date.toISOString()}>
+              {formatDate(post.data.date)}
+            </time>
+            
+            {post.data.authors && post.data.authors.length > 0 && (
+              <>
+                <span>•</span>
+                <span>Von {post.data.authors.join(', ')}</span>
+              </>
+            )}
+          </div>
+          
+          {post.data.categories && post.data.categories.length > 0 && (
+            <div class="mt-4 flex flex-wrap gap-2">
+              {post.data.categories.map((category) => (
+                <span class="inline-block rounded-full bg-white/20 px-3 py-1 text-sm capitalize">
+                  {category}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="py-12">
+      <div class="container mx-auto px-6">
+        <div class="prose prose-lg mx-auto max-w-3xl dark:prose-invert prose-headings:text-accent-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-primary-600 dark:prose-a:text-primary-400">
+          <Content />
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Navigation -->
+    <footer class="border-t border-gray-200 py-8 dark:border-gray-700">
+      <div class="container mx-auto px-6">
+        <div class="mx-auto max-w-3xl">
+          <a
+            href="/blog"
+            class="inline-flex items-center text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 transition-colors"
+          >
+            <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Alle Beiträge anzeigen
+          </a>
+        </div>
+      </div>
+    </footer>
+  </article>
+</Layout>
