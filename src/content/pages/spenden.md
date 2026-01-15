@@ -2,10 +2,6 @@
 title: Spenden
 background: accent
 buttons:
-  - label: Jetzt spenden
-    url: https://paypal.me/coderdojoschoeneweide
-    style: primary
-    external: true
   - label: Banküberweisung
     url: "#bank-details"
     style: secondary
@@ -14,8 +10,8 @@ buttons:
     style: outline
 bankDetails:
   recipient: CoderDojo Schöneweide e.V.
-  iban: DE XX XXXX XXXX XXXX XXXX XX
-  bic: XXXXXXXX
+  iban: DE83 4306 0967 1323 6039 00
+  bic: GENODEM1GLS
   reference: Spende CoderDojo
   note: Als gemeinnütziger Verein stellen wir gerne eine Spendenquittung aus.
 ---

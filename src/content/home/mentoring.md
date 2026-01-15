@@ -3,10 +3,10 @@ title: Mentoring
 buttons:
   contact:
     label: Kontakt
-    url: ''
+    url: /mentoring
   more:
     label: Mehr Infos
-    url: ''
+    url: /mentoring
 ---
 
 Du möchtest ehrenamtlich bei uns mitmachen?
