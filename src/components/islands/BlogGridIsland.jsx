@@ -51,7 +51,7 @@ export default function BlogGridIsland({ posts }) {
                 <h3 className="mb-2 text-xl font-bold text-gray-900 group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400 transition-colors">
                   {post.title}
                 </h3>
-                
+
                 {post.description && (
                   <p className="mb-3 text-gray-600 dark:text-gray-300 line-clamp-2">
                     {post.description}
@@ -88,47 +88,25 @@ export default function BlogGridIsland({ posts }) {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="mt-10 flex justify-center items-center gap-2">
-          {/* Previous Button */}
-          <button
-            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-              currentPage === 1
-                ? 'bg-gray-100 text-gray-400 cursor-not-allowed dark:bg-gray-800 dark:text-gray-600'
-                : 'bg-white text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 shadow-sm'
-            }`}
-          >
-            ←
-          </button>
-
+        <div className="mt-10 flex justify-center items-center gap-1 sm:gap-2 flex-wrap">
           {/* Page Numbers */}
           {getPageNumbers().map((page) => (
-            <button
+            <a
               key={page}
-              onClick={() => setCurrentPage(page)}
-              className={`w-10 h-10 rounded-lg font-medium transition-colors ${
-                currentPage === page
-                  ? 'bg-primary-500 text-white'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 shadow-sm'
-              }`}
+              href={`/blog?page=${page}`}
+              onClick={(e) => {
+                e.preventDefault();
+                setCurrentPage(page);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg text-sm font-medium transition-colors flex items-center justify-center ${currentPage === page
+                  ? 'bg-[#7aa89f] text-white'
+                  : 'bg-[#99c3bb] text-white hover:bg-[#7aa89f]'
+                }`}
             >
               {page}
-            </button>
+            </a>
           ))}
-
-          {/* Next Button */}
-          <button
-            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-            disabled={currentPage === totalPages}
-            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-              currentPage === totalPages
-                ? 'bg-gray-100 text-gray-400 cursor-not-allowed dark:bg-gray-800 dark:text-gray-600'
-                : 'bg-white text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 shadow-sm'
-            }`}
-          >
-            →
-          </button>
         </div>
       )}
 
