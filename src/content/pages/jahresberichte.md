@@ -3,10 +3,14 @@ title: Jahresberichte
 subtitle: Transparenz und Rechenschaft
 background: light
 reports:
+  - year: "2025"
+    filename: Jahresbericht2025.pdf
+    title: Jahresbericht 2025
+    description: Unser aktueller Jahresbericht mit allen wichtigen Entwicklungen und Projekten des Jahres 2025.
   - year: "2024"
     filename: Jahresbericht2024_Revision01.pdf
     title: Jahresbericht 2024 (Revision 01)
-    description: Unser aktueller Jahresbericht mit allen wichtigen Entwicklungen und Projekten des Jahres 2024.
+    description: Vollständiger, revidierter Überblick über unsere Aktivitäten, Workshops und Erfolge im Jahr 2024.
   - year: "2024"
     filename: Jahresbericht2024.pdf
     title: Jahresbericht 2024
