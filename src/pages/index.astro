@@ -20,7 +20,7 @@ import { useTranslations, configuration } from '@/i18n.ts';
 import { getCollection, render } from 'astro:content';
 import HomeSection from '@/components/HomeSection.astro';
 
-const { t } = useTranslations(Astro.currentLocale);
+const { t, translatePath } = useTranslations(Astro.currentLocale);
 
 const sections = new Map();
 for (const section of await getCollection('home')) {
@@ -73,7 +73,7 @@ function getSection(id: string) {
         >
           {t('homepage.title.buy-ticket')}
         </Button>
-        <Button link="/spenden" className="text-lg">
+        <Button link={translatePath('/donate')} className="text-lg">
           {t('homepage.title.donate')}
         </Button>
       </div>

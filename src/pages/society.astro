@@ -3,9 +3,10 @@
 import { readdir } from 'node:fs/promises';
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-import { siteContent } from '@/content';
+import { getEntry, render } from 'astro:content';
 
-const { verein } = siteContent.pages;
+const page = await getEntry('pages', 'verein');
+const { Content } = await render(page);
 
 const reportsRoot = 'public/Jahresberichte/';
 const reports = (await readdir(reportsRoot))
@@ -20,7 +21,9 @@ const reports = (await readdir(reportsRoot))
 ---
 
 <Layout title="Verein">
-  <Hero hero={verein.hero} />
+  <Hero hero={page.data}>
+    <Content />
+  </Hero>
   <!--
   <section class="px-content py-8" id="reports">
     <h2>Jahresberichte</h2>

@@ -12,7 +12,7 @@ const buttonSchema = z.object({
 
 // Homepage sections (hero carousel sections)
 const home = defineCollection({
-  loader: glob({ pattern: '*.{md,mdx}', base: 'src/content/home' }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: 'src/content/home' }),
   schema: z.object({
     title: z.string(),
     order: z.number().optional(),
@@ -56,41 +56,53 @@ const pages = defineCollection({
     background: z.enum(['light', 'dark', 'accent']).default('light'),
     buttons: z.array(buttonSchema).optional(),
     // Newsletter form config (only for newsletter page)
-    form: z.object({
-      emailPlaceholder: z.string(),
-      emailHint: z.string(),
-      privacyLabel: z.string(),
-      privacyHint: z.string(),
-      privacyLinkText: z.string(),
-      privacyLinkUrl: z.string(),
-      submitButton: z.string(),
-      submittingButton: z.string(),
-      confirmationMessage: z.string(),
-      errorMessage: z.string(),
-    }).optional(),
+    form: z
+      .object({
+        emailPlaceholder: z.string(),
+        emailHint: z.string(),
+        privacyLabel: z.string(),
+        privacyHint: z.string(),
+        privacyLinkText: z.string(),
+        privacyLinkUrl: z.string(),
+        submitButton: z.string(),
+        submittingButton: z.string(),
+        confirmationMessage: z.string(),
+        errorMessage: z.string(),
+      })
+      .optional(),
     // Jahresberichte reports list
-    reports: z.array(z.object({
-      year: z.string(),
-      filename: z.string(),
-      title: z.string(),
-      description: z.string(),
-    })).optional(),
+    reports: z
+      .array(
+        z.object({
+          year: z.string(),
+          filename: z.string(),
+          title: z.string(),
+          description: z.string(),
+        }),
+      )
+      .optional(),
     // Partner logos
-    partners: z.object({
-      title: z.string(),
-      logos: z.array(z.object({
-        image: z.string(),
-        name: z.string(),
-      })),
-    }).optional(),
+    partners: z
+      .object({
+        title: z.string(),
+        logos: z.array(
+          z.object({
+            image: z.string(),
+            name: z.string(),
+          }),
+        ),
+      })
+      .optional(),
     // Bank details (for spenden page)
-    bankDetails: z.object({
-      recipient: z.string(),
-      iban: z.string(),
-      bic: z.string(),
-      reference: z.string(),
-      note: z.string().optional(),
-    }).optional(),
+    bankDetails: z
+      .object({
+        recipient: z.string(),
+        iban: z.string(),
+        bic: z.string(),
+        reference: z.string(),
+        note: z.string().optional(),
+      })
+      .optional(),
   }),
 });
 

@@ -1,6 +1,8 @@
 ---
-title: Datenschutzerklärung
-background: light
+title: "Datenschutzerklärung"
+description: "Erfahre mehr über den Datenschutz beim CoderDojo Schöneweide. Hier findest du Informationen zur Erhebung, Nutzung und Sicherheit deiner Daten."
+keywords: [ "Datenschutz CoderDojo Schöneweide", "Datenschutzerklärung", "Datensicherheit", "personenbezogene Daten", "DSGVO", "Datenschutzrichtlinien", "Datenschutzbestimmungen", "Privatsphäre schützen" ]
+layout: "../layouts/SimplePage.astro"
 ---
 
 In dieser Datenschutzerklärung (Stand: 26.07.2023) erläutern wir basierend auf der

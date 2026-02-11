@@ -21,6 +21,3 @@ BIC: GENODEM1GLS
 Du möchtest Mitglied werden?
 
 Infos dazu findest Du im [→ Abschnitt "Mentoring"](#mentoring)
-
-Du möchtest uns mit einer Spende unterstützen oder Fördermitglied werden?
-Infos zu Spenden … (TODO)
