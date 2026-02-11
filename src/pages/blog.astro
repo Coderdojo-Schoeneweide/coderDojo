@@ -8,17 +8,41 @@ import { getCollection } from 'astro:content';
 const posts = await getCollection('blog', ({ data }) => !data.draft);
 posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
+// Helper: extract first image URL from markdown body
+// Handles ![alt](url) and ![alt](url "title") patterns
+function extractFirstImage(body: string): string | undefined {
+  const match = body.match(/!\[.*?\]\((\S+?)(?:\s+"[^"]*")?\)/);
+  return match ? match[1] : undefined;
+}
+
+// Helper: extract a plain-text preview from markdown body
+function extractPreview(body: string, maxLength = 160): string {
+  const text = body
+    .replace(/!\[.*?\]\(.*?\)/g, '') // remove images
+    .replace(/\[([^\]]*)\]\(.*?\)/g, '$1') // links -> text
+    .replace(/#{1,6}\s+/g, '') // headings
+    .replace(/[*_~`>]/g, '') // formatting chars
+    .replace(/\n+/g, ' ') // newlines -> space
+    .trim();
+  return text.length > maxLength ? text.slice(0, maxLength) + '…' : text;
+}
+
 // Transform posts data for the island component
-const postsData = posts.map((post) => ({
-  id: post.id,
-  slug: post.id.replace(/\.md$/, ''),
-  title: post.data.title,
-  description: post.data.description,
-  date: post.data.date.toISOString(),
-  categories: post.data.categories || [],
-  tags: post.data.tags || [],
-  authors: post.data.authors || [],
-}));
+const postsData = posts.map((post) => {
+  const image = post.data.image || extractFirstImage(post.body || '');
+  const preview = post.data.description || extractPreview(post.body || '');
+  return {
+    id: post.id,
+    slug: post.id.replace(/\.md$/, ''),
+    title: post.data.title,
+    description: preview,
+    date: post.data.date.toISOString(),
+    categories: post.data.categories || [],
+    tags: post.data.tags || [],
+    authors: post.data.authors || [],
+    image,
+  };
+});
 ---
 
 <Layout
@@ -31,7 +55,10 @@ const postsData = posts.map((post) => ({
       background: 'accent',
     }}
   >
-    <p>Neuigkeiten, Erfahrungsberichte und Ankündigungen aus dem CoderDojo Schöneweide.</p>
+    <p>
+      Neuigkeiten, Erfahrungsberichte und Ankündigungen aus dem CoderDojo
+      Schöneweide.
+    </p>
   </Hero>
 
   <!-- Blog Grid Section -->

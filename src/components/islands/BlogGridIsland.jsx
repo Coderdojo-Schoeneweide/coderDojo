@@ -31,29 +31,45 @@ export default function BlogGridIsland({ posts }) {
 
   return (
     <div>
-      {/* Blog Posts List */}
-      <div className="space-y-6">
+      {/* Blog Posts Grid */}
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {currentPosts.map((post) => (
           <article
             key={post.id}
             className="group overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:shadow-xl dark:bg-gray-800"
           >
-            <a href={`/blog/${post.slug}`} className="flex flex-col sm:flex-row">
-              {/* Date Column */}
-              <div className="bg-primary-500 px-6 py-4 sm:w-48 sm:flex-shrink-0 flex items-center justify-center">
-                <time className="text-sm font-medium text-white text-center">
-                  {formatDate(post.date)}
-                </time>
-              </div>
+            <a href={`/blog/${post.slug}`} className="block h-full">
+              {/* Image */}
+              {post.image ? (
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="aspect-video w-full object-cover"
+                />
+              ) : (
+                <div className="aspect-video bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center">
+                  <div className="text-center text-white">
+                    <div className="text-4xl mb-2">📝</div>
+                    <div className="text-sm font-medium">Blog Post</div>
+                  </div>
+                </div>
+              )}
 
               {/* Content */}
-              <div className="flex flex-1 flex-col p-6">
-                <h3 className="mb-2 text-xl font-bold text-gray-900 group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400 transition-colors">
+              <div className="p-6">
+                {/* Date */}
+                <time className="inline-block mb-3 rounded-full bg-primary-100 px-3 py-1 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-200">
+                  {formatDate(post.date)}
+                </time>
+
+                {/* Title */}
+                <h3 className="mb-3 text-xl font-bold text-gray-900 group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400 transition-colors line-clamp-2">
                   {post.title}
                 </h3>
 
+                {/* Description Preview */}
                 {post.description && (
-                  <p className="mb-3 text-gray-600 dark:text-gray-300 line-clamp-2">
+                  <p className="mb-4 text-gray-600 dark:text-gray-300 line-clamp-3">
                     {post.description}
                   </p>
                 )}
@@ -64,13 +80,6 @@ export default function BlogGridIsland({ posts }) {
                     Von {post.authors.join(', ')}
                   </p>
                 )}
-              </div>
-
-              {/* Arrow */}
-              <div className="hidden sm:flex items-center px-6">
-                <svg className="h-6 w-6 text-gray-400 group-hover:text-primary-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
               </div>
             </a>
           </article>
@@ -100,8 +109,8 @@ export default function BlogGridIsland({ posts }) {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg text-sm font-medium transition-colors flex items-center justify-center ${currentPage === page
-                  ? 'bg-[#7aa89f] text-white'
-                  : 'bg-[#99c3bb] text-white hover:bg-[#7aa89f]'
+                ? 'bg-[#7aa89f] text-white'
+                : 'bg-[#99c3bb] text-white hover:bg-[#7aa89f]'
                 }`}
             >
               {page}

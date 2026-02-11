@@ -1,7 +1,6 @@
 ---
 import { Picture } from 'astro:assets';
 import Layout from '@/layouts/Layout.astro';
-import heroBackground from '@/assets/images/home/hero-background.jpg';
 import titleBackground from '@/assets/images/home/title-background.svg?raw';
 import Button from '@/components/Button.astro';
 import Carousel from '@/components/Carousel.astro';
@@ -48,12 +47,9 @@ const sections = Object.fromEntries(
 
 <Layout>
   <section class="hero relative">
-    <Picture
-      src={heroBackground}
-      formats={['avif', 'webp']}
+    <img
+      src="/images/cms/gskarlshorst_sagen_workshop2.jpg"
       alt="image"
-      layout="constrained"
-      priority={true}
       class="absolute top-0 left-0 h-full w-full object-cover"
     />
     <div
