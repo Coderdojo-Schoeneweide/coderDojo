@@ -3,6 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import BlogGridIsland from '../components/islands/BlogGridIsland.jsx';
 import { getCollection } from 'astro:content';
+import { useTranslations } from '@/i18n.ts';
+
+const { translatePath } = useTranslations(Astro.currentLocale);
 
 // Get all blog posts, filter out drafts, and sort by date (newest first)
 const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -66,7 +69,11 @@ const postsData = posts.map((post) => {
     class="text-accent-900 bg-white py-20 dark:bg-gray-900 dark:text-gray-100"
   >
     <div class="container mx-auto px-6">
-      <BlogGridIsland posts={postsData} client:load />
+      <BlogGridIsland
+        posts={postsData}
+        blogBasePath={translatePath('/blog')}
+        client:load
+      />
     </div>
   </section>
 </Layout>

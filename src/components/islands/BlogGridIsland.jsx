@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 
-export default function BlogGridIsland({ posts }) {
+export default function BlogGridIsland({ posts, blogBasePath = '/blog/' }) {
   const postsPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
+  const normalizedBasePath = blogBasePath.endsWith('/') ?
+    blogBasePath
+    : `${blogBasePath}/`;
 
   // Calculate pagination
   const totalPages = Math.ceil(posts.length / postsPerPage);
@@ -38,7 +41,7 @@ export default function BlogGridIsland({ posts }) {
             key={post.id}
             className="group overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:shadow-xl dark:bg-gray-800"
           >
-            <a href={`/blog/${post.slug}`} className="block h-full">
+            <a href={`${normalizedBasePath}${post.slug}/`} className="block h-full">
               {/* Image */}
               {post.image ? (
                 <img
@@ -102,7 +105,7 @@ export default function BlogGridIsland({ posts }) {
           {getPageNumbers().map((page) => (
             <a
               key={page}
-              href={`/blog?page=${page}`}
+              href={`${normalizedBasePath}?page=${page}`}
               onClick={(e) => {
                 e.preventDefault();
                 setCurrentPage(page);

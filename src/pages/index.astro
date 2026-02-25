@@ -40,10 +40,12 @@ for (const section of await getCollection('home')) {
 }
 
 function getSection(id: string) {
-  return [
-    sections.get(Astro.currentLocale)[id] ??
-      sections.get(configuration.defaultLocale)[id],
-  ];
+  const currentLocaleSections =
+    sections.get(Astro.currentLocale) ??
+    sections.get(configuration.defaultLocale);
+  const defaultLocaleSections = sections.get(configuration.defaultLocale);
+
+  return [currentLocaleSections?.[id] ?? defaultLocaleSections?.[id]];
 }
 ---
 

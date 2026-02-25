@@ -1,15 +1,19 @@
 ---
-// Datenschutz Page - Content-driven from Markdown
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import { getEntry, render } from 'astro:content';
+import { useTranslations } from '@/i18n.ts';
 
-const page = await getEntry('pages', 'datenschutz');
-const { Content } = await render(page);
+const { translatePath } = useTranslations(Astro.currentLocale);
+const target = translatePath('/privacy-policy');
 ---
 
-<Layout title={page.data.title}>
-    <Hero hero={page.data}>
-        <Content />
-    </Hero>
+<Layout title="Datenschutz">
+    <section class="px-content py-16 text-center">
+        <h1>Datenschutz</h1>
+        <p class="mt-4">Diese Seite wurde verschoben.</p>
+        <p class="mt-2">
+            <a class="text-primary-600 hover:underline" href={target}>
+                Zur Datenschutzerklärung
+            </a>
+        </p>
+    </section>
 </Layout>

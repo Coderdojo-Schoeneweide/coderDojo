@@ -38,7 +38,7 @@ solche Rechtsgrundlage doch einschlägig sein sollte, wird diese an der entsprec
 Verantwortlich für den Datenschutz im CoderDojo Schöneweide ist Linda Fernsel.
 
 Sollten Sie Fragen zum Datenschutz oder zur Verarbeitung personenbezogener Daten haben, finden Sie
-im [Impressum](/impressum) die Kontaktdaten der verantwortlichen Person.
+im [Impressum](../imprint/) die Kontaktdaten der verantwortlichen Person.
 
 ## Anwendungsbereiche
 

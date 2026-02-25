@@ -8,13 +8,13 @@ buttons:
     url: https://pretix.eu/dojosw
   more:
     label: Mehr Infos
-    url: ./workshops
+    url: ./workshops/
   all:
     label: Alle Workshops
-    url: ./workshops
+    url: ./workshops/
   newsletter:
     label: Newsletter abonnieren
-    url: ./newsletter
+    url: ./newsletter/
 ---
 
 This is a test

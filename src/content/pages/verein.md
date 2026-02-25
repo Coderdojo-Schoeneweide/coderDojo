@@ -3,10 +3,10 @@ title: Verein
 background: light
 buttons:
   - label: Mitglied werden
-    url: /mentoring
+    url: ../mentoring/
     style: primary
   - label: Spenden
-    url: /donate
+    url: ../donate/
     style: secondary
   - label: Satzung
     url: /satzung.pdf

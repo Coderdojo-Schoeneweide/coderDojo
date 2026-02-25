@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { useTranslations } from '@/i18n.ts';
+
+const { translatePath } = useTranslations(Astro.currentLocale);
 ---
 
 <Layout title="Seite nicht gefunden">
@@ -17,7 +20,7 @@ import Layout from '../layouts/Layout.astro';
         Diese Seite existiert nicht.
       </p>
       <a
-        href="/"
+        href={translatePath('/')}
         class="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-blue-700"
       >
         Zurück zur Startseite
