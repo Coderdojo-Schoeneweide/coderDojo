@@ -43,7 +43,7 @@ const menuItems = [
         <a
           href="https://pretix.eu/dojosw"
           class="h-lh w-8"
-          aria-label="Buy ticket"
+          aria-label={t('common.buy-ticket-aria')}
         >
           <Fragment set:html={icon(faTicket).html} />
         </a>
@@ -63,7 +63,7 @@ const menuItems = [
       <button
         id="mobile-menu-toggle"
         class="plain md:hidden"
-        aria-label="Toggle mobile menu"
+        aria-label={t('common.toggle-mobile-menu')}
       >
         <Fragment set:html={icon(faBars).html} />
       </button>
@@ -82,7 +82,7 @@ const menuItems = [
         <a
           href="https://pretix.eu/dojosw"
           class="block h-8 w-8 py-2"
-          aria-label="Buy ticket"
+          aria-label={t('common.buy-ticket-aria')}
         >
           <Fragment set:html={icon(faTicket).html} />
         </a>
