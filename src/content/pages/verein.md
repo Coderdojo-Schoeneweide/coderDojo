@@ -6,7 +6,7 @@ buttons:
     url: /mentoring
     style: primary
   - label: Spenden
-    url: /spenden
+    url: /donate
     style: secondary
   - label: Satzung
     url: /satzung.pdf

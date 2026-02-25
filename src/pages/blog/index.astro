@@ -1,0 +1,21 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+---
+
+<Layout>
+  <section class="px-content py-8">
+    <h1>Blog</h1>
+    <ul>
+      {
+        posts.map((post) => (
+          <li>
+            <a href={`/blog/${post.id}`}>{post.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>

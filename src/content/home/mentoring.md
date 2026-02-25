@@ -3,15 +3,16 @@ title: Mentoring
 buttons:
   contact:
     label: Kontakt
-    url: /mentoring
+    url: 'mailto:engagieren@coderdojo-schoeneweide.de'
   more:
     label: Mehr Infos
-    url: /mentoring
+    url: './mentoring'
 ---
 
 Du möchtest ehrenamtlich bei uns mitmachen?
 
-Sehr cool! Schreib uns eine Mail an [hallo@coderdojo-schoeneweide.de](mailto:hallo@coderdojo-schoeneweide.de)
+Sehr cool! Schreib uns eine Mail an\
+[engagieren@coderdojo-schoeneweide.de](mailto:engagieren@coderdojo-schoeneweide.de)
 
 Was dich erwartet:
 

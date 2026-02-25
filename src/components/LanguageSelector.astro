@@ -1,0 +1,42 @@
+---
+import { Picture } from 'astro:assets';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { configuration, useTranslations } from '@/i18n.ts';
+
+const icons = Object.fromEntries(
+  await Promise.all(
+    Object.entries(
+      import.meta.glob<{ default: any }>('/src/assets/locales/*.svg'),
+    ).map(async ([path, image]) => [path.match(/\/([a-z]+)\./)![1], image()]),
+  ),
+);
+
+const { t } = useTranslations(Astro.currentLocale);
+const locales = configuration.locales.map((locale) => ({
+  link: getRelativeLocaleUrl(locale, Astro.url.pathname),
+  label:
+    useTranslations(locale).t(`locales.${locale}`) +
+    (Astro.currentLocale === locale ? '' : ` (${t(`locales.${locale}`)})`),
+  icon: icons[locale],
+}));
+---
+
+<nav class="bg-brand flex flex-col gap-2 rounded-b-xl px-5 py-2 font-medium">
+  {
+    locales.map(({ link, label, icon }) => (
+      <a
+        href={link}
+        class="border-dark flex items-center gap-2 border-b pb-2 whitespace-nowrap first:pt-1 last:border-0 last:pb-1"
+      >
+        <Picture
+          src={icon}
+          alt={label}
+          layout="constrained"
+          class="rounded-full"
+          pictureAttributes={{ class: 'shrink-0 w-6 h-6' }}
+        />
+        {label}
+      </a>
+    ))
+  }
+</nav>
