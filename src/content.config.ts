@@ -33,7 +33,10 @@ const socials = defineCollection({
 
 // Workshop content
 const workshops = defineCollection({
-  loader: glob({ pattern: '*/[^_]*.{md,mdx}', base: 'src/content/workshops' }),
+  loader: glob({
+    pattern: '*/**/[^_]*.{md,mdx}',
+    base: 'src/content/workshops',
+  }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -49,7 +52,7 @@ const workshops = defineCollection({
 
 // Page content (heroes, structured sections)
 const pages = defineCollection({
-  loader: glob({ pattern: '*.{md,mdx}', base: 'src/content/pages' }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: 'src/content/pages' }),
   schema: z.object({
     title: z.string(),
     subtitle: z.string().optional(),
@@ -108,7 +111,7 @@ const pages = defineCollection({
 
 // Blog posts
 const blog = defineCollection({
-  loader: glob({ pattern: '[^_]*.{md,mdx}', base: 'src/content/blog' }),
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: 'src/content/blog' }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),

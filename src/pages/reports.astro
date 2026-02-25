@@ -2,12 +2,23 @@
 // Jahresberichte Page - Content-driven from Markdown
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
-import { getEntry, render } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import { useTranslations } from '@/i18n.ts';
+import { findLocalizedEntryById } from '@/utils/contentLocalization.ts';
 
-const page = await getEntry('pages', 'jahresberichte');
+const pages = await getCollection('pages');
+const page = findLocalizedEntryById(
+    pages,
+    'jahresberichte',
+    Astro.currentLocale,
+);
+
+if (!page) {
+    throw new Error('Missing page content: jahresberichte');
+}
+
 const { Content } = await render(page);
-const reports = page.data.reports ?? [];
+const reports: NonNullable<typeof page.data.reports> = page.data.reports ?? [];
 const { translatePath } = useTranslations(Astro.currentLocale);
 ---
 
@@ -20,7 +31,7 @@ const { translatePath } = useTranslations(Astro.currentLocale);
     <section class="py-20 bg-white dark:bg-slate-900">
         <div class="container mx-auto px-6">
             <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {reports.map((report) => (
+                {reports.map((report: (typeof reports)[number]) => (
                     <div class="group bg-gray-50 dark:bg-slate-800 rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                         <!-- Report Icon -->
                         <div class="flex items-center justify-center w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-lg mb-4 group-hover:bg-primary-200 dark:group-hover:bg-primary-800/50 transition-colors">

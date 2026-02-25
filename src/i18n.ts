@@ -1,6 +1,6 @@
 import translations from './assets/i18n.json';
 
-type Locale = keyof typeof translations;
+export type Locale = keyof typeof translations;
 type Configuration = {
   locales: Locale[];
   defaultLocale: Locale;
