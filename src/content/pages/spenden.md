@@ -6,7 +6,7 @@ buttons:
     url: "#bank-details"
     style: secondary
   - label: Fördermitglied werden
-    url: /mentoring
+    url: ../mentoring/
     style: outline
 bankDetails:
   recipient: CoderDojo Schöneweide e.V.

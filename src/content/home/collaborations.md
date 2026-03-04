@@ -8,4 +8,4 @@ Schreiben Sie uns eine Mail an [hallo@coderdojo-schoeneweide.de](mailto:hallo@co
 
 Sie möchten wissen, was wir genau anbieten?
 
-Schauen Sie sich unsere [→ Workshop-Konzepte](./workshops) an!
+Schauen Sie sich unsere [→ Workshop-Konzepte](./workshops/) an!

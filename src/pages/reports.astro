@@ -3,10 +3,12 @@
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import { getEntry, render } from 'astro:content';
+import { useTranslations } from '@/i18n.ts';
 
 const page = await getEntry('pages', 'jahresberichte');
 const { Content } = await render(page);
 const reports = page.data.reports ?? [];
+const { translatePath } = useTranslations(Astro.currentLocale);
 ---
 
 <Layout title={page.data.title}>
@@ -80,7 +82,7 @@ const reports = page.data.reports ?? [];
                             E-Mail senden
                         </a>
                         <a
-                            href="/society"
+                            href={translatePath('/society')}
                             class="inline-flex items-center px-6 py-3 border-2 border-primary-600 text-primary-600 dark:text-primary-400 font-semibold rounded-lg hover:bg-primary-600 hover:text-white dark:hover:text-white transition-colors"
                         >
                             Über den Verein

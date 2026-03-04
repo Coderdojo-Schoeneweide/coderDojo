@@ -12,8 +12,17 @@ const icons = Object.fromEntries(
 );
 
 const { t } = useTranslations(Astro.currentLocale);
+const localePrefixPattern = new RegExp(
+  `^/(?:${configuration.locales.join('|')})(?=/|$)`,
+);
+const currentPath = Astro.url.pathname || '/';
+const unlocalizedPath =
+  (currentPath.replace(localePrefixPattern, '') || '/').replace(/\/+$/, '') ||
+  '/';
+const canonicalPath = unlocalizedPath === '/' ? '/' : `${unlocalizedPath}/`;
+
 const locales = configuration.locales.map((locale) => ({
-  link: getRelativeLocaleUrl(locale, Astro.url.pathname),
+  link: getRelativeLocaleUrl(locale, canonicalPath),
   label:
     useTranslations(locale).t(`locales.${locale}`) +
     (Astro.currentLocale === locale ? '' : ` (${t(`locales.${locale}`)})`),
