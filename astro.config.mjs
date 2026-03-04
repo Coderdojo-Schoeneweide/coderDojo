@@ -8,12 +8,25 @@ import sharp from 'sharp';
 import tailwindcss from '@tailwindcss/vite';
 import { configuration as i18nConfig } from './src/i18n.ts';
 
+import robots from 'astro-robots';
+
 export default defineConfig({
-  site: 'https://coderdojo-schoeneweide.de',
+  site: `https://${process.env.STAGE === 'staging' ? 'staging.' : ''}coderdojo-schoeneweide.de`,
   base: '/',
   trailingSlash: 'always',
   image: { service: sharp() },
-  integrations: [react(), sitemap(), mdx()],
+  integrations: [
+    react(),
+    sitemap(),
+    mdx(),
+    robots({
+      policy: [
+        process.env.STAGE === 'staging' ?
+          { userAgent: '*', disallow: '/' }
+        : { userAgent: '*', allow: '/' },
+      ],
+    }),
+  ],
   markdown: {
     remarkPlugins: [remarkToc, [remarkCollapse, { test: 'Table of contents' }]],
     shikiConfig: { theme: 'one-dark-pro', wrap: true },
