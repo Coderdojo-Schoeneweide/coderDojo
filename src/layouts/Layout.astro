@@ -21,21 +21,6 @@ const { title = siteConfig.title, description = siteConfig.description } =
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title} &ndash; CoderDojo Schöneweide</title>
-    <script>
-      // Apply saved theme immediately to prevent flash
-      (function () {
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia(
-          '(prefers-color-scheme: dark)',
-        ).matches;
-
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
-      })();
-    </script>
   </head>
   <body>
     <Header />
