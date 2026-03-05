@@ -55,7 +55,7 @@ if (!post) {
 }
 
 const { Content } = await render(post);
-const { translatePath } = useTranslations(Astro.currentLocale);
+const { t, translatePath } = useTranslations(Astro.currentLocale);
 
 const formatDate = (date: Date, currentLocale: string) => {
   const localeTagByLocale: Record<string, string> = {
@@ -96,7 +96,7 @@ const formatDate = (date: Date, currentLocale: string) => {
               >
               </path>
             </svg>
-            Zurück zum Blog
+            {t('blog.back')}
           </a>
 
           <h1 class="mb-4 text-3xl font-bold md:text-4xl lg:text-5xl">
@@ -112,7 +112,9 @@ const formatDate = (date: Date, currentLocale: string) => {
               post.data.authors && post.data.authors.length > 0 && (
                 <>
                   <span>•</span>
-                  <span>Von {post.data.authors.join(', ')}</span>
+                  <span>
+                    {t('blog.by')} {post.data.authors.join(', ')}
+                  </span>
                 </>
               )
             }
@@ -166,7 +168,7 @@ const formatDate = (date: Date, currentLocale: string) => {
               >
               </path>
             </svg>
-            Alle Beiträge anzeigen
+            {t('blog.all-posts')}
           </a>
         </div>
       </div>

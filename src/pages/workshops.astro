@@ -15,10 +15,15 @@ const workshopsPageEntries = import.meta.glob<{
   frontmatter: { title: string; background?: 'light' | 'dark' | 'accent' };
   Content: any;
 }>('../content/workshops/**/index.md');
+const workshopsContentLocale = locale === 'sa' ? 'ar' : locale;
+const workshopsPagePathCandidates = [
+  `../content/workshops/${workshopsContentLocale}/index.md`,
+  '../content/workshops/de/index.md',
+  '../content/workshops/index.md',
+];
 const workshopsPagePath =
-  `../content/workshops/${locale}/index.md` in workshopsPageEntries ?
-    `../content/workshops/${locale}/index.md`
-  : '../content/workshops/index.md';
+  workshopsPagePathCandidates.find((path) => path in workshopsPageEntries) ??
+  '../content/workshops/de/index.md';
 const loadWorkshopsPageModule = workshopsPageEntries[workshopsPagePath];
 const workshopsPageModule = await loadWorkshopsPageModule();
 const workshopsPageFrontmatter = workshopsPageModule.frontmatter;
@@ -26,7 +31,37 @@ const WorkshopsPageContent = workshopsPageModule.Content;
 
 // Get all workshops and keep locale-specific variants with fallback.
 const allWorkshops = await getCollection('workshops');
-const workshops = selectLocalizedEntries(allWorkshops, locale);
+
+const hasCompleteWorkshopData = (workshop: any) => {
+  return (
+    typeof workshop.data.duration === 'string' &&
+    typeof workshop.data.age === 'string' &&
+    Array.isArray(workshop.data.tags) &&
+    workshop.data.tags.length > 0 &&
+    typeof workshop.data.image === 'string'
+  );
+};
+
+const extractPreview = (body: string, maxLength = 180): string => {
+  const text = body
+    .replace(/!\[.*?\]\(.*?\)/g, '')
+    .replace(/\[([^\]]*)\]\(.*?\)/g, '$1')
+    .replace(/#{1,6}\s+/g, '')
+    .replace(/[*_~`>]/g, '')
+    .replace(/\n+/g, ' ')
+    .trim();
+
+  if (!text) {
+    return '';
+  }
+
+  return text.length > maxLength ? `${text.slice(0, maxLength)}…` : text;
+};
+
+const workshops = selectLocalizedEntries(
+  allWorkshops.filter(hasCompleteWorkshopData),
+  locale,
+);
 workshops.sort((a: any, b: any) => {
   const weightA = a.data.weight ?? Number.POSITIVE_INFINITY;
   const weightB = b.data.weight ?? Number.POSITIVE_INFINITY;
@@ -38,7 +73,7 @@ workshops.sort((a: any, b: any) => {
 const workshopsData = workshops.map((workshop: any) => ({
   id: getBaseContentId(workshop.id),
   title: workshop.data.title,
-  description: workshop.data.description,
+  description: workshop.data.description || extractPreview(workshop.body || ''),
   duration: workshop.data.duration,
   age: workshop.data.age,
   tags: workshop.data.tags,

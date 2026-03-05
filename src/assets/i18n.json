@@ -33,6 +33,15 @@
         "buy-ticket": "Ticket kaufen",
         "donate": "Spenden"
       }
+    },
+    "blog": {
+      "overview": {
+        "title": "Blog",
+        "description": "Neuigkeiten, Erfahrungsberichte und Ankündigungen aus dem CoderDojo Schöneweide."
+      },
+      "back": "Zurück zum Blog",
+      "by": "Von",
+      "all-posts": "Alle Beiträge anzeigen"
     }
   },
   "en": {
@@ -69,6 +78,15 @@
         "buy-ticket": "Buy a ticket",
         "donate": "Donate"
       }
+    },
+    "blog": {
+      "overview": {
+        "title": "Blog",
+        "description": "News, experience reports, and announcements from CoderDojo Schöneweide."
+      },
+      "back": "Back to blog",
+      "by": "By",
+      "all-posts": "View all posts"
     }
   },
   "sa": {
@@ -99,6 +117,15 @@
     "common": {
       "buy-ticket-aria": "شراء تذكرة",
       "toggle-mobile-menu": "تبديل القائمة على الهاتف"
+    },
+    "blog": {
+      "overview": {
+        "title": "المدونة",
+        "description": "أخبار وتجارب وإعلانات من CoderDojo Schöneweide."
+      },
+      "back": "العودة إلى المدونة",
+      "by": "بقلم",
+      "all-posts": "عرض جميع المقالات"
     }
   }
 }

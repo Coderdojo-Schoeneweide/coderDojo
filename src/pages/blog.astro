@@ -11,7 +11,7 @@ import {
   selectLocalizedEntries,
 } from '@/utils/contentLocalization.ts';
 
-const { translatePath } = useTranslations(Astro.currentLocale);
+const { t, translatePath } = useTranslations(Astro.currentLocale);
 const locale = resolveLocale(Astro.currentLocale);
 
 // Get all blog posts, filter out drafts, and sort by date (newest first)
@@ -60,18 +60,17 @@ const postsData = posts.map((post) => {
 ---
 
 <Layout
-  title="Blog"
-  description="Neuigkeiten, Erfahrungsberichte und Ankündigungen vom CoderDojo Schöneweide."
+  title={t('blog.overview.title')}
+  description={t('blog.overview.description')}
 >
   <Hero
     hero={{
-      title: 'Blog',
+      title: t('blog.overview.title'),
       background: 'accent',
     }}
   >
     <p>
-      Neuigkeiten, Erfahrungsberichte und Ankündigungen aus dem CoderDojo
-      Schöneweide.
+      {t('blog.overview.description')}
     </p>
   </Hero>
 

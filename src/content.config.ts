@@ -34,17 +34,17 @@ const socials = defineCollection({
 // Workshop content
 const workshops = defineCollection({
   loader: glob({
-    pattern: '*/**/[^_]*.{md,mdx}',
+    pattern: '*/*/[^_]*.{md,mdx}',
     base: 'src/content/workshops',
   }),
   schema: z.object({
     title: z.string(),
-    description: z.string(),
+    description: z.string().optional(),
     keywords: z.array(z.string()).optional(),
-    duration: z.string(),
-    age: z.string(),
-    tags: z.array(z.string()),
-    image: z.string(),
+    duration: z.string().optional(),
+    age: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+    image: z.string().optional(),
     prevKnowledge: z.string().optional(),
     weight: z.number().optional(),
   }),

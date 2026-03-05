@@ -2,9 +2,29 @@ import { configuration, type Locale } from '@/i18n.ts';
 
 type EntryWithId = { id: string;[key: string]: any };
 
+const localeAliases: Record<Locale, string[]> = {
+    de: ['de'],
+    en: ['en'],
+    sa: ['sa', 'ar'],
+};
+
+const allLocalePrefixes = [...new Set(Object.values(localeAliases).flat())];
+
 const localePrefixPattern = new RegExp(
-    `^(?:${configuration.locales.join('|')})(?=/)`,
+    `^(?:${allLocalePrefixes.join('|')})(?=/)`,
 );
+
+function getLocaleFromPrefix(prefix: string): Locale {
+    const normalizedPrefix = prefix.replace(/\/$/, '');
+
+    for (const locale of configuration.locales) {
+        if (localeAliases[locale].includes(normalizedPrefix)) {
+            return locale;
+        }
+    }
+
+    return configuration.defaultLocale;
+}
 
 export function resolveLocale(locale?: string): Locale {
     return locale && configuration.locales.includes(locale as Locale) ?
@@ -15,7 +35,7 @@ export function resolveLocale(locale?: string): Locale {
 export function getContentLocale(id: string): Locale {
     const prefixMatch = id.match(localePrefixPattern);
     if (prefixMatch) {
-        return prefixMatch[0] as Locale;
+        return getLocaleFromPrefix(prefixMatch[0]);
     }
 
     return configuration.defaultLocale;
