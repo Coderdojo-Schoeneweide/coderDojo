@@ -3,12 +3,23 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import BlogGridIsland from '../components/islands/BlogGridIsland.jsx';
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import { useTranslations } from '@/i18n.ts';
+import {
+  getRouteSlug,
+  resolveLocale,
+  selectLocalizedEntries,
+} from '@/utils/contentLocalization.ts';
 
-const { translatePath } = useTranslations(Astro.currentLocale);
+const { t, translatePath } = useTranslations(Astro.currentLocale);
+const locale = resolveLocale(Astro.currentLocale);
 
 // Get all blog posts, filter out drafts, and sort by date (newest first)
-const posts = await getCollection('blog', ({ data }) => !data.draft);
+const allPosts: CollectionEntry<'blog'>[] = await getCollection('blog');
+const posts = selectLocalizedEntries(
+  allPosts.filter((post) => !post.data.draft),
+  locale,
+);
 posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 // Helper: extract first image URL from markdown body
@@ -36,7 +47,7 @@ const postsData = posts.map((post) => {
   const preview = post.data.description || extractPreview(post.body || '');
   return {
     id: post.id,
-    slug: post.id.replace(/\.md$/, ''),
+    slug: getRouteSlug(post.id),
     title: post.data.title,
     description: preview,
     date: post.data.date.toISOString(),
@@ -49,18 +60,17 @@ const postsData = posts.map((post) => {
 ---
 
 <Layout
-  title="Blog"
-  description="Neuigkeiten, Erfahrungsberichte und Ankündigungen vom CoderDojo Schöneweide."
+  title={t('blog.overview.title')}
+  description={t('blog.overview.description')}
 >
   <Hero
     hero={{
-      title: 'Blog',
+      title: t('blog.overview.title'),
       background: 'accent',
     }}
   >
     <p>
-      Neuigkeiten, Erfahrungsberichte und Ankündigungen aus dem CoderDojo
-      Schöneweide.
+      {t('blog.overview.description')}
     </p>
   </Hero>
 

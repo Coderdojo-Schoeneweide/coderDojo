@@ -33,15 +33,18 @@ const socials = defineCollection({
 
 // Workshop content
 const workshops = defineCollection({
-  loader: glob({ pattern: '*/[^_]*.{md,mdx}', base: 'src/content/workshops' }),
+  loader: glob({
+    pattern: '*/*/[^_]*.{md,mdx}',
+    base: 'src/content/workshops',
+  }),
   schema: z.object({
     title: z.string(),
-    description: z.string(),
+    description: z.string().optional(),
     keywords: z.array(z.string()).optional(),
-    duration: z.string(),
-    age: z.string(),
-    tags: z.array(z.string()),
-    image: z.string(),
+    duration: z.string().optional(),
+    age: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+    image: z.string().optional(),
     prevKnowledge: z.string().optional(),
     weight: z.number().optional(),
   }),
@@ -49,7 +52,7 @@ const workshops = defineCollection({
 
 // Page content (heroes, structured sections)
 const pages = defineCollection({
-  loader: glob({ pattern: '*.{md,mdx}', base: 'src/content/pages' }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: 'src/content/pages' }),
   schema: z.object({
     title: z.string(),
     subtitle: z.string().optional(),
@@ -108,7 +111,7 @@ const pages = defineCollection({
 
 // Blog posts
 const blog = defineCollection({
-  loader: glob({ pattern: '[^_]*.{md,mdx}', base: 'src/content/blog' }),
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: 'src/content/blog' }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),

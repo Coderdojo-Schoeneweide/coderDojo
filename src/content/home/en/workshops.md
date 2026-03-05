@@ -4,17 +4,28 @@ style: dark
 order: 1
 buttons:
   ticket:
-    label: Ticket kaufen
+    label: Buy ticket
     url: https://pretix.eu/dojosw
   more:
-    label: Mehr Infos
+    label: More info
     url: ./workshops/
   all:
-    label: Alle Workshops
+    label: All workshops
     url: ./workshops/
   newsletter:
-    label: Newsletter abonnieren
+    label: Subscribe to newsletter
     url: ./newsletter/
 ---
 
-This is a test
+Free workshops in computer science and technology
+
+When: Every second Saturday from 11:00 to 13:00\
+Where: At the central library "Alte Feuerwache"
+
+For children and teenagers between 7 and 17 years old
+
+No prior knowledge needed!
+
+Would you like to stay informed about current workshops?
+
+Sign up for the email newsletter!

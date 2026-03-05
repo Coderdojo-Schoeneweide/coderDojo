@@ -3,9 +3,16 @@
 import { readdir } from 'node:fs/promises';
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-import { getEntry, render } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import { findLocalizedEntryById } from '@/utils/contentLocalization.ts';
 
-const page = await getEntry('pages', 'verein');
+const pages = await getCollection('pages');
+const page = findLocalizedEntryById(pages, 'verein', Astro.currentLocale);
+
+if (!page) {
+  throw new Error('Missing page content: verein');
+}
+
 const { Content } = await render(page);
 
 const reportsRoot = 'public/Jahresberichte/';

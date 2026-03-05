@@ -1,22 +1,70 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import { useTranslations } from '@/i18n.ts';
+import {
+  findLocalizedEntryById,
+  getBaseContentId,
+  getRouteSlug,
+  resolveLocale,
+} from '@/utils/contentLocalization.ts';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
-  return posts.map((post) => ({
-    params: { slug: post.id.replace(/\.md$/, '') },
-    props: { post },
-  }));
+  const allPosts: CollectionEntry<'blog'>[] = await getCollection('blog');
+  const posts: CollectionEntry<'blog'>[] = [];
+  for (const post of allPosts) {
+    if (!post.data.draft) {
+      posts.push(post);
+    }
+  }
+  const seenBaseIds = new Set<string>();
+
+  return posts
+    .map((post: CollectionEntry<'blog'>) => ({
+      slug: getRouteSlug(post.id),
+      baseId: getBaseContentId(post.id),
+    }))
+    .filter(({ baseId }) => {
+      if (seenBaseIds.has(baseId)) {
+        return false;
+      }
+
+      seenBaseIds.add(baseId);
+      return true;
+    })
+    .map(({ slug, baseId }) => ({
+      params: { slug },
+      props: { baseId },
+    }));
 }
 
-const { post } = Astro.props;
-const { Content } = await render(post);
-const { translatePath } = useTranslations(Astro.currentLocale);
+const locale = resolveLocale(Astro.currentLocale);
+const { baseId } = Astro.props as { baseId?: string };
+const allPosts: CollectionEntry<'blog'>[] = await getCollection('blog');
+const posts: CollectionEntry<'blog'>[] = [];
+for (const post of allPosts) {
+  if (!post.data.draft) {
+    posts.push(post);
+  }
+}
+const post = baseId ? findLocalizedEntryById(posts, baseId, locale) : undefined;
 
-const formatDate = (date: Date) => {
-  return date.toLocaleDateString('de-DE', {
+if (!post) {
+  throw new Error(`Missing blog post content for id: ${baseId}`);
+}
+
+const { Content } = await render(post);
+const { t, translatePath } = useTranslations(Astro.currentLocale);
+
+const formatDate = (date: Date, currentLocale: string) => {
+  const localeTagByLocale: Record<string, string> = {
+    de: 'de-DE',
+    en: 'en-US',
+    sa: 'ar-SA',
+  };
+
+  return date.toLocaleDateString(localeTagByLocale[currentLocale] ?? 'de-DE', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -48,7 +96,7 @@ const formatDate = (date: Date) => {
               >
               </path>
             </svg>
-            Zurück zum Blog
+            {t('blog.back')}
           </a>
 
           <h1 class="mb-4 text-3xl font-bold md:text-4xl lg:text-5xl">
@@ -57,14 +105,16 @@ const formatDate = (date: Date) => {
 
           <div class="flex flex-wrap items-center gap-4 text-gray-300">
             <time datetime={post.data.date.toISOString()}>
-              {formatDate(post.data.date)}
+              {formatDate(post.data.date, locale)}
             </time>
 
             {
               post.data.authors && post.data.authors.length > 0 && (
                 <>
                   <span>•</span>
-                  <span>Von {post.data.authors.join(', ')}</span>
+                  <span>
+                    {t('blog.by')} {post.data.authors.join(', ')}
+                  </span>
                 </>
               )
             }
@@ -73,7 +123,7 @@ const formatDate = (date: Date) => {
           {
             post.data.categories && post.data.categories.length > 0 && (
               <div class="mt-4 flex flex-wrap gap-2">
-                {post.data.categories.map((category) => (
+                {post.data.categories.map((category: string) => (
                   <span class="inline-block rounded-full bg-white/20 px-3 py-1 text-sm capitalize">
                     {category}
                   </span>
@@ -118,7 +168,7 @@ const formatDate = (date: Date) => {
               >
               </path>
             </svg>
-            Alle Beiträge anzeigen
+            {t('blog.all-posts')}
           </a>
         </div>
       </div>
