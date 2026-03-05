@@ -14,10 +14,11 @@ interface Props {
 const { title = siteConfig.title, description = siteConfig.description } =
   Astro.props;
 const locale = resolveLocale(Astro.currentLocale);
+const dir = locale === 'ar' || locale === 'sa' ? 'rtl' : 'ltr';
 ---
 
 <!doctype html>
-<html lang={locale} class="h-full">
+<html lang={locale} dir={dir} class="h-full">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
