@@ -1,32 +1,16 @@
 ---
 import { Picture } from 'astro:assets';
-import { getRelativeLocaleUrl } from 'astro:i18n';
 import { icon } from '@fortawesome/fontawesome-svg-core';
 import {
   faTicket,
   faLanguage,
   faBars,
 } from '@fortawesome/free-solid-svg-icons';
-import { configuration, useTranslations } from '@/i18n.ts';
+import { useTranslations } from '@/i18n.ts';
 import logo from '@/assets/images/logo.png';
 import LanguageSelector from '@/components/LanguageSelector.astro';
 
 const { t, translatePath } = useTranslations(Astro.currentLocale);
-
-const localePrefixPattern = new RegExp(
-  `^/(?:${configuration.locales.join('|')})(?=/|$)`,
-);
-const currentPath = Astro.url.pathname || '/';
-const unlocalizedPath =
-  (currentPath.replace(localePrefixPattern, '') || '/').replace(/\/+$/, '') ||
-  '/';
-const canonicalPath = unlocalizedPath === '/' ? '/' : `${unlocalizedPath}/`;
-
-const localeLinks = configuration.locales.map((locale) => ({
-  locale,
-  link: getRelativeLocaleUrl(locale, canonicalPath),
-  label: useTranslations(locale).t(`locales.${locale}`),
-}));
 
 const menuItems = [
   { name: t('menu.items.workshops'), url: translatePath('/workshops') },
@@ -95,29 +79,7 @@ const menuItems = [
         ))
       }
       <div class="py-2">
-        <div class="mb-2 flex items-center gap-2 text-sm">
-          <span class="inline-flex h-4 w-4 items-center justify-center">
-            <Fragment set:html={icon(faLanguage).html} />
-          </span>
-          <span>{t('locales.' + Astro.currentLocale)}</span>
-        </div>
-        <div class="flex flex-wrap gap-2">
-          {
-            localeLinks.map(({ locale, link, label }) => (
-              <a
-                href={link}
-                class:list={[
-                  'rounded-md border px-2 py-1 text-sm',
-                  Astro.currentLocale === locale ?
-                    'bg-accent-dark border-accent-dark text-white'
-                  : 'border-dark/40',
-                ]}
-              >
-                {label}
-              </a>
-            ))
-          }
-        </div>
+        <LanguageSelector variant="inline" />
       </div>
       <div>
         <a
