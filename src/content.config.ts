@@ -34,7 +34,8 @@ const socials = defineCollection({
 // Workshop content
 const workshops = defineCollection({
   loader: glob({
-    pattern: '*/*/[^_]*.{md,mdx}',
+    // Support both legacy (`<slug>/index.md`) and localized (`<locale>/<slug>/index.md`) layouts
+    pattern: '{*/[^_]*.{md,mdx},*/*/[^_]*.{md,mdx}}',
     base: 'src/content/workshops',
   }),
   schema: z.object({
