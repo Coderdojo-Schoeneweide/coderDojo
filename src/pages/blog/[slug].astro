@@ -61,7 +61,7 @@ const formatDate = (date: Date, currentLocale: string) => {
   const localeTagByLocale: Record<string, string> = {
     de: 'de-DE',
     en: 'en-US',
-    sa: 'ar-SA',
+    ar: 'ar-AR',
   };
 
   return date.toLocaleDateString(localeTagByLocale[currentLocale] ?? 'de-DE', {

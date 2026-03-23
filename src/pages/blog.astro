@@ -61,7 +61,7 @@ const postsData = posts.map((post) => {
 
 <Layout
   title={t('blog.overview.title')}
-  description={t('blog.overview.description')}
+  description={t('blog.overview.description').replace('{{title}}', t('title'))}
 >
   <Hero
     hero={{
@@ -70,7 +70,7 @@ const postsData = posts.map((post) => {
     }}
   >
     <p>
-      {t('blog.overview.description')}
+      {t('blog.overview.description').replace('{{title}}', t('title'))}
     </p>
   </Hero>
 

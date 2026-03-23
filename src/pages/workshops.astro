@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import WorkshopGridIsland from '../components/islands/WorkshopGridIsland.jsx';
 import { getCollection, render } from 'astro:content';
+import { useTranslations } from '@/i18n.ts';
 import {
   findLocalizedEntryById,
   getBaseContentId,
@@ -11,6 +12,7 @@ import {
 } from '@/utils/contentLocalization.ts';
 
 const locale = resolveLocale(Astro.currentLocale);
+const { t } = useTranslations(Astro.currentLocale);
 
 const pages = await getCollection('pages');
 const workshopsPageEntry = findLocalizedEntryById(pages, 'workshops', locale);
@@ -71,7 +73,7 @@ const workshopsData = workshops.map((workshop: any) => ({
   age: workshop.data.age,
   tags: workshop.data.tags,
   image: `/workshops/${getBaseContentId(workshop.id)}/${workshop.data.image}`,
-  prevKnowledge: workshop.data.prevKnowledge || 'Nicht angegeben',
+  prevKnowledge: workshop.data.prevKnowledge || t('workshops.prevKnowledge'),
   content: workshop.body, // Markdown content
   folder: getBaseContentId(workshop.id), // For the modal system
 }));
@@ -79,7 +81,7 @@ const workshopsData = workshops.map((workshop: any) => ({
 
 <Layout
   title={workshopsPageFrontmatter.title}
-  description="Entdecke unsere kostenlosen IT-Workshops für Kinder und Jugendliche. Von Scratch bis Python - hier lernst du spielerisch programmieren!"
+  description={t('workshops.overview.description')}
 >
   <Hero
     hero={{
