@@ -11,7 +11,7 @@ const localeAliases: Record<Locale, string[]> = {
 const allLocalePrefixes = [...new Set(Object.values(localeAliases).flat())];
 
 const localePrefixPattern = new RegExp(
-    `^(?:${allLocalePrefixes.join('|')})(?=/)`,
+    `^(?:${allLocalePrefixes.join('|')})(?:/|$)`,
 );
 
 function getLocaleFromPrefix(prefix: string): Locale {
@@ -52,7 +52,7 @@ export function getBaseContentId(id: string): string {
         baseId = baseId.slice(0, -('/index'.length));
     }
 
-    return baseId;
+    return baseId || 'index';
 }
 
 export function getRouteSlug(id: string): string {

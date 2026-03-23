@@ -2,8 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import WorkshopGridIsland from '../components/islands/WorkshopGridIsland.jsx';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import {
+  findLocalizedEntryById,
   getBaseContentId,
   resolveLocale,
   selectLocalizedEntries,
@@ -11,23 +12,15 @@ import {
 
 const locale = resolveLocale(Astro.currentLocale);
 
-const workshopsPageEntries = import.meta.glob<{
-  frontmatter: { title: string; background?: 'light' | 'dark' | 'accent' };
-  Content: any;
-}>('../content/workshops/**/index.md');
-const workshopsContentLocale = locale === 'sa' ? 'ar' : locale;
-const workshopsPagePathCandidates = [
-  `../content/workshops/${workshopsContentLocale}/index.md`,
-  '../content/workshops/de/index.md',
-  '../content/workshops/index.md',
-];
-const workshopsPagePath =
-  workshopsPagePathCandidates.find((path) => path in workshopsPageEntries) ??
-  '../content/workshops/de/index.md';
-const loadWorkshopsPageModule = workshopsPageEntries[workshopsPagePath];
-const workshopsPageModule = await loadWorkshopsPageModule();
-const workshopsPageFrontmatter = workshopsPageModule.frontmatter;
-const WorkshopsPageContent = workshopsPageModule.Content;
+const pages = await getCollection('pages');
+const workshopsPageEntry = findLocalizedEntryById(pages, 'workshops', locale);
+
+if (!workshopsPageEntry) {
+  throw new Error('Missing workshops page content entry.');
+}
+
+const workshopsPageFrontmatter = workshopsPageEntry.data;
+const { Content: WorkshopsPageContent } = await render(workshopsPageEntry);
 
 // Get all workshops and keep locale-specific variants with fallback.
 const allWorkshops = await getCollection('workshops');
