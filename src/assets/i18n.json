@@ -18,7 +18,7 @@
     "locales": {
       "de": "Deutsch",
       "en": "Englisch",
-      "sa": "Arabisch"
+      "ar": "Arabisch"
     },
     "footer": {
       "socials": "Wir im Netz",
@@ -37,7 +37,7 @@
     "blog": {
       "overview": {
         "title": "Blog",
-        "description": "Neuigkeiten, Erfahrungsberichte und Ankündigungen aus dem CoderDojo Schöneweide."
+        "description": "Neuigkeiten, Erfahrungsberichte und Ankündigungen aus dem {{title}}."
       },
       "back": "Zurück zum Blog",
       "by": "Von",
@@ -63,7 +63,7 @@
     "locales": {
       "de": "German",
       "en": "English",
-      "sa": "Arabic"
+      "ar": "Arabic"
     },
     "footer": {
       "socials": "Social links",
@@ -89,7 +89,7 @@
       "all-posts": "View all posts"
     }
   },
-  "sa": {
+  "ar": {
     "title": "CoderDojo Schöneweide",
     "subtitle": "ورشات تقنية ملهمة للأطفال واليافعين",
     "menu": {
@@ -108,7 +108,7 @@
     "locales": {
       "de": "الألمانية",
       "en": "إنجليزي",
-      "sa": "العربية"
+      "ar": "العربية"
     },
     "footer": {
       "socials": "روابطنا",

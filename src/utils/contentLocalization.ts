@@ -5,7 +5,7 @@ type EntryWithId = { id: string;[key: string]: any };
 const localeAliases: Record<Locale, string[]> = {
     de: ['de'],
     en: ['en'],
-    sa: ['sa', 'ar'],
+    ar: ['ar'],
 };
 
 const allLocalePrefixes = [...new Set(Object.values(localeAliases).flat())];

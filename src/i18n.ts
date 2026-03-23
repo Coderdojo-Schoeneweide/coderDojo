@@ -12,7 +12,7 @@ export const configuration: Configuration = {
   defaultLocale: 'de' as const,
   fallback: {
     en: 'de',
-    sa: 'de',
+    ar: 'de',
   } as const,
 };
 
