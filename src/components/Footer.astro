@@ -1,11 +1,20 @@
 ---
 import { useTranslations } from '@/i18n.ts';
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 
 const { t, translatePath } = useTranslations(Astro.currentLocale);
-const socials = (await getCollection('socials'))
-  .sort((a, b) => a.data.order - b.data.order)
-  .map((social) => ({
+type SocialLink = {
+  label: string;
+  url: string;
+};
+
+const socials: SocialLink[] = (await getCollection('socials'))
+  .sort(
+    (a: CollectionEntry<'socials'>, b: CollectionEntry<'socials'>) =>
+      a.data.order - b.data.order,
+  )
+  .map((social: CollectionEntry<'socials'>) => ({
     label: social.data.label,
     url: social.data.url,
   }));
