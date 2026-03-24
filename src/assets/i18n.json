@@ -18,23 +18,49 @@
     "locales": {
       "de": "Deutsch",
       "en": "Englisch",
-      "sa": "Arabisch"
+      "ar": "Arabisch"
     },
     "footer": {
-      "socials": "Wir im Netz"
+      "socials": "Wir im Netz",
+      "made-with": "Gemacht mit ❤️ vom {{title}} Team"
+    },
+    "common": {
+      "buy-ticket-aria": "Ticket kaufen",
+      "toggle-mobile-menu": "Mobiles Menü umschalten"
     },
     "homepage": {
       "title": {
         "buy-ticket": "Ticket kaufen",
         "donate": "Spenden"
       }
+    },
+    "blog": {
+      "overview": {
+        "title": "Blog",
+        "description": "Neuigkeiten, Erfahrungsberichte und Ankündigungen aus dem {{title}}."
+      },
+      "back": "Zurück zum Blog",
+      "by": "Von",
+      "all-posts": "Alle Beiträge anzeigen"
+    },
+    "workshops": {
+      "overview": {
+        "description": "Entdecke unsere vielfältigen IT-Workshops für Kinder und Jugendliche. Von Programmierung über 3D-Design bis hin zu Künstlicher Intelligenz - hier ist für jeden etwas dabei!"
+      },
+      "prevKnowledge": "Nicht angegeben"
     }
   },
   "en": {
+    "title": "CoderDojo Schöneweide",
     "subtitle": "Inspiring IT workshops for children and youth",
     "menu": {
       "items": {
+        "home": "Home",
+        "workshops": "Workshops",
+        "mentoring": "Mentoring",
         "society": "Society",
+        "blog": "Blog",
+        "newsletter": "Newsletter",
         "imprint": "Imprint",
         "privacy-policy": "Privacy Policy",
         "collaborations": "Collaborations"
@@ -43,23 +69,81 @@
     "locales": {
       "de": "German",
       "en": "English",
-      "sa": "Arabic"
+      "ar": "Arabic"
     },
     "footer": {
-      "socials": "Social links"
+      "socials": "Social links",
+      "made-with": "Made with ❤️ by the {{title}} Team"
+    },
+    "common": {
+      "buy-ticket-aria": "Buy ticket",
+      "toggle-mobile-menu": "Toggle mobile menu"
     },
     "homepage": {
       "title": {
         "buy-ticket": "Buy a ticket",
         "donate": "Donate"
       }
+    },
+    "blog": {
+      "overview": {
+        "title": "Blog",
+        "description": "News, experience reports, and announcements from CoderDojo Schöneweide."
+      },
+      "back": "Back to blog",
+      "by": "By",
+      "all-posts": "View all posts"
+    },
+    "workshops": {
+      "overview": {
+        "description": "Discover our diverse IT workshops for children and youth. From programming to 3D design to artificial intelligence - there's something for everyone!"
+      },
+      "prevKnowledge": "Not specified"
     }
   },
-  "sa": {
+  "ar": {
+    "title": "CoderDojo Schöneweide",
+    "subtitle": "ورشات تقنية ملهمة للأطفال واليافعين",
+    "menu": {
+      "items": {
+        "home": "الرئيسية",
+        "workshops": "ورش العمل",
+        "mentoring": "الإرشاد",
+        "society": "الجمعية",
+        "blog": "المدونة",
+        "newsletter": "النشرة البريدية",
+        "imprint": "بيانات النشر",
+        "privacy-policy": "سياسة الخصوصية",
+        "collaborations": "التعاونات"
+      }
+    },
     "locales": {
       "de": "الألمانية",
       "en": "إنجليزي",
-      "sa": "العربية"
+      "ar": "العربية"
+    },
+    "footer": {
+      "socials": "روابطنا",
+      "made-with": "صُنع بـ ❤️ بواسطة فريق {{title}}"
+    },
+    "common": {
+      "buy-ticket-aria": "شراء تذكرة",
+      "toggle-mobile-menu": "تبديل القائمة على الهاتف"
+    },
+    "blog": {
+      "overview": {
+        "title": "المدونة",
+        "description": "أخبار وتجارب وإعلانات من CoderDojo Schöneweide."
+      },
+      "back": "العودة إلى المدونة",
+      "by": "بقلم",
+      "all-posts": "عرض جميع المقالات"
+    },
+    "workshops": {
+      "overview": {
+        "description": "اكتشف ورشنا المتنوعة حول تكنولوجيا المعلومات للأطفال والشباب. من البرمجة إلى التصميم ثلاثي الأبعاد إلى الذكاء الاصطناعي - هناك شيء للجميع!"
+      },
+      "prevKnowledge": "غير محدد"
     }
   }
 }

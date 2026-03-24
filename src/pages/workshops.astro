@@ -2,11 +2,61 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import WorkshopGridIsland from '../components/islands/WorkshopGridIsland.jsx';
-import { getCollection } from 'astro:content';
-import { Content, frontmatter } from '../content/workshops/index.md';
+import { getCollection, render } from 'astro:content';
+import { useTranslations } from '@/i18n.ts';
+import {
+  findLocalizedEntryById,
+  getBaseContentId,
+  resolveLocale,
+  selectLocalizedEntries,
+} from '@/utils/contentLocalization.ts';
 
-// Get all workshops and sort by weight and title
-const workshops = await getCollection('workshops');
+const locale = resolveLocale(Astro.currentLocale);
+const { t } = useTranslations(Astro.currentLocale);
+
+const pages = await getCollection('pages');
+const workshopsPageEntry = findLocalizedEntryById(pages, 'workshops', locale);
+
+if (!workshopsPageEntry) {
+  throw new Error('Missing workshops page content entry.');
+}
+
+const workshopsPageFrontmatter = workshopsPageEntry.data;
+const { Content: WorkshopsPageContent } = await render(workshopsPageEntry);
+
+// Get all workshops and keep locale-specific variants with fallback.
+const allWorkshops = await getCollection('workshops');
+
+const hasCompleteWorkshopData = (workshop: any) => {
+  return (
+    typeof workshop.data.duration === 'string' &&
+    typeof workshop.data.age === 'string' &&
+    Array.isArray(workshop.data.tags) &&
+    workshop.data.tags.length > 0 &&
+    typeof workshop.data.image === 'string'
+  );
+};
+
+const extractPreview = (body: string, maxLength = 180): string => {
+  const text = body
+    .replace(/!\[.*?\]\(.*?\)/g, '')
+    .replace(/\[([^\]]*)\]\(.*?\)/g, '$1')
+    .replace(/#{1,6}\s+/g, '')
+    .replace(/[*_~`>]/g, '')
+    .replace(/\n+/g, ' ')
+    .trim();
+
+  if (!text) {
+    return '';
+  }
+
+  return text.length > maxLength ? `${text.slice(0, maxLength)}…` : text;
+};
+
+const workshops = selectLocalizedEntries(
+  allWorkshops.filter(hasCompleteWorkshopData),
+  locale,
+);
 workshops.sort((a: any, b: any) => {
   const weightA = a.data.weight ?? Number.POSITIVE_INFINITY;
   const weightB = b.data.weight ?? Number.POSITIVE_INFINITY;
@@ -16,30 +66,33 @@ workshops.sort((a: any, b: any) => {
 
 // Transform workshops data for the island component
 const workshopsData = workshops.map((workshop: any) => ({
-  id: workshop.id,
+  id: getBaseContentId(workshop.id),
   title: workshop.data.title,
-  description: workshop.data.description,
+  description: workshop.data.description || extractPreview(workshop.body || ''),
   duration: workshop.data.duration,
   age: workshop.data.age,
   tags: workshop.data.tags,
-  image: `/workshops/${workshop.id}/${workshop.data.image}`,
-  prevKnowledge: workshop.data.prevKnowledge || 'Nicht angegeben',
+  image: `/workshops/${getBaseContentId(workshop.id)}/${workshop.data.image}`,
+  prevKnowledge: workshop.data.prevKnowledge || t('workshops.prevKnowledge'),
   content: workshop.body, // Markdown content
-  folder: workshop.id, // For the modal system
+  folder: getBaseContentId(workshop.id), // For the modal system
 }));
 ---
 
 <Layout
-  title={frontmatter.title}
-  description="Entdecke unsere kostenlosen IT-Workshops für Kinder und Jugendliche. Von Scratch bis Python - hier lernst du spielerisch programmieren!"
+  title={workshopsPageFrontmatter.title}
+  description={t('workshops.overview.description')}
 >
   <Hero
     hero={{
-      title: frontmatter.title,
-      background: frontmatter.background,
+      title: workshopsPageFrontmatter.title,
+      background: (workshopsPageFrontmatter.background || 'light') as
+        | 'light'
+        | 'dark'
+        | 'accent',
     }}
   >
-    <Content />
+    <WorkshopsPageContent />
   </Hero>
 
   <!-- Workshop Grid Section -->

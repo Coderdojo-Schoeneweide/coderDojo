@@ -116,7 +116,4 @@
         @apply flex gap-5 my-5;
     }
 
-    a[href]:where([href^="mailto:"], [href^="http:"], [href^="https:"]:not([href^="//"]), [href*="//coderdojo-schoeneweide.de"]):not(:has(button, svg))::after {
-        content: ' ↗';
-    }
 }

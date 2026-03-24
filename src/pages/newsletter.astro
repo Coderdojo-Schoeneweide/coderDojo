@@ -2,9 +2,16 @@
 // Newsletter Page - Content-driven from Markdown
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-import { getEntry, render } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import { findLocalizedEntryById } from '@/utils/contentLocalization.ts';
 
-const page = await getEntry('pages', 'newsletter');
+const pages = await getCollection('pages');
+const page = findLocalizedEntryById(pages, 'newsletter', Astro.currentLocale);
+
+if (!page) {
+  throw new Error('Missing page content: newsletter');
+}
+
 const { Content } = await render(page);
 const form = page.data.form!;
 ---
