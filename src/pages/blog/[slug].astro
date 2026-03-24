@@ -36,7 +36,8 @@ export async function getStaticPaths() {
     })
     .flatMap(({ slug, baseId }) => {
       const canonicalSlug = toAsciiSlug(slug);
-      const slugs = canonicalSlug === slug ? [canonicalSlug] : [canonicalSlug, slug];
+      const slugs =
+        canonicalSlug === slug ? [canonicalSlug] : [canonicalSlug, slug];
 
       return slugs.map((routeSlug) => ({
         params: { slug: routeSlug },
