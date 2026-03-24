@@ -8,6 +8,7 @@ import {
   getBaseContentId,
   getRouteSlug,
   resolveLocale,
+  toAsciiSlug,
 } from '@/utils/contentLocalization.ts';
 
 export async function getStaticPaths() {
@@ -33,10 +34,15 @@ export async function getStaticPaths() {
       seenBaseIds.add(baseId);
       return true;
     })
-    .map(({ slug, baseId }) => ({
-      params: { slug },
-      props: { baseId },
-    }));
+    .flatMap(({ slug, baseId }) => {
+      const canonicalSlug = toAsciiSlug(slug);
+      const slugs = canonicalSlug === slug ? [canonicalSlug] : [canonicalSlug, slug];
+
+      return slugs.map((routeSlug) => ({
+        params: { slug: routeSlug },
+        props: { baseId },
+      }));
+    });
 }
 
 const locale = resolveLocale(Astro.currentLocale);

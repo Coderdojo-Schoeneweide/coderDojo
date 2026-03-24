@@ -84,6 +84,32 @@ export function getRouteSlug(id: string): string {
     return (segments.at(-1) ?? baseId) || 'index';
 }
 
+// Normalizes slugs to ASCII-safe paths for static hosts/CDNs that may not
+// reliably serve UTF-8 directory names.
+export function toAsciiSlug(slug: string): string {
+    const germanCharMap: Record<string, string> = {
+        ä: 'ae',
+        ö: 'oe',
+        ü: 'ue',
+        Ä: 'ae',
+        Ö: 'oe',
+        Ü: 'ue',
+        ß: 'ss',
+    };
+
+    const replaced = slug.replace(/[äöüÄÖÜß]/g, (char) => germanCharMap[char] ?? char);
+
+    const normalized = replaced
+        .normalize('NFKD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9-]+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+
+    return normalized || 'index';
+}
+
 // Selects one best-matching localized entry per base ID.
 // Scoring strategy:
 // - 3: exact requested locale

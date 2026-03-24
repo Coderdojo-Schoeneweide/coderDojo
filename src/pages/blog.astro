@@ -9,6 +9,7 @@ import {
   getRouteSlug,
   resolveLocale,
   selectLocalizedEntries,
+  toAsciiSlug,
 } from '@/utils/contentLocalization.ts';
 
 const { t, translatePath } = useTranslations(Astro.currentLocale);
@@ -47,7 +48,7 @@ const postsData = posts.map((post) => {
   const preview = post.data.description || extractPreview(post.body || '');
   return {
     id: post.id,
-    slug: post.slug || getRouteSlug(post.id),
+    slug: toAsciiSlug(post.slug || getRouteSlug(post.id)),
     title: post.data.title,
     description: preview,
     date: post.data.date.toISOString(),
