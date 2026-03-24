@@ -47,7 +47,7 @@ const postsData = posts.map((post) => {
   const preview = post.data.description || extractPreview(post.body || '');
   return {
     id: post.id,
-    slug: getRouteSlug(post.id),
+    slug: post.slug || getRouteSlug(post.id),
     title: post.data.title,
     description: preview,
     date: post.data.date.toISOString(),
