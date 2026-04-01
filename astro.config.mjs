@@ -10,6 +10,8 @@ import { configuration as i18nConfig } from './src/i18n.ts';
 
 import robots from 'astro-robots';
 
+const { fallback: _fallback, ...astroI18nConfig } = i18nConfig;
+
 export default defineConfig({
   site: `https://${process.env.STAGE === 'staging' ? 'staging.' : ''}coderdojo-schoeneweide.de`,
   base: '/',
@@ -36,9 +38,9 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   i18n: {
-    ...i18nConfig,
+    ...astroI18nConfig,
     routing: {
-      fallbackType: 'rewrite',
+      fallbackType: 'redirect',
     },
   },
 });

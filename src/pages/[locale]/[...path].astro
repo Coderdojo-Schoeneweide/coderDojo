@@ -1,0 +1,118 @@
+---
+import { configuration, type Locale } from '@/i18n.ts';
+import IndexPage from '../index.astro';
+import AccessibilityPage from '../accessibility.astro';
+import BlogIndexPage from '../blog.astro';
+import BlogPostPage, { getStaticPaths as getBlogStaticPaths } from '../blog/[slug].astro';
+import CollaborationsPage from '../collaborations.astro';
+import DatenschutzPage from '../datenschutz.astro';
+import DonatePage from '../donate.astro';
+import ImprintPage from '../imprint.astro';
+import MentoringPage from '../mentoring.astro';
+import NewsletterPage from '../newsletter.astro';
+import PrivacyPolicyPage from '../privacy-policy.md';
+import ReportsPage from '../reports.astro';
+import SocietyPage from '../society.astro';
+import VereinPage from '../verein.astro';
+import WorkshopsPage from '../workshops.astro';
+import NotFoundPage from '../404.astro';
+
+type RouteComponent = any;
+
+const supportedLocalizedLocales = configuration.locales.filter(
+  (locale) => locale !== configuration.defaultLocale,
+);
+
+const staticRouteMap: Record<string, RouteComponent> = {
+  '': IndexPage,
+  accessibility: AccessibilityPage,
+  collaborations: CollaborationsPage,
+  datenschutz: DatenschutzPage,
+  donate: DonatePage,
+  imprint: ImprintPage,
+  mentoring: MentoringPage,
+  newsletter: NewsletterPage,
+  'privacy-policy': PrivacyPolicyPage,
+  reports: ReportsPage,
+  society: SocietyPage,
+  verein: VereinPage,
+  workshops: WorkshopsPage,
+};
+
+export async function getStaticPaths() {
+  const localizedLocales = configuration.locales.filter(
+    (locale) => locale !== configuration.defaultLocale,
+  );
+  const staticPathsForLocalizedPages = [
+    '',
+    'accessibility',
+    'collaborations',
+    'datenschutz',
+    'donate',
+    'imprint',
+    'mentoring',
+    'newsletter',
+    'privacy-policy',
+    'reports',
+    'society',
+    'verein',
+    'workshops',
+  ];
+
+  const localizedPagePaths = localizedLocales.flatMap((locale) =>
+    staticPathsForLocalizedPages.map((path) => ({
+      params: {
+        locale,
+        path: path || undefined,
+      },
+    })),
+  );
+
+  const localizedBlogIndexPaths = localizedLocales.map((locale) => ({
+    params: {
+      locale,
+      path: 'blog',
+    },
+  }));
+
+  const blogPostPaths = await getBlogStaticPaths();
+  const localizedBlogPostPaths = localizedLocales.flatMap((locale) =>
+    blogPostPaths.map((blogPath) => ({
+      params: {
+        locale,
+        path: `blog/${blogPath.params.slug}`,
+      },
+      props: blogPath.props,
+    })),
+  );
+
+  return [
+    ...localizedPagePaths,
+    ...localizedBlogIndexPaths,
+    ...localizedBlogPostPaths,
+  ];
+}
+
+const localeParam = Astro.params.locale as Locale | undefined;
+if (!localeParam || !supportedLocalizedLocales.includes(localeParam)) {
+  throw new Error(`Unsupported locale route: ${localeParam}`);
+}
+
+const normalizedPath = (Astro.params.path ?? '').replace(/^\/+|\/+$/g, '');
+const isBlogIndex = normalizedPath === 'blog';
+const isBlogPost = normalizedPath.startsWith('blog/');
+
+const RoutePage = staticRouteMap[normalizedPath] ?? NotFoundPage;
+---
+
+{
+  isBlogIndex && <BlogIndexPage />
+}
+
+{
+  isBlogPost && <BlogPostPage {...Astro.props} />
+}
+
+{
+  !isBlogIndex && !isBlogPost && <RoutePage />
+}
