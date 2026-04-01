@@ -1,0 +1,26 @@
+---
+// Accessibility Page - Content-driven from Markdown
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import { getCollection, render } from 'astro:content';
+import { findLocalizedEntryById } from '@/utils/contentLocalization.ts';
+
+const pages = await getCollection('pages');
+const page = findLocalizedEntryById(
+    pages,
+    'accessibility',
+    Astro.currentLocale,
+);
+
+if (!page) {
+    throw new Error('Missing page content: accessibility');
+}
+
+const { Content } = await render(page);
+---
+
+<Layout title={page.data.title}>
+    <Hero hero={page.data}>
+        <Content />
+    </Hero>
+</Layout>

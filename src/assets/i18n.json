@@ -12,6 +12,7 @@
         "newsletter": "Newsletter",
         "imprint": "Impressum",
         "privacy-policy": "Datenschutzerklärung",
+        "accessibility": "Barrierefreiheit",
         "collaborations": "Kooperationen"
       }
     },
@@ -63,6 +64,7 @@
         "newsletter": "Newsletter",
         "imprint": "Imprint",
         "privacy-policy": "Privacy Policy",
+        "accessibility": "Accessibility",
         "collaborations": "Collaborations"
       }
     },
@@ -114,6 +116,7 @@
         "newsletter": "النشرة البريدية",
         "imprint": "بيانات النشر",
         "privacy-policy": "سياسة الخصوصية",
+        "accessibility": "إمكانية الوصول",
         "collaborations": "التعاونات"
       }
     },
