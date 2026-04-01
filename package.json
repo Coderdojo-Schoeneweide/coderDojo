@@ -6,6 +6,16 @@
   "license": "MIT",
   "type": "module",
   "packageManager": "yarn@1.22.22",
+  "resolutions": {
+    "picomatch": "^4.0.4",
+    "anymatch/picomatch": "^2.3.2"
+  },
+  "overrides": {
+    "picomatch": "^4.0.4",
+    "anymatch": {
+      "picomatch": "^2.3.2"
+    }
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -14,15 +24,14 @@
     "format": "prettier --config prettier.config.ts -w ./src"
   },
   "dependencies": {
-    "@astrojs/check": "0.9.6",
-    "@astrojs/mdx": "^4.2.1",
-    "@astrojs/react": "4.2.1",
-    "@astrojs/sitemap": "3.3.0",
+    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/react": "^5.0.2",
+    "@astrojs/sitemap": "^3.7.2",
     "@fontsource-variable/open-sans": "^5.2.7",
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
     "@fortawesome/free-brands-svg-icons": "^7.1.0",
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
-    "astro": "^5.16.2",
+    "astro": "^6.1.2",
     "astro-font": "^1.0.0",
     "astro-robots": "^2.3.1",
     "date-fns": "^4.1.0",
@@ -37,6 +46,7 @@
     "remark-toc": "^9.0.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.8",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.16",
