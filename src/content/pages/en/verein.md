@@ -12,6 +12,9 @@ buttons:
     url: /satzung.pdf
     style: outline
     external: true
+  - label: Annual Reports
+    url: ../jahresberichte/
+    style: outline
 ---
 
 CoderDojo Schöneweide is a registered non-profit association.

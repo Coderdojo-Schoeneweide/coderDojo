@@ -12,6 +12,9 @@ buttons:
     url: /satzung.pdf
     style: outline
     external: true
+  - label: التقرير السنوي
+    url: ../jahresberichte/
+    style: outline
 ---
 
 CoderDojo Schöneweide جمعية مسجلة وغير ربحية.
