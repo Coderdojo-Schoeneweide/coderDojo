@@ -5,11 +5,7 @@
   "author": "zeon.studio",
   "license": "MIT",
   "type": "module",
-  "packageManager": "yarn@1.22.22",
-  "resolutions": {
-    "picomatch": "^4.0.4",
-    "anymatch/picomatch": "^2.3.2"
-  },
+  "packageManager": "npm@10",
   "overrides": {
     "picomatch": "^4.0.4",
     "anymatch": {
