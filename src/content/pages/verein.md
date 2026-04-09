@@ -12,6 +12,9 @@ buttons:
     url: /satzung.pdf
     style: outline
     external: true
+  - label: Jahresberichte
+    url: ../jahresberichte/
+    style: outline
 ---
 
 Das CoderDojo Schöneweide ist ein eingetragener, gemeinnütziger Verein.
