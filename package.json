@@ -10,7 +10,8 @@
     "picomatch": "^4.0.4",
     "anymatch": {
       "picomatch": "^2.3.2"
-    }
+    },
+    "vite": "^7"
   },
   "scripts": {
     "dev": "astro dev",
