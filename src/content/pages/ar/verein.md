@@ -2,12 +2,12 @@
 title: الجمعية
 background: light
 buttons:
-  - label: كن عضوًا
-    url: ../mentoring/
-    style: primary
   - label: تبرع
     url: ../donate/
     style: secondary
+  - label: كن عضوًا
+    url: ../mentoring/
+    style: primary
   - label: النظام الأساسي
     url: /satzung.pdf
     style: outline
