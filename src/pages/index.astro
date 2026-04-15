@@ -176,10 +176,10 @@ function getSection(id: string) {
     getSection('society').map(({ id, title, buttons, Content }) => (
       <HomeSection id={id} title={title} colorScheme="dark">
         <Fragment slot="start">
-          <Content />
           <Button link={buttons.donate.url} icon={faPaypal} variant="brand">
             {buttons.donate.label}
           </Button>
+          <Content />
           <h3>Vereinsdokumente</h3>
           <div class="button-group">
             <Button link={buttons.constitution.url}>

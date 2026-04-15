@@ -7,7 +7,7 @@ tags:
   - htw
   - scratch
   - Abzeichen
-  - Coding im Dojo
+  - Freies Coden
 authors:
   - Marlón
 ---
@@ -15,7 +15,7 @@ authors:
 
 ![](/images/cms/abzeichen_im_dojo_research_badges_im_coderdojo_1.png "Abzeichen Forschung")
 
-لهذا اطلعت أولا على أبحاث حول "استخدام الشارات في التعليم". ولربط دراستي بـ CoderDojo الخاص بنا وبالأطفال، أدخلت أيضا خبرات من ورشة Coding im Dojo.
+لهذا اطلعت أولا على أبحاث حول "استخدام الشارات في التعليم". ولربط دراستي بـ CoderDojo الخاص بنا وبالأطفال، أدخلت أيضا خبرات من ورشة Freies Coden.
 وسرعان ما اتضح أن Scratch مناسبة كبيئة أولى للتفكير في تصميم الشارات. لذلك درست وظائف Scratch عن قرب لمعرفة كيف يمكن إدماج الشارات فيها. وكانت النتيجة في البداية شجرة وظائف ضخمة توضح ما الذي يمكن فعله باستخدام Scratch.
 
 ![Funktionsbaum von Scratch](/images/cms/abzeichen_im_dojo_research_badges_im_coderdojo_2.png)

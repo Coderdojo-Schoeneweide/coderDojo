@@ -26,6 +26,6 @@ Das beste an unserem Treffen: Alle haben die Chance zu sehen, woran andere arbei
 
 ![](/images/cms/coding_im_dojo_praesi.jpeg)
 
-Für die einen waren die zwei Stunden genau richtig, andere hätten gerne noch mehr Zeit gehabt. Gut, dass wir uns nächsten Monat wieder zum Coding im Dojo treffen können. :)
+Für die einen waren die zwei Stunden genau richtig, andere hätten gerne noch mehr Zeit gehabt. Gut, dass wir uns nächsten Monat wieder zum Freies Coden treffen können. :)
 
 ![](/images/cms/coding_im_dojo_schluss.jpeg)
