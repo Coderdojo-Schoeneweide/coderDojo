@@ -18,7 +18,7 @@ jobs:
   deploy:
     environment:
       name: production
-      url: https://coderdojo-schoeneweide.de/
+      url: https://${{ vars.CNAME }}/
     needs: build
     runs-on: ubuntu-latest
     name: Deploy
@@ -30,6 +30,11 @@ jobs:
 
       - name: Extract tar archive
         run: tar -xvf artifact.tar && rm artifact.tar
+
+      - name: Create CNAME entry for GitHub Pages
+        run: echo -n $CNAME > CNAME
+        env:
+          CNAME: ${{ vars.CNAME }}
 
       - name: Push to coderdojo-schoeneweide.github.io repository
         uses: peaceiris/actions-gh-pages@v4
