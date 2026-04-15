@@ -28,7 +28,8 @@ jobs:
         with:
           name: github-pages
 
-      - run: ls -la
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
 
       # - name: Push to coderdojo-schoeneweide.github.io repository
       #   uses: peaceiris/actions-gh-pages@v4
