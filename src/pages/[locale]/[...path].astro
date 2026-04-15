@@ -1,49 +1,51 @@
 ---
 import '@/styles/global.css';
 import { configuration, type Locale } from '@/i18n.ts';
-import IndexPage from '../index.astro';
-import AccessibilityPage from '../accessibility.astro';
-import BlogIndexPage from '../blog.astro';
-import BlogPostPage, {
-  getStaticPaths as getBlogStaticPaths,
-} from '../blog/[slug].astro';
-import CollaborationsPage from '../collaborations.astro';
-import DatenschutzPage from '../datenschutz.astro';
-import DonatePage from '../donate.astro';
-import ImprintPage from '../imprint.astro';
-import MentoringPage from '../mentoring.astro';
-import NewsletterPage from '../newsletter.astro';
-import PrivacyPolicyPage from '../privacy-policy.md';
-import JahresberichtePage from '../jahresberichte.astro';
-import SocietyPage from '../society.astro';
-import VereinPage from '../verein.astro';
-import WorkshopsPage from '../workshops.astro';
 import NotFoundPage from '../404.astro';
 
+// Dynamic component imports using glob
+const pages = import.meta.glob('../*.astro', { eager: true });
+const markdownPages = import.meta.glob('../*.md', { eager: true });
+const blogPages = import.meta.glob('../blog/*.astro', { eager: true });
+
 type RouteComponent = any;
+
+// Build route map from dynamic imports
+const createRouteMap = (): Record<string, RouteComponent> => {
+  const routeMap: Record<string, RouteComponent> = {
+    '': pages['../index.astro']?.default,
+    accessibility: pages['../accessibility.astro']?.default,
+    blog: pages['../blog.astro']?.default,
+    collaborations: pages['../collaborations.astro']?.default,
+    datenschutz: pages['../datenschutz.astro']?.default,
+    donate: pages['../donate.astro']?.default,
+    imprint: pages['../imprint.astro']?.default,
+    jahresberichte: pages['../jahresberichte.astro']?.default,
+    mentoring: pages['../mentoring.astro']?.default,
+    newsletter: pages['../newsletter.astro']?.default,
+    'privacy-policy': markdownPages['../privacy-policy.md']?.default,
+    reports: pages['../jahresberichte.astro']?.default,
+    society: pages['../society.astro']?.default,
+    verein: pages['../verein.astro']?.default,
+    workshops: pages['../workshops.astro']?.default,
+  };
+
+  return Object.fromEntries(
+    Object.entries(routeMap).filter(([_, value]) => value !== undefined),
+  );
+};
+
+const staticRouteMap = createRouteMap();
 
 const supportedLocalizedLocales = configuration.locales.filter(
   (locale) => locale !== configuration.defaultLocale,
 );
 
-const staticRouteMap: Record<string, RouteComponent> = {
-  '': IndexPage,
-  accessibility: AccessibilityPage,
-  collaborations: CollaborationsPage,
-  datenschutz: DatenschutzPage,
-  donate: DonatePage,
-  imprint: ImprintPage,
-  jahresberichte: JahresberichtePage,
-  mentoring: MentoringPage,
-  newsletter: NewsletterPage,
-  'privacy-policy': PrivacyPolicyPage,
-  reports: JahresberichtePage,
-  society: SocietyPage,
-  verein: VereinPage,
-  workshops: WorkshopsPage,
-};
-
 export async function getStaticPaths() {
+  // Dynamic blog import
+  const { getStaticPaths: getBlogStaticPaths } =
+    await import('../blog/[slug].astro');
+
   const localizedLocales = configuration.locales.filter(
     (locale) => locale !== configuration.defaultLocale,
   );
@@ -107,6 +109,8 @@ const normalizedPath = (Astro.params.path ?? '').replace(/^\/+|\/+$/g, '');
 const isBlogIndex = normalizedPath === 'blog';
 const isBlogPost = normalizedPath.startsWith('blog/');
 
+const BlogIndexPage = pages['../blog.astro']?.default;
+const BlogPostPage = blogPages['../blog/[slug].astro']?.default;
 const RoutePage = staticRouteMap[normalizedPath] ?? NotFoundPage;
 ---
 
