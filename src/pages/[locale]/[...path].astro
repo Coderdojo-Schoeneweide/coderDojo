@@ -14,23 +14,7 @@ import ImprintPage from '../imprint.astro';
 import MentoringPage from '../mentoring.astro';
 import NewsletterPage from '../newsletter.astro';
 import PrivacyPolicyPage from '../privacy-policy.md';
-import ReportsPage from '../reports.astro';
-import SocietyPage from '../society.astro';
-import VereinPage from '../verein.astro';
-import WorkshopsPage from '../workshops.astro';
-import NotFoundPage from '../404.astro';
-import BlogIndexPage from '../blog.astro';
-import BlogPostPage, {
-  getStaticPaths as getBlogStaticPaths,
-} from '../blog/[slug].astro';
-import CollaborationsPage from '../collaborations.astro';
-import DatenschutzPage from '../datenschutz.astro';
-import DonatePage from '../donate.astro';
-import ImprintPage from '../imprint.astro';
-import MentoringPage from '../mentoring.astro';
-import NewsletterPage from '../newsletter.astro';
-import PrivacyPolicyPage from '../privacy-policy.md';
-import ReportsPage from '../reports.astro';
+import JahresberichtePage from '../jahresberichte.astro';
 import SocietyPage from '../society.astro';
 import VereinPage from '../verein.astro';
 import WorkshopsPage from '../workshops.astro';
@@ -49,10 +33,11 @@ const staticRouteMap: Record<string, RouteComponent> = {
   datenschutz: DatenschutzPage,
   donate: DonatePage,
   imprint: ImprintPage,
+  jahresberichte: JahresberichtePage,
   mentoring: MentoringPage,
   newsletter: NewsletterPage,
   'privacy-policy': PrivacyPolicyPage,
-  reports: ReportsPage,
+  reports: JahresberichtePage,
   society: SocietyPage,
   verein: VereinPage,
   workshops: WorkshopsPage,
@@ -69,6 +54,7 @@ export async function getStaticPaths() {
     'datenschutz',
     'donate',
     'imprint',
+    'jahresberichte',
     'mentoring',
     'newsletter',
     'privacy-policy',
