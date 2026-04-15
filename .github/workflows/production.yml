@@ -28,6 +28,8 @@ jobs:
         with:
           name: github-pages
 
+      - name: Extract archive
+        run: tar -xvf artifact.tar && rm artifact.tar
       - run: ls -la
 
       # - name: Push to coderdojo-schoeneweide.github.io repository
