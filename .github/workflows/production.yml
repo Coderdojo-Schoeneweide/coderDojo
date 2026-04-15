@@ -28,8 +28,9 @@ jobs:
         with:
           name: github-pages
 
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+      - name: Extract tar archive
+        run: tar -xvf artifact.tar && rm artifact.tar
+      - run: ls -la
 
       # - name: Push to coderdojo-schoeneweide.github.io repository
       #   uses: peaceiris/actions-gh-pages@v4
