@@ -30,12 +30,11 @@ jobs:
 
       - name: Extract tar archive
         run: tar -xvf artifact.tar && rm artifact.tar
-      - run: ls -la
 
-      # - name: Push to coderdojo-schoeneweide.github.io repository
-      #   uses: peaceiris/actions-gh-pages@v4
-      #   with:
-      #     deploy_key: ${{ secrets.DEPLOY_KEY }}
-      #     external_repository: Coderdojo-Schoeneweide/coderdojo-schoeneweide.github.io
-      #     publish_branch: master
-      #     publish_dir: ./
+      - name: Push to coderdojo-schoeneweide.github.io repository
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          deploy_key: ${{ secrets.DEPLOY_KEY }}
+          external_repository: Coderdojo-Schoeneweide/coderdojo-schoeneweide.github.io
+          publish_branch: master
+          publish_dir: ./
