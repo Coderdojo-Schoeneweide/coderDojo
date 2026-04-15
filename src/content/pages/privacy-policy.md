@@ -1,8 +1,6 @@
 ---
 title: "Datenschutzerklärung"
-description: "Erfahre mehr über den Datenschutz beim CoderDojo Schöneweide. Hier findest du Informationen zur Erhebung, Nutzung und Sicherheit deiner Daten."
-keywords: [ "Datenschutz CoderDojo Schöneweide", "Datenschutzerklärung", "Datensicherheit", "personenbezogene Daten", "DSGVO", "Datenschutzrichtlinien", "Datenschutzbestimmungen", "Privatsphäre schützen" ]
-layout: "../layouts/SimplePage.astro"
+background: light
 ---
 
 In dieser Datenschutzerklärung (Stand: 26.07.2023) erläutern wir basierend auf der
@@ -63,8 +61,8 @@ Endgerät (Computer, Laptop, Smartphone, ...) gespeichert und es kommt zur Speic
 E-Mail-Server oder dem Server des Social Media Anbieters.
 
 **Zusammenfassung**  
-👥 Betroffene: Alle, die mit uns per Telefon, E-Mail, Matrix oder Social Media kommunizieren  
-📓 Verarbeitete Daten: Telefonnummer, Name, E-Mail-Adresse, Matrix-Benutzernamen, sonstige geteilte Daten
+👥 Betroffene: Alle, die mit uns per Telefon, E-Mail, Slack oder Social Media kommunizieren  
+📓 Verarbeitete Daten: Telefonnummer, Name, E-Mail-Adresse, Slack-Benutzernamen, sonstige geteilte Daten
 🤝 Zweck: Abwicklung der Kommunikation mit Kund:innen, Geschäftspartner:innen, Teammitgliedern usw.  
 📅 Speicherdauer: Dauer des Geschäftsfalls und der gesetzlichen Vorschriften  
 ⚖️ Rechtsgrundlagen: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung), Art. 6 Abs. 1 lit. b DSGVO (Vertrag), Art. 6 Abs. 1 lit.
@@ -130,8 +128,8 @@ Wenn Sie sich bei uns engagieren wollen, treten Sie unserem Team bei. Sie geben 
 Namen an (dieser soll eindeutig sein, muss aber nicht der vollständige Name/ Name laut Ausweis sein).
 Außerdem können Sie weitere personenbezogenen Angaben machen, die uns die Verwaltung der Teammitglieder erleichtert,
 z.B.  
-eine Telefonnummer, eine GMAIL-Adresse für den geteilten Kalender, den Matrix-Benutzernamen für die Kommunikation via
-Matrix,
+eine Telefonnummer, eine GMAIL-Adresse für den geteilten Kalender, den Slack-Benutzernamen für die Kommunikation via
+Slack,
 den Trello-Benutzernamen für das Projektmanagement, den GitHub-Benutzernamen, falls Zugriff zu GitHub gewünscht ist,
 den Canva-Benutzernamen, falls Zugriff zu Canva gewünscht ist, Facebook-Benutzername, falls Zugriff zur Facebook-Seite
 gewünscht ist.
