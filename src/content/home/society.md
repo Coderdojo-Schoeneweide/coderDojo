@@ -9,7 +9,7 @@ buttons:
     url: 'satzung.pdf'
   reports:
     label: Jahresberichte
-    url: './reports/'
+    url: './jahresberichte/'
 ---
 
 Das CoderDojo Schöneweide ist ein eingetragener, gemeinnütziger Verein.

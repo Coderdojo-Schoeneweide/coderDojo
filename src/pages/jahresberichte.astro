@@ -1,5 +1,5 @@
 ---
-// Jahresberichte Page - Content-driven from Markdown
+// Jahresberichte Page - German default locale  
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import { getCollection, render } from 'astro:content';
@@ -104,12 +104,3 @@ const { translatePath } = useTranslations(Astro.currentLocale);
         </div>
     </section>
 </Layout>
-
-<style>
-    .line-clamp-3 {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-</style>

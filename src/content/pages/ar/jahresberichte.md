@@ -8,19 +8,19 @@ reports:
     title: التقرير السنوي 2025
     description: أحدث تقرير سنوي لدينا مع جميع التطورات والمشاريع المهمة لعام 2025.
   - year: "2024"
-    filename: Jahresbericht2024_Revision01.pdf
+    filename: Jahresbericht_2024-Revision_01.pdf
     title: التقرير السنوي 2024 (المراجعة 01)
     description: نظرة عامة كاملة ومحدّثة على أنشطتنا وورشاتنا وإنجازاتنا في عام 2024.
   - year: "2024"
-    filename: Jahresbericht2024.pdf
+    filename: Jahresbericht_2024.pdf
     title: التقرير السنوي 2024
     description: نظرة عامة كاملة على أنشطتنا وورشاتنا وإنجازاتنا في عام 2024.
   - year: "2023"
-    filename: Jahresbericht2023.pdf
+    filename: Jahresbericht_2023.pdf
     title: التقرير السنوي 2023
     description: توثيق لتقدّمنا وإنجازاتنا في تعزيز التعليم الرقمي خلال عام 2023.
   - year: "2022"
-    filename: Jahresbericht2022.pdf
+    filename: Jahresbericht_2022.pdf
     title: التقرير السنوي 2022
     description: مراجعة لعام ناجح تضمن العديد من الورش الجديدة والتعاونات.
 ---

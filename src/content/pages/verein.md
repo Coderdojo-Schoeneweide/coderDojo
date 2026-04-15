@@ -2,12 +2,12 @@
 title: Verein
 background: light
 buttons:
-  - label: Mitglied werden
-    url: ../mentoring/
-    style: primary
   - label: Spenden
     url: ../donate/
     style: secondary
+  - label: Mitglied werden
+    url: ../mentoring/
+    style: primary
   - label: Satzung
     url: /satzung.pdf
     style: outline

@@ -8,19 +8,19 @@ reports:
     title: Annual Report 2025
     description: Our latest annual report with all key developments and projects from 2025.
   - year: "2024"
-    filename: Jahresbericht2024_Revision01.pdf
+    filename: Jahresbericht_2024-Revision_01.pdf
     title: Annual Report 2024 (Revision 01)
     description: Complete revised overview of our activities, workshops, and achievements in 2024.
   - year: "2024"
-    filename: Jahresbericht2024.pdf
+    filename: Jahresbericht_2024.pdf
     title: Annual Report 2024
     description: Complete overview of our activities, workshops, and achievements in 2024.
   - year: "2023"
-    filename: Jahresbericht2023.pdf
+    filename: Jahresbericht_2023.pdf
     title: Annual Report 2023
     description: Documentation of our progress and achievements in promoting digital education in 2023.
   - year: "2022"
-    filename: Jahresbericht2022.pdf
+    filename: Jahresbericht_2022.pdf
     title: Annual Report 2022
     description: Review of a successful year with many new workshops and collaborations.
 ---

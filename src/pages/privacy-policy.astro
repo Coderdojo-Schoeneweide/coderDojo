@@ -1,22 +1,26 @@
 ---
-// Verein Page - Content-driven
+// Privacy Policy Page - Content-driven from Markdown
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import { getCollection, render } from 'astro:content';
 import { findLocalizedEntryById } from '@/utils/contentLocalization.ts';
 
 const pages = await getCollection('pages');
-const page = findLocalizedEntryById(pages, 'verein', Astro.currentLocale);
+const page = findLocalizedEntryById(
+    pages,
+    'privacy-policy',
+    Astro.currentLocale,
+);
 
 if (!page) {
-  throw new Error('Missing page content: verein');
+    throw new Error('Missing page content: privacy-policy');
 }
 
 const { Content } = await render(page);
 ---
 
-<Layout title="Verein">
-  <Hero hero={page.data}>
-    <Content />
-  </Hero>
+<Layout title={page.data.title}>
+    <Hero hero={page.data}>
+        <Content />
+    </Hero>
 </Layout>

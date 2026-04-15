@@ -16,7 +16,9 @@ const { Content } = await render(page);
 ---
 
 <Layout title={page.data.title}>
-  <Hero hero={page.data}>
-    <Content />
-  </Hero>
+  <div class="mentoring-page">
+    <Hero hero={page.data}>
+      <Content />
+    </Hero>
+  </div>
 </Layout>

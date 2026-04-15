@@ -2,12 +2,12 @@
 title: Society
 background: light
 buttons:
-  - label: Become a member
-    url: ../mentoring/
-    style: primary
   - label: Donate
     url: ../donate/
     style: secondary
+  - label: Become a member
+    url: ../mentoring/
+    style: primary
   - label: Statutes
     url: /satzung.pdf
     style: outline

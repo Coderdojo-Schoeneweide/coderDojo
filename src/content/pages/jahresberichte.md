@@ -8,19 +8,19 @@ reports:
     title: Jahresbericht 2025
     description: Unser aktueller Jahresbericht mit allen wichtigen Entwicklungen und Projekten des Jahres 2025.
   - year: "2024"
-    filename: Jahresbericht2024_Revision01.pdf
+    filename: Jahresbericht_2024-Revision_01.pdf
     title: Jahresbericht 2024 (Revision 01)
     description: Vollständiger, revidierter Überblick über unsere Aktivitäten, Workshops und Erfolge im Jahr 2024.
   - year: "2024"
-    filename: Jahresbericht2024.pdf
+    filename: Jahresbericht_2024.pdf
     title: Jahresbericht 2024
     description: Vollständiger Überblick über unsere Aktivitäten, Workshops und Erfolge im Jahr 2024.
   - year: "2023"
-    filename: Jahresbericht2023.pdf
+    filename: Jahresbericht_2023.pdf
     title: Jahresbericht 2023
     description: Dokumentation unserer Fortschritte und Erfolge bei der Förderung digitaler Bildung im Jahr 2023.
   - year: "2022"
-    filename: Jahresbericht2022.pdf
+    filename: Jahresbericht_2022.pdf
     title: Jahresbericht 2022
     description: Rückblick auf ein erfolgreiches Jahr mit vielen neuen Workshops und Kooperationen.
 ---

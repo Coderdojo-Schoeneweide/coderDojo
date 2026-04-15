@@ -26,12 +26,12 @@
       "made-with": "Gemacht mit ❤️ vom {{title}} Team"
     },
     "common": {
-      "buy-ticket-aria": "Ticket kaufen",
+      "buy-ticket-aria": "Tickets buchen",
       "toggle-mobile-menu": "Mobiles Menü umschalten"
     },
     "homepage": {
       "title": {
-        "buy-ticket": "Ticket kaufen",
+        "buy-ticket": "Tickets buchen",
         "donate": "Spenden"
       }
     },
@@ -78,12 +78,12 @@
       "made-with": "Made with ❤️ by the {{title}} Team"
     },
     "common": {
-      "buy-ticket-aria": "Buy ticket",
+      "buy-ticket-aria": "Book a ticket",
       "toggle-mobile-menu": "Toggle mobile menu"
     },
     "homepage": {
       "title": {
-        "buy-ticket": "Buy a ticket",
+        "buy-ticket": "Book a ticket",
         "donate": "Donate"
       }
     },
@@ -130,7 +130,7 @@
       "made-with": "صُنع بـ ❤️ بواسطة فريق {{title}}"
     },
     "common": {
-      "buy-ticket-aria": "شراء تذكرة",
+      "buy-ticket-aria": "احجز تذكرة",
       "toggle-mobile-menu": "تبديل القائمة على الهاتف"
     },
     "blog": {

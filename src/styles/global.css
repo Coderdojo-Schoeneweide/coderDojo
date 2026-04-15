@@ -84,6 +84,15 @@
     ul {
         @apply list-disc ps-5;
     }
+    
+    .mentoring-page .prose ul li {
+        @apply list-none;
+    }
+
+    .mentoring-page .prose li::marker {
+        display: none;
+    }
+
 
     button {
         @apply flex justify-center gap-2 font-bold cursor-pointer;
