@@ -5,7 +5,7 @@ buttons:
   - label: تحويل بنكي
     url: "#bank-details"
     style: secondary
-  - label: كن عضوًا داعمًا
+  - label: تبرع بواسطة بايبال
     url: ../mentoring/
     style: outline
 bankDetails:
