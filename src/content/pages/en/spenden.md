@@ -5,8 +5,8 @@ buttons:
   - label: Bank transfer
     url: "#bank-details"
     style: secondary
-  - label: Become a supporting member
-    url: ../mentoring/
+  - label: Donate with Paypal
+    url: 'https://paypal.me/dojosw'
     style: outline
 bankDetails:
   recipient: CoderDojo Schöneweide e.V.

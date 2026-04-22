@@ -19,6 +19,7 @@ import team from '@/assets/images/home/team.jpg';
 import { useTranslations, configuration } from '@/i18n.ts';
 import { getCollection, render } from 'astro:content';
 import HomeSection from '@/components/HomeSection.astro';
+import teilnehmende from '/public/images/cms/teilnehmende.png';
 
 const { t, translatePath } = useTranslations(Astro.currentLocale);
 
@@ -149,7 +150,7 @@ function getSection(id: string) {
       <HomeSection id={id} title={title} colorScheme="light">
         <Fragment slot="start">
           <Picture
-            src={team}
+            src={teilnehmende}
             formats={['avif', 'webp']}
             alt="image"
             layout="constrained"
@@ -176,19 +177,19 @@ function getSection(id: string) {
     getSection('society').map(({ id, title, buttons, Content }) => (
       <HomeSection id={id} title={title} colorScheme="dark">
         <Fragment slot="start">
-          <Content />
           <Button link={buttons.donate.url} icon={faPaypal} variant="brand">
             {buttons.donate.label}
           </Button>
-          <h3>Vereinsdokumente</h3>
-          <div class="button-group">
-            <Button link={buttons.constitution.url}>
-              {buttons.constitution.label}
-            </Button>
-            <Button link={buttons.reports.url}>{buttons.reports.label}</Button>
-          </div>
+          <Content />
         </Fragment>
-        <Fragment slot="end" />
+        <Fragment slot="end">
+          <Picture
+            src={team}
+            formats={['avif', 'webp']}
+            alt="image"
+            layout="constrained"
+          />
+        </Fragment>
       </HomeSection>
     ))
   }

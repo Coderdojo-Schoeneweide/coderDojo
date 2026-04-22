@@ -9,7 +9,7 @@ tags:
   - htw
   - scratch
   - Abzeichen
-  - Coding im Dojo
+  - Freies Coden
 authors:
   - Marlón
 ---
@@ -17,7 +17,7 @@ Heutzutage findet man in vielen Lernplattformen oder Lern-Apps, Abzeichen oder T
 
 ![](/images/cms/abzeichen_im_dojo_research_badges_im_coderdojo_1.png "Abzeichen Forschung")
 
-Hierfür habe ich mich zunächst mit Forschungsarbeiten zum Thema „Verwendung von Abzeichen in der Bildung“ beschäftigt. Um meine Studie auf unseren CoderDojo und die Kinder zu beziehen, habe ich Erfahrungen aus unserem Coding im Dojo Workshop miteinbezogen.
+Hierfür habe ich mich zunächst mit Forschungsarbeiten zum Thema „Verwendung von Abzeichen in der Bildung“ beschäftigt. Um meine Studie auf unseren CoderDojo und die Kinder zu beziehen, habe ich Erfahrungen aus unserem Freies Coden Workshop miteinbezogen.
 So stellte sich auch schnell heraus, dass sich Scratch als erste Umgebung für Überlegungen zur Gestaltung von Abzeichen eignet. Ich habe mir also die Funktionen von Scratch genauer angeschaut, um herauszufinden inwiefern Abzeichen hier eingebunden werden können. Herausgekommen ist zunächst eine riesiger Funktionsbaum – was man alles mit Scratch machen kann.
 
 ![Funktionsbaum von Scratch](/images/cms/abzeichen_im_dojo_research_badges_im_coderdojo_2.png)

@@ -5,9 +5,10 @@ buttons:
   - label: Banküberweisung
     url: "#bank-details"
     style: secondary
-  - label: Fördermitglied werden
-    url: ../mentoring/
+  - label: Spende mit Paypal
+    url: 'https://paypal.me/dojosw'
     style: outline
+
 bankDetails:
   recipient: CoderDojo Schöneweide e.V.
   iban: DE83 4306 0967 1323 6039 00

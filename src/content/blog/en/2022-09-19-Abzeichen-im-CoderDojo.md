@@ -7,7 +7,7 @@ tags:
   - htw
   - scratch
   - Abzeichen
-  - Coding im Dojo
+  - Freies Coden
 authors:
   - Marlón
 ---

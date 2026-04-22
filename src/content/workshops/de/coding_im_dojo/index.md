@@ -1,5 +1,5 @@
 +++
-title = "Coding im Dojo"
+title = "Freies Coden"
 description = "Freies arbeiten an eigenen Projekten und Inspiration für neue :)"
 keywords = ["Scratch", "Python", "Kinderworkshop", "Jugendworkshop", "Programmieren lernen", "Anfänger", "Workshop für Jugendliche"] 
 duration = "2 Stunden"
@@ -10,7 +10,7 @@ prevKnowledge = "Keine Vorkenntnisse notwendig"
 weight = 1
 +++
 
-Bei unserem Coding im Dojo kann man seine eigenen Programmier-Projekte mitbringen und frei daran arbeiten.
+Bei unserem Freies Coden kann man seine eigenen Programmier-Projekte mitbringen und frei daran arbeiten.
 Wenn man noch nicht weiß, was man machen möchte, haben wir auch einige Ideen zum Inspirieren parat und zeigen dir coole Dinge, die man machen kann :)
 
 ## Teilnehmende benötigen

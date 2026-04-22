@@ -1,5 +1,5 @@
 ---
-title: "Neues Format: Coding im Dojo"
+title: "Neues Format: Freies Coden"
 date: 2022-01-15T13:00:00+0100
 categories:
   - berichte
@@ -13,7 +13,7 @@ authors:
   - Markus
   - Philipp
 ---
-To get the new year off to a good start, the first Coding im Dojo of the year took place on January 15. As with every Coding im Dojo, the focus is on making and creativity. All participants can come to us with their own topics and the mentors will endeavor to support your projects in word and deed and help you develop and tinker 🧑‍🏫.
+To get the new year off to a good start, the first Freies Coden of the year took place on January 15. As with every Freies Coden, the focus is on making and creativity. All participants can come to us with their own topics and the mentors will endeavor to support your projects in word and deed and help you develop and tinker 🧑‍🏫.
 
 The children were able to take part in this “Coding in the Dojo” either on site or online via BigBlue-Button.
 Thanks to our mentors' experience with the tool, the integration of online participants went very smoothly.
