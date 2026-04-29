@@ -7,9 +7,9 @@ background: light
 
 **جهة التواصل:** Linda Fernsel
 
-**العنوان:** <span role="button" data-encoded-content="-ZQUI201ZI00MHAvDHtuwvBH9MZTQV">إظهار العنوان</span>
+**العنوان:** <span role="button" data-encoded-content=" MQLMSIUX4MOHAsDHtuwvzH9MZTQV">إظهار العنوان</span>
 
-**البريد الإلكتروني:** <span role="button" data-encoded-content="0KPWMVM4MQLMCJMZTQVFKWLMZLWRWCKWU">إظهار البريد الإلكتروني</span>
+**البريد الإلكتروني:** <span role="button" data-encoded-content="PITTWFKWLMZLWRWG0KPWMVM4MQLMCLM">إظهار البريد الإلكتروني</span>
 
 **الهاتف:** <span role="button" data-encoded-content="sswBtxxtsvytxyx">إظهار رقم الهاتف</span>
 

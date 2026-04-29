@@ -30,11 +30,18 @@ const { Content } = await render(page);
     let result = '';
     for (const character of text) {
       const index = charset.indexOf(character);
-      const decrypted =
-        index > offset ?
+      if (index === -1) {
+        console.warn(
+          'Invalid character in rotX string. This might lead to incorrect output',
+          character,
+        );
+        continue;
+      }
+      const rotated =
+        index >= offset ?
           charset.charAt(index - offset)
         : charset.charAt(index + offset);
-      result = result.concat(decrypted);
+      result = result.concat(rotated);
     }
     return result;
   }

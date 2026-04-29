@@ -7,9 +7,9 @@ Information according to § 5 TMG. JavaScript must be enabled to display contact
 
 **Contact person:** Linda Fernsel
 
-**Address:** <span role="button" data-encoded-content="-ZQUI201ZI00MHAvDHtuwvBH9MZTQV">Show address</span>
+**Address:** <span role="button" data-encoded-content=" MQLMSIUX4MOHAsDHtuwvzH9MZTQV">Show address</span>
 
-**Email:** <span role="button" data-encoded-content="0KPWMVM4MQLMCJMZTQVFKWLMZLWRWCKWU">Show email address</span>
+**Email:** <span role="button" data-encoded-content="PITTWFKWLMZLWRWG0KPWMVM4MQLMCLM">Show email address</span>
 
 **Phone:** <span role="button" data-encoded-content="sswBtxxtsvytxyx">Show phone number</span>
 

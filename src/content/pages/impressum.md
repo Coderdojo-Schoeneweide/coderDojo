@@ -7,9 +7,9 @@ Angaben gemäß § 5 TMG. Zum Anzeigen der Kontaktdaten muss JavaScript aktivier
 
 **Ansprechpartnerin:** Linda Fernsel
 
-**Anschrift:** <span role="button" data-encoded-content="-ZQUI201ZI00MHAvDHtuwvBH9MZTQV">Zeige Adresse</span>
+**Anschrift:** <span role="button" data-encoded-content=" MQLMSIUX4MOHAsDHtuwvzH9MZTQV">Zeige Adresse</span>
 
-**Email:** <span role="button" data-encoded-content="0KPWMVM4MQLMCJMZTQVFKWLMZLWRWCKWU">Zeige Mailadresse</span>
+**Email:** <span role="button" data-encoded-content="PITTWFKWLMZLWRWG0KPWMVM4MQLMCLM">Zeige Mailadresse</span>
 
 **Telefon:** <span role="button" data-encoded-content="sswBtxxtsvytxyx">Zeige Telefonnummer</span>
 
