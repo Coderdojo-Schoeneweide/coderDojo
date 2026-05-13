@@ -5,11 +5,15 @@ buttons:
   - label: Spenden
     url: ../donate/
     style: secondary
-  - label: Mitglied werden
-    url: ../mentoring/
+  - label: Fördermitglied werden
+    url: ../supporting-membership/
     style: primary
   - label: Satzung
     url: /satzung.pdf
+    style: outline
+    external: true
+  - label: Beitragsordnung
+    url: /beitragsordnung.pdf
     style: outline
     external: true
   - label: Jahresberichte
