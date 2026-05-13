@@ -9,7 +9,7 @@ buttons:
     url: ../mentoring/
     style: primary
   - label: Statutes
-    url: /satzung.pdf
+    url: /docs/satzung.pdf
     style: outline
     external: true
   - label: Annual Reports
