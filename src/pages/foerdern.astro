@@ -6,10 +6,10 @@ import { getCollection, render } from 'astro:content';
 import { findLocalizedEntryById } from '@/utils/contentLocalization.ts';
 
 const pages = await getCollection('pages');
-const page = findLocalizedEntryById(pages, 'supporting-membership', Astro.currentLocale);
+const page = findLocalizedEntryById(pages, 'foerdern', Astro.currentLocale);
 
 if (!page) {
-  throw new Error('Missing page content: supporting-membership');
+  throw new Error('Missing page content: foerdern');
 }
 
 const { Content } = await render(page);

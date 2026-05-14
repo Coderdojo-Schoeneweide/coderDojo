@@ -3,7 +3,7 @@ title: Support us
 buttons:
   support_membership:
     label: Be a supporting member
-    url: './supporting-membership/'
+    url: './foerdern/'
   donate:
     label: Donate
     url: './donate/'

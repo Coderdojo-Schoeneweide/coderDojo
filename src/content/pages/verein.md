@@ -6,7 +6,7 @@ buttons:
     url: ../donate/
     style: secondary
   - label: Fördermitglied werden
-    url: ../supporting-membership/
+    url: ../foerdern/
     style: primary
   - label: Satzung
     url: /satzung.pdf

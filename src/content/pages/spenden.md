@@ -9,7 +9,7 @@ buttons:
     url: 'https://paypal.me/dojosw'
     style: outline
   - label: Werde Fördermitglied
-    url: './supporting-membership/'
+    url: '../foerdern/'
     style: secondary
   
   

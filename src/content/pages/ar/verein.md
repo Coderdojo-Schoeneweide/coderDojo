@@ -6,7 +6,7 @@ buttons:
     url: ../donate/
     style: secondary
   - label: كن عضوًا داعمًا
-    url: ../supporting-membership/
+    url: ../foerdern/
     style: primary
   - label: النظام الأساسي
     url: /satzung.pdf

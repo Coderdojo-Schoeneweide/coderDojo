@@ -9,7 +9,7 @@ buttons:
     url: 'https://paypal.me/dojosw'
     style: outline
   - label: كن عضوًا داعمًا
-    url: './supporting-membership/'
+    url: '../foerdern/'
     style: secondary
 bankDetails:
   recipient: CoderDojo Schöneweide e.V.

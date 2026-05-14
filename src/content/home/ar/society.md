@@ -3,7 +3,7 @@ title: ادعم مشروعنا
 buttons:
   support_membership:
     label: كن عضوًا داعمًا
-    url: './supporting-membership/'
+    url: './foerdern/'
   donate:
     label: تبرع
     url: './donate/'
