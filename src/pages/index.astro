@@ -87,20 +87,17 @@ function getSection(id: string) {
     getSection('workshops').map(({ id, title, buttons, Content }) => (
       <HomeSection id={id} title={title} colorScheme="dark">
         <Fragment slot="start">
-          <Button
-            link={buttons.ticket.url}
-            icon={faTicket}
-            variant="brand"
-            stretch
-          >
-            {buttons.ticket.label}
-          </Button>
           <div class="button-group">
+            <Button
+              link={buttons.ticket.url}
+              icon={faTicket}
+              variant="brand"
+              stretch
+            >
+              {buttons.ticket.label}
+            </Button>
             <Button link={buttons.more.url} className="flex-auto" stretch>
               {buttons.more.label}
-            </Button>
-            <Button link={buttons.all.url} className="flex-auto" stretch>
-              {buttons.all.label}
             </Button>
           </div>
           <Content />

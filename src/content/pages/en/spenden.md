@@ -16,8 +16,9 @@ bankDetails:
   note: As a non-profit organization, we are happy to issue a donation receipt.
 ---
 
-Support CoderDojo Schöneweide with a donation.
+As a nonprofit organization, we rely on your help to offer free workshops.
+Your support helps us cover the costs of equipment and materials for the workshops, as well as administrative and PR expenses.
 
-As a non-profit organization, we rely on donations to offer free workshops.
+If you are able and willing to provide long-term financial support to CoderDojo, please consider becoming a supporting member.
 
-Your donation helps us finance hardware, software, and workshop materials.
+We are a registered nonprofit organization. Your donation is tax-deductible.
