@@ -4,6 +4,9 @@ buttons:
   donate:
     label: Support us with a donation
     url: 'https://paypal.me/dojosw'
+  sustain:
+    label: Become a supporting member
+    url: '/docs/antrag_foerdermitgliedschaft.pdf'
 ---
 
 CoderDojo Schöneweide is a registered non-profit association.
