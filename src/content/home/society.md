@@ -1,15 +1,12 @@
 ---
 title: Unterstütze uns
 buttons:
+  support_membership:
+    label: Fördermitglied werden
+    url: './foerdern/'
   donate:
-    label: Unterstütze uns durch eine Spende
-    url: 'https://paypal.me/dojosw'
+    label: Spenden
+    url: './donate/'
 ---
 
-Das CoderDojo Schöneweide ist ein eingetragener, gemeinnütziger Verein.
-
-Unterstütze die Arbeit des CoderDojo Schöneweide e.V. mit einer Spende via [PayPal](https://paypal.me/dojosw) oder direkt an unser Vereinskonto:\
-IBAN:\
-DE83 4306 0967 1323 6039 00\
-BIC:\
-GENODEM1GLS
+Dein Fördermitgliedschaftsbeitrag oder deine Spende finanzieren unsere Technik, Materialien, Verwaltung und PR -- und du kannst die Ausgabe von der Steuer absetzen.
