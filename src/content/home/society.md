@@ -4,6 +4,9 @@ buttons:
   donate:
     label: Unterstütze uns durch eine Spende
     url: 'https://paypal.me/dojosw'
+  sustain:
+    label: Fördermitglied werden
+    url: '/docs/antrag_foerdermitgliedschaft.pdf'
 ---
 
 Das CoderDojo Schöneweide ist ein eingetragener, gemeinnütziger Verein.

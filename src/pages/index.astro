@@ -180,6 +180,11 @@ function getSection(id: string) {
           <Button link={buttons.donate.url} icon={faPaypal} variant="brand">
             {buttons.donate.label}
           </Button>
+          <div class="button-group">
+            <Button link={buttons.sustain.url} external={true} variant="brand">
+              {buttons.sustain.label}
+            </Button>
+          </div>
           <Content />
         </Fragment>
         <Fragment slot="end">

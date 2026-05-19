@@ -4,6 +4,9 @@ buttons:
   donate:
     label: ادعمنا عبر التبرع
     url: 'https://paypal.me/dojosw'
+  sustain:
+    label: انضم كعضو داعم
+    url: '/docs/antrag_foerdermitgliedschaft.pdf'
 ---
 
 CoderDojo Schöneweide جمعية مسجلة وغير ربحية.
